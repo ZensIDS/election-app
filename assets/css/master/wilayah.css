@@ -1,0 +1,169 @@
+/*=========================================
+DATA WILAYAH
+=========================================*/
+
+.wilayah-container {
+  padding: 30px;
+}
+
+.page-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  color: #6b7280;
+}
+
+.btn-primary {
+  background: #2563eb;
+
+  color: #fff;
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.tab {
+  border: none;
+
+  background: #eef2ff;
+
+  color: #374151;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: 500;
+}
+
+.tab.active {
+  background: #2563eb;
+
+  color: #fff;
+}
+
+.toolbar {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.toolbar-left {
+  display: flex;
+
+  gap: 10px;
+}
+
+.btn-secondary {
+  border: none;
+
+  background: white;
+
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.toolbar-right input {
+  width: 260px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+}
+
+.table-card {
+  background: white;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 16px;
+
+  text-align: left;
+}
+
+td {
+  padding: 16px;
+
+  border-top: 1px solid #eef2f7;
+}
+
+.pagination {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+.pagination button {
+  border: none;
+
+  padding: 8px 14px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+}
+
+.pagination .active {
+  background: #2563eb;
+
+  color: white;
+}

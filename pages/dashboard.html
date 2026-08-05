@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Leaflet -->
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Highcharts -->
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
+  </head>
+
+  <body>
+    <!-- ===========================
+      SIDEBAR
+      =========================== -->
+
+    <aside class="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+      </div>
+
+      <ul>
+        <li class="active" onclick="location.href = '../pages/dashboard.html'">
+          <i class="fa-solid fa-chart-line"></i>
+
+          Dashboard
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              Data Wilayah
+            </li>
+
+            <li>
+              <i class="fa-solid fa-landmark"></i>
+              Data Dapil
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              Data Partai
+            </li>
+
+            <li>
+              <i class="fa-solid fa-user"></i>
+              Data Calon
+            </li>
+
+            <li>
+              <i class="fa-solid fa-building"></i>
+              Data TPS
+            </li>
+
+            <li>
+              <i class="fa-solid fa-file-import"></i>
+              Import Data
+            </li>
+          </ul>
+        </li>
+        <li>
+          <i class="fa-solid fa-map-location-dot"></i>
+
+          Analisis Wilayah
+        </li>
+
+        <li>
+          <i class="fa-solid fa-fire"></i>
+
+          Heatmap
+        </li>
+
+        <li>
+          <i class="fa-solid fa-users"></i>
+
+          Kompetitor
+        </li>
+
+        <li>
+          <i class="fa-solid fa-brain"></i>
+
+          AI Recommendation
+        </li>
+
+        <li>
+          <i class="fa-solid fa-bullseye"></i>
+
+          Simulasi Menang
+        </li>
+
+        <li>
+          <i class="fa-solid fa-user-group"></i>
+
+          Relawan
+        </li>
+
+        <li>
+          <i class="fa-solid fa-file-lines"></i>
+
+          Laporan
+        </li>
+
+        <li>
+          <i class="fa-solid fa-gear"></i>
+
+          Pengaturan
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ===========================
+MAIN
+=========================== -->
+
+    <main>
+      <!-- HEADER -->
+
+      <header class="topbar">
+        <div>
+          <h2>Political Intelligence Dashboard</h2>
+
+          <small> Dashboard Analisis Pemilu 2029 </small>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+
+          <i class="fa-solid fa-envelope"></i>
+
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+
+      <section class="content">
+        <!-- KPI -->
+
+        <section id="dashboard-cards"></section>
+
+        <!-- ROW 1 -->
+
+        <div class="dashboard-grid">
+          <section id="dashboard-line-chart"></section>
+
+          <section id="dashboard-ai-widget"></section>
+        </div>
+
+        <!-- ROW 2 -->
+
+        <div class="dashboard-grid">
+          <section id="dashboard-map"></section>
+
+          <section id="dashboard-quick-stat"></section>
+        </div>
+
+        <!-- ROW 3 -->
+
+        <div class="dashboard-grid">
+          <section id="dashboard-column-chart"></section>
+
+          <section id="dashboard-donut-chart"></section>
+        </div>
+
+        <!-- ROW 4 -->
+
+        <div class="dashboard-grid">
+          <section id="dashboard-progress"></section>
+
+          <section id="dashboard-timeline"></section>
+        </div>
+
+        <!-- TABLE -->
+
+        <section id="dashboard-table"></section>
+      </section>
+    </main>
+
+    <!-- Leaflet -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="../../assets/js/charts.js"></script>
+
+    <script src="../../assets/js/maps.js"></script>
+
+    <script src="../../assets/js/dashboard.js"></script>
+
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>
