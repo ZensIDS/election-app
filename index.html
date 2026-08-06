@@ -46,23 +46,66 @@
 
   <body>
     <!-- ===========================
+      OVERLAY (mobile sidebar backdrop)
+      =========================== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===========================
       SIDEBAR
       =========================== -->
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="logo">
         <i class="fa-solid fa-landmark"></i>
 
         <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
 
       <ul>
-        <li class="active" onclick="location.href = '../pages/dashboard.html'">
+        <li class="active" onclick="location.href = '/index.html'">
           <i class="fa-solid fa-chart-line"></i>
 
-          Dashboard
+          <span>Dashboard</span>
         </li>
 
+        <li>
+          <i class="fa-solid fa-map-location-dot"></i>
+          
+          <span>Analisis Wilayah</span>
+        </li>
+        
+        <li>
+          <i class="fa-solid fa-fire"></i>
+          
+          <span>Heatmap</span>
+        </li>
+        
+        <li>
+          <i class="fa-solid fa-brain"></i>
+          
+          <span>AI Recommendation</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-users"></i>
+          
+          <span>Kompetitor</span>
+        </li>
+        
+        <li>
+          <i class="fa-solid fa-bullseye"></i>
+          
+          <span>Simulasi Menang</span>
+        </li>
+        
         <li class="has-submenu">
           <div class="menu-toggle">
             <div class="menu-left">
@@ -75,83 +118,55 @@
           </div>
 
           <ul class="submenu">
-            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+            <li
+            >
               <i class="fa-solid fa-map-location-dot"></i>
-              Data Wilayah
+              <span>Data Wilayah</span>
             </li>
 
             <li>
               <i class="fa-solid fa-landmark"></i>
-              Data Dapil
+              <span>Data Dapil</span>
             </li>
 
             <li>
               <i class="fa-solid fa-flag"></i>
-              Data Partai
+              <span>Data Partai</span>
             </li>
 
             <li>
               <i class="fa-solid fa-user"></i>
-              Data Calon
+              <span>Data Calon</span>
             </li>
 
             <li>
               <i class="fa-solid fa-building"></i>
-              Data TPS
+              <span>Data TPS</span>
             </li>
 
             <li>
               <i class="fa-solid fa-file-import"></i>
-              Import Data
+              <span>Import Data</span>
             </li>
           </ul>
-        </li>
-        <li>
-          <i class="fa-solid fa-map-location-dot"></i>
-
-          Analisis Wilayah
-        </li>
-
-        <li>
-          <i class="fa-solid fa-fire"></i>
-
-          Heatmap
-        </li>
-
-        <li>
-          <i class="fa-solid fa-users"></i>
-
-          Kompetitor
-        </li>
-
-        <li>
-          <i class="fa-solid fa-brain"></i>
-
-          AI Recommendation
-        </li>
-
-        <li>
-          <i class="fa-solid fa-bullseye"></i>
-
-          Simulasi Menang
         </li>
 
         <li>
           <i class="fa-solid fa-user-group"></i>
-
-          Relawan
+          
+          <span>Relawan</span>
         </li>
 
         <li>
           <i class="fa-solid fa-file-lines"></i>
 
-          Laporan
+          <span>Laporan</span>
         </li>
 
         <li>
           <i class="fa-solid fa-gear"></i>
 
-          Pengaturan
+          <span>Pengaturan</span>
         </li>
       </ul>
     </aside>
@@ -164,10 +179,20 @@ MAIN
       <!-- HEADER -->
 
       <header class="topbar">
-        <div>
-          <h2>Political Intelligence Dashboard</h2>
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
 
-          <small> Dashboard Analisis Pemilu 2029 </small>
+          <div class="topbar-title">
+            <h2>Political Intelligence Dashboard</h2>
+
+            <small> Dashboard Analisis Pemilu 2029 </small>
+          </div>
         </div>
 
         <div class="right">
@@ -199,7 +224,7 @@ MAIN
         <div class="dashboard-grid">
           <section id="dashboard-map"></section>
 
-          <section style="display: none;" id="dashboard-quick-stat"></section>
+          <section style="display: none" id="dashboard-quick-stat"></section>
         </div>
 
         <!-- ROW 3 -->
@@ -215,7 +240,7 @@ MAIN
         <div class="dashboard-grid">
           <section id="dashboard-progress"></section>
 
-          <section style="display: none;" id="dashboard-timeline"></section>
+          <section style="display: none" id="dashboard-timeline"></section>
         </div>
 
         <!-- TABLE -->

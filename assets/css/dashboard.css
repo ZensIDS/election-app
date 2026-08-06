@@ -17,9 +17,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+/* NOTE: lebar & posisi .sidebar sepenuhnya diatur oleh style.css
+   (termasuk breakpoint tablet/mobile). Di sini kita cuma pastikan
+   sidebar tidak ikut menyusut sebagai flex item. */
 .sidebar {
-  width: 270px;
-
   flex-shrink: 0;
 }
 
@@ -123,21 +124,39 @@ main {
 ==========================*/
 
 .dashboard-widget {
+  position: relative;
+
   background: #ffffff;
 
-  border-radius: 18px;
+  border-radius: 20px;
 
   padding: 24px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
 
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow, 0 12px 28px -8px rgba(30, 41, 59, 0.1));
 
   overflow: hidden;
 
   height: 100%;
 
   min-height: auto;
+}
+
+.dashboard-widget::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(--gradient-brand, #4f46e5);
 }
 
 /*==========================
@@ -163,9 +182,15 @@ main {
 }
 
 .dashboard-widget-header span {
-  font-size: 13px;
+  font-size: 12px;
 
   color: #6b7280;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
 }
 
 /*=====================================================
@@ -184,7 +209,7 @@ main {
 
   border-radius: 50%;
 
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  background: linear-gradient(135deg, var(--primary), var(--accent-purple, #8b5cf6));
 
   color: #ffffff;
 
@@ -192,7 +217,7 @@ main {
 
   font-weight: 700;
 
-  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.35);
 }
 
 .ai-status {
@@ -256,7 +281,7 @@ main {
 .quick-info strong {
   font-size: 20px;
 
-  color: #111827;
+  color: var(--primary, #4f46e5);
 
   font-weight: 700;
 }
@@ -298,15 +323,15 @@ main {
 }
 
 .progress-fill.green {
-  background: #10b981;
+  background: #059669;
 }
 
 .progress-fill.orange {
-  background: #f59e0b;
+  background: #d97706;
 }
 
 .progress-fill.red {
-  background: #ef4444;
+  background: #dc2626;
 }
 
 .quick-progress small {
@@ -385,6 +410,21 @@ main {
 
   .dashboard-grid {
     grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  .dashboard-widget,
+  .kpi-card {
+    padding: 18px;
+  }
+
+  .chart-container {
+    height: 280px;
+  }
+
+  .map-container {
+    height: 360px;
   }
 }
 
@@ -393,17 +433,73 @@ main {
 =====================================================*/
 
 .kpi-card {
+  position: relative;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow, 0 12px 28px -8px rgba(30, 41, 59, 0.1));
   transition: 0.25s ease;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-brand, #4f46e5);
 }
 
 .kpi-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-hover, 0 20px 40px -12px rgba(79, 70, 229, 0.2));
+}
+
+/*=====================================================
+  KPI CARD - VARIASI WARNA & CORAK PER KARTU
+  -----------------------------------------------------
+  Tiap kartu KPI (urutan ke-1, ke-2, ke-3, ke-4, lalu
+  berulang) dapat tint warna + corak dot-grid halus di
+  background-nya biar tampilannya beda-beda, tanpa
+  menyentuh HTML/isi konten sama sekali.
+=====================================================*/
+
+.kpi-card {
+  --kpi-accent: var(--primary, #4f46e5);
+  --kpi-accent-light: var(--primary-light, #6366f1);
+  --kpi-tint: rgba(79, 70, 229, 0.16);
+
+  background-image:
+    radial-gradient(circle at 1px 1px, var(--kpi-tint) 1.4px, transparent 0),
+    linear-gradient(135deg, color-mix(in srgb, var(--kpi-accent) 6%, white) 0%, #ffffff 55%);
+  background-size: 15px 15px, 100% 100%;
+  background-repeat: repeat, no-repeat;
+  background-color: #ffffff;
+}
+
+.kpi-card::before {
+  background: linear-gradient(90deg, var(--kpi-accent), var(--kpi-accent-light));
+}
+
+#dashboard-cards .kpi-card:nth-child(4n + 2) {
+  --kpi-accent: var(--secondary, #ec4899);
+  --kpi-accent-light: var(--secondary-light, #f472b6);
+  --kpi-tint: rgba(236, 72, 153, 0.16);
+}
+
+#dashboard-cards .kpi-card:nth-child(4n + 3) {
+  --kpi-accent: var(--accent-teal, #06b6d4);
+  --kpi-accent-light: var(--accent-teal-light, #22d3ee);
+  --kpi-tint: rgba(6, 182, 212, 0.16);
+}
+
+#dashboard-cards .kpi-card:nth-child(4n + 4) {
+  --kpi-accent: var(--accent-amber, #f59e0b);
+  --kpi-accent-light: var(--accent-amber-light, #fbbf24);
+  --kpi-tint: rgba(245, 158, 11, 0.18);
 }
 
 .kpi-header {
@@ -414,9 +510,11 @@ main {
 }
 
 .kpi-header span {
-  font-size: 14px;
+  font-size: 12px;
   color: #6b7280;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .kpi-header i {
@@ -426,8 +524,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eff6ff;
-  color: #2563eb;
+  background: color-mix(in srgb, var(--kpi-accent, var(--primary, #4f46e5)) 15%, white);
+  color: var(--kpi-accent, var(--primary, #4f46e5));
   font-size: 18px;
 }
 
@@ -519,13 +617,13 @@ main {
 }
 
 .map-filter:hover {
-  background: #2563eb;
+  background: var(--gradient-primary, #4f46e5);
 
   color: #ffffff;
 }
 
 .map-filter.active {
-  background: #2563eb;
+  background: var(--gradient-primary, #4f46e5);
 
   color: #ffffff;
 }
@@ -543,7 +641,7 @@ main {
 
   overflow: hidden;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
 }
 
 /*=====================================================
@@ -569,7 +667,23 @@ main {
 
   font-size: 14px;
 
+  color: var(--primary, #4f46e5);
+}
+
+/* Label nama wilayah di tengah tiap polygon area pada peta */
+
+.map-area-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: 600;
+  font-size: 12px;
   color: #111827;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+
+.map-area-label::before {
+  display: none;
 }
 
 /*=====================================================
@@ -637,7 +751,7 @@ main {
 /* Colors */
 
 .campaign-progress-fill.primary {
-  background: #2563eb;
+  background: #4f46e5;
 }
 
 .campaign-progress-fill.success {
@@ -645,15 +759,15 @@ main {
 }
 
 .campaign-progress-fill.warning {
-  background: #f59e0b;
+  background: #d97706;
 }
 
 .campaign-progress-fill.info {
-  background: #06b6d4;
+  background: #0891b2;
 }
 
 .campaign-progress-fill.danger {
-  background: #ef4444;
+  background: #dc2626;
 }
 
 /*=====================================================
@@ -679,7 +793,7 @@ main {
 
   width: 2px;
 
-  background: #e5e7eb;
+  background: var(--border);
 }
 
 .timeline-item {
@@ -711,13 +825,13 @@ main {
 
   border: 3px solid #ffffff;
 
-  box-shadow: 0 0 0 2px #e5e7eb;
+  box-shadow: 0 0 0 2px var(--border);
 }
 
 /* ===== Colors ===== */
 
 .timeline-dot.primary {
-  background: #2563eb;
+  background: #4f46e5;
 }
 
 .timeline-dot.success {
@@ -725,15 +839,15 @@ main {
 }
 
 .timeline-dot.warning {
-  background: #f59e0b;
+  background: #d97706;
 }
 
 .timeline-dot.info {
-  background: #06b6d4;
+  background: #0891b2;
 }
 
 .timeline-dot.danger {
-  background: #ef4444;
+  background: #dc2626;
 }
 
 .timeline-content {
@@ -783,7 +897,7 @@ main {
 }
 
 .dashboard-table thead {
-  background: #f8fafc;
+  background: rgba(79, 70, 229, 0.06);
 }
 
 .dashboard-table th {
@@ -797,7 +911,7 @@ main {
 
   color: #374151;
 
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border);
 }
 
 .dashboard-table td {
@@ -815,7 +929,7 @@ main {
 }
 
 .dashboard-table tbody tr:hover {
-  background: #f9fafb;
+  background: rgba(79, 70, 229, 0.04);
 }
 
 /*=====================================================
@@ -838,28 +952,38 @@ main {
   background: #dcfce7;
 
   color: #15803d;
+
+  box-shadow: inset 0 0 0 1px rgba(21, 128, 61, 0.15);
 }
 
 .badge.primary {
-  background: #dbeafe;
+  background: #e0e7ff;
 
-  color: #1d4ed8;
+  color: #4338ca;
+
+  box-shadow: inset 0 0 0 1px rgba(67, 56, 202, 0.15);
 }
 
 .badge.warning {
   background: #fef3c7;
 
   color: #b45309;
+
+  box-shadow: inset 0 0 0 1px rgba(180, 83, 9, 0.15);
 }
 
 .badge.danger {
   background: #fee2e2;
 
   color: #dc2626;
+
+  box-shadow: inset 0 0 0 1px rgba(220, 38, 38, 0.15);
 }
 
 .badge.info {
   background: #cffafe;
 
   color: #0891b2;
+
+  box-shadow: inset 0 0 0 1px rgba(8, 145, 178, 0.15);
 }

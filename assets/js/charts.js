@@ -58,14 +58,7 @@ function createTrendChart() {
     },
 
     xAxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "Mei",
-        "Jun",
-      ],
+      categories: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun"],
     },
 
     yAxis: {
@@ -82,14 +75,7 @@ function createTrendChart() {
       {
         name: "Suara",
 
-        data: [
-          12000,
-          18000,
-          25000,
-          34000,
-          42000,
-          51000,
-        ],
+        data: [12000, 18000, 25000, 34000, 42000, 51000],
 
         color: "#2563eb",
       },
@@ -116,13 +102,7 @@ function createColumnChart() {
     },
 
     xAxis: {
-      categories: [
-        "Samarinda",
-        "Balikpapan",
-        "Kutai",
-        "Bontang",
-        "Berau",
-      ],
+      categories: ["Samarinda", "Balikpapan", "Kutai", "Bontang", "Berau"],
     },
 
     yAxis: {
@@ -139,13 +119,7 @@ function createColumnChart() {
       {
         name: "Suara",
 
-        data: [
-          8500,
-          7100,
-          6500,
-          5200,
-          4100,
-        ],
+        data: [8500, 7100, 6500, 5200, 4100],
 
         color: "#10b981",
       },
