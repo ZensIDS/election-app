@@ -31,75 +31,45 @@ async function loadDashboard() {
 
 async function loadDashboardComponents() {
   const widgets = [
-    {
-      selector: "#dashboard-cards",
-      file: "../../components/kpi-cards.html",
-    },
-    {
-      selector: "#dashboard-line-chart",
-      file: "../../components/trend-chart.html",
-    },
-    {
-      selector: "#dashboard-ai-widget",
-      file: "../../components/ai-widget.html",
-    },
-    {
-      selector: "#dashboard-map",
-      file: "../../components/map.html",
-    },
-    {
-      selector: "#dashboard-quick-stat",
-      file: "../../components/quick-stat.html",
-    },
-    {
-      selector: "#dashboard-column-chart",
-      file: "../../components/column-chart.html",
-    },
-    {
-      selector: "#dashboard-donut-chart",
-      file: "../../components/donut-chart.html",
-    },
-    {
-      selector: "#dashboard-progress",
-      file: "../../components/progress.html",
-    },
-    {
-      selector: "#dashboard-timeline",
-      file: "../../components/timeline.html",
-    },
-    {
-      selector: "#dashboard-table",
-      file: "../../components/data-table.html",
-    },
+    { selector: "#dashboard-cards", key: "kpi-cards" },
+    { selector: "#dashboard-line-chart", key: "trend-chart" },
+    { selector: "#dashboard-ai-widget", key: "ai-widget" },
+    { selector: "#dashboard-map", key: "map" },
+    { selector: "#dashboard-quick-stat", key: "quick-stat" },
+    { selector: "#dashboard-column-chart", key: "column-chart" },
+    { selector: "#dashboard-donut-chart", key: "donut-chart" },
+    { selector: "#dashboard-progress", key: "progress" },
+    { selector: "#dashboard-timeline", key: "timeline" },
+    { selector: "#dashboard-table", key: "data-table" },
   ];
 
-  await Promise.all(
-    widgets.map((widget) => loadComponent(widget.selector, widget.file)),
-  );
+  widgets.forEach((widget) => loadComponent(widget.selector, widget.key));
 }
 
 /* =====================================================
    LOAD HTML COMPONENT
+   (diambil dari window.COMPONENTS, bukan fetch(), supaya
+   bisa dibuka langsung lewat file:// tanpa web server)
 ===================================================== */
 
-async function loadComponent(selector, file) {
+function loadComponent(selector, key) {
   const target = document.querySelector(selector);
 
   if (!target) return;
 
   try {
-    const response = await fetch(file);
+    const html = window.COMPONENTS && window.COMPONENTS[key];
 
-    if (!response.ok) {
-      throw new Error(file);
+    if (!html) {
+      throw new Error(key);
     }
 
-    target.innerHTML = await response.text();
+    target.innerHTML = html;
   } catch (error) {
     target.innerHTML = `
             <div class="dashboard-widget">
                 <h3>Component Error</h3>
-                <p>${file}</p>
+                <p>${key}</p>
             </div>
         `;
 

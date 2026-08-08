@@ -1,239 +1,232 @@
 <!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
+<html lang="id" data-base-depth="1">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Dashboard | Political Intelligence 2029</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Font -->
+  <title>Dashboard | Political Intelligence 2029</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- Google Font -->
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../assets/vendor/fonts/poppins/poppins.css" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Font Awesome -->
 
-    <!-- Font Awesome -->
+  <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-    />
+  <!-- Leaflet -->
 
-    <!-- Leaflet -->
+  <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css" />
 
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
+  <!-- Highcharts -->
 
-    <!-- Highcharts -->
+  <script src="../assets/vendor/highcharts/highcharts.js"></script>
+  <script src="../assets/vendor/highcharts/highcharts-more.js"></script>
+  <script src="../assets/vendor/highcharts/exporting.js"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <!-- CSS -->
 
-    <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
 
-    <link rel="stylesheet" href="../../assets/css/style.css" />
-    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
-  </head>
+  <!-- Base Path Resolver (harus dimuat sebelum script lain) -->
+  <script src="../assets/js/base-path.js"></script>
+</head>
 
-  <body>
-    <!-- ===========================
+<body>
+  <!-- ===========================
       SIDEBAR
       =========================== -->
 
-    <aside class="sidebar">
-      <div class="logo">
-        <i class="fa-solid fa-landmark"></i>
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-landmark"></i>
 
-        <span>PID 2029</span>
-      </div>
+      <span>PID 2029</span>
+    </div>
 
-      <ul>
-        <li class="active" onclick="location.href = '../pages/dashboard.html'">
-          <i class="fa-solid fa-chart-line"></i>
+    <ul>
+      <li class="active" onclick="location.href = BASE_PATH + 'index.html'">
+        <i class="fa-solid fa-chart-line"></i>
 
-          Dashboard
-        </li>
+        Dashboard
+      </li>
 
-        <li class="has-submenu">
-          <div class="menu-toggle">
-            <div class="menu-left">
-              <i class="fa-solid fa-database"></i>
+      <li class="has-submenu">
+        <div class="menu-toggle">
+          <div class="menu-left">
+            <i class="fa-solid fa-database"></i>
 
-              <span>Master Data</span>
-            </div>
-
-            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+            <span>Master Data</span>
           </div>
 
-          <ul class="submenu">
-            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
-              <i class="fa-solid fa-map-location-dot"></i>
-              Data Wilayah
-            </li>
+          <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+        </div>
 
-            <li>
-              <i class="fa-solid fa-landmark"></i>
-              Data Dapil
-            </li>
+        <ul class="submenu">
+          <li onclick="location.href = BASE_PATH + 'pages/master-data/wilayah.html'">
+            <i class="fa-solid fa-map-location-dot"></i>
+            Data Wilayah
+          </li>
 
-            <li>
-              <i class="fa-solid fa-flag"></i>
-              Data Partai
-            </li>
+          <li>
+            <i class="fa-solid fa-landmark"></i>
+            Data Dapil
+          </li>
 
-            <li>
-              <i class="fa-solid fa-user"></i>
-              Data Calon
-            </li>
+          <li>
+            <i class="fa-solid fa-flag"></i>
+            Data Partai
+          </li>
 
-            <li>
-              <i class="fa-solid fa-building"></i>
-              Data TPS
-            </li>
+          <li>
+            <i class="fa-solid fa-user"></i>
+            Data Calon
+          </li>
 
-            <li>
-              <i class="fa-solid fa-file-import"></i>
-              Import Data
-            </li>
-          </ul>
-        </li>
-        <li>
-          <i class="fa-solid fa-map-location-dot"></i>
+          <li>
+            <i class="fa-solid fa-building"></i>
+            Data TPS
+          </li>
 
-          Analisis Wilayah
-        </li>
+          <li>
+            <i class="fa-solid fa-file-import"></i>
+            Import Data
+          </li>
+        </ul>
+      </li>
+      <li>
+        <i class="fa-solid fa-map-location-dot"></i>
 
-        <li>
-          <i class="fa-solid fa-fire"></i>
+        Analisis Wilayah
+      </li>
 
-          Heatmap
-        </li>
+      <li>
+        <i class="fa-solid fa-fire"></i>
 
-        <li>
-          <i class="fa-solid fa-users"></i>
+        Heatmap
+      </li>
 
-          Kompetitor
-        </li>
+      <li>
+        <i class="fa-solid fa-users"></i>
 
-        <li>
-          <i class="fa-solid fa-brain"></i>
+        Kompetitor
+      </li>
 
-          AI Recommendation
-        </li>
+      <li>
+        <i class="fa-solid fa-brain"></i>
 
-        <li>
-          <i class="fa-solid fa-bullseye"></i>
+        AI Recommendation
+      </li>
 
-          Simulasi Menang
-        </li>
+      <li>
+        <i class="fa-solid fa-bullseye"></i>
 
-        <li>
-          <i class="fa-solid fa-user-group"></i>
+        Simulasi Menang
+      </li>
 
-          Relawan
-        </li>
+      <li>
+        <i class="fa-solid fa-user-group"></i>
 
-        <li>
-          <i class="fa-solid fa-file-lines"></i>
+        Relawan
+      </li>
 
-          Laporan
-        </li>
+      <li>
+        <i class="fa-solid fa-file-lines"></i>
 
-        <li>
-          <i class="fa-solid fa-gear"></i>
+        Laporan
+      </li>
 
-          Pengaturan
-        </li>
-      </ul>
-    </aside>
+      <li>
+        <i class="fa-solid fa-gear"></i>
 
-    <!-- ===========================
+        Pengaturan
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ===========================
 MAIN
 =========================== -->
 
-    <main>
-      <!-- HEADER -->
+  <main>
+    <!-- HEADER -->
 
-      <header class="topbar">
-        <div>
-          <h2>Political Intelligence Dashboard</h2>
+    <header class="topbar">
+      <div>
+        <h2>Political Intelligence Dashboard</h2>
 
-          <small> Dashboard Analisis Pemilu 2029 </small>
-        </div>
+        <small> Dashboard Analisis Pemilu 2029 </small>
+      </div>
 
-        <div class="right">
-          <i class="fa-solid fa-bell"></i>
+      <div class="right">
+        <i class="fa-solid fa-bell"></i>
 
-          <i class="fa-solid fa-envelope"></i>
+        <i class="fa-solid fa-envelope"></i>
 
-          <img src="https://i.pravatar.cc/45" />
-        </div>
-      </header>
+        <img src="https://i.pravatar.cc/45" />
+      </div>
+    </header>
 
-      <!-- CONTENT -->
+    <!-- CONTENT -->
 
-      <section class="content">
-        <!-- KPI -->
+    <section class="content">
+      <!-- KPI -->
 
-        <section id="dashboard-cards"></section>
+      <section id="dashboard-cards"></section>
 
-        <!-- ROW 1 -->
+      <!-- ROW 1 -->
 
-        <div class="dashboard-grid">
-          <section id="dashboard-line-chart"></section>
+      <div class="dashboard-grid">
+        <section id="dashboard-line-chart"></section>
 
-          <section id="dashboard-ai-widget"></section>
-        </div>
+        <section id="dashboard-ai-widget"></section>
+      </div>
 
-        <!-- ROW 2 -->
+      <!-- ROW 2 -->
 
-        <div class="dashboard-grid">
-          <section id="dashboard-map"></section>
+      <div class="dashboard-grid">
+        <section id="dashboard-map"></section>
 
-          <section id="dashboard-quick-stat"></section>
-        </div>
+        <section id="dashboard-quick-stat"></section>
+      </div>
 
-        <!-- ROW 3 -->
+      <!-- ROW 3 -->
 
-        <div class="dashboard-grid">
-          <section id="dashboard-column-chart"></section>
+      <div class="dashboard-grid">
+        <section id="dashboard-column-chart"></section>
 
-          <section id="dashboard-donut-chart"></section>
-        </div>
+        <section id="dashboard-donut-chart"></section>
+      </div>
 
-        <!-- ROW 4 -->
+      <!-- ROW 4 -->
 
-        <div class="dashboard-grid">
-          <section id="dashboard-progress"></section>
+      <div class="dashboard-grid">
+        <section id="dashboard-progress"></section>
 
-          <section id="dashboard-timeline"></section>
-        </div>
+        <section id="dashboard-timeline"></section>
+      </div>
 
-        <!-- TABLE -->
+      <!-- TABLE -->
 
-        <section id="dashboard-table"></section>
-      </section>
-    </main>
+      <section id="dashboard-table"></section>
+    </section>
+  </main>
 
-    <!-- Leaflet -->
+  <!-- Leaflet -->
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="../assets/vendor/leaflet/leaflet.js"></script>
 
-    <script src="../../assets/js/charts.js"></script>
+  <script src="../assets/js/charts.js"></script>
 
-    <script src="../../assets/js/maps.js"></script>
+  <script src="../assets/js/maps.js"></script>
 
-    <script src="../../assets/js/dashboard.js"></script>
+  <script src="../assets/js/components-data.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
 
-    <script src="../../assets/js/app.js"></script>
-  </body>
+  <script src="../assets/js/app.js"></script>
+</body>
+
 </html>

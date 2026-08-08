@@ -1,256 +1,252 @@
 <!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="id" data-base-depth="2">
 
-    <title>Master Data | Political Intelligence 2029</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>Master Data | Political Intelligence 2029</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Google Font -->
+  <link rel="stylesheet" href="../../assets/vendor/fonts/poppins/poppins.css" />
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-    />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../assets/vendor/fontawesome/css/all.min.css" />
 
-    <!-- Global Style -->
-    <link rel="stylesheet" href="../../assets/css/style.css" />
+  <!-- Global Style -->
+  <link rel="stylesheet" href="../../assets/css/style.css" />
 
-    <!-- Master Data -->
-    <link rel="stylesheet" href="../../assets/css/master/wilayah.css" />
-  </head>
+  <!-- Master Data -->
+  <link rel="stylesheet" href="../../assets/css/master/wilayah.css" />
 
-  <body>
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="logo">
-        <i class="fa-solid fa-landmark"></i>
-        <span>PID 2029</span>
+  <!-- Base Path Resolver (harus dimuat sebelum script lain) -->
+  <script src="../../assets/js/base-path.js"></script>
+</head>
+
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fa-solid fa-landmark"></i>
+      <span>PID 2029</span>
+    </div>
+
+    <ul>
+      <li onclick="location.href = BASE_PATH + 'index.html'">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+      </li>
+
+      <li class="has-submenu active">
+        <div class="menu-toggle">
+          <div class="menu-left">
+            <i class="fa-solid fa-database"></i>
+
+            <span>Master Data</span>
+          </div>
+
+          <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+        </div>
+
+        <ul class="submenu">
+          <li class="active" onclick="location.href = BASE_PATH + 'pages/master-data/wilayah.html'">
+            <i class="fa-solid fa-map-location-dot"></i>
+            Data Wilayah
+          </li>
+
+          <li>
+            <i class="fa-solid fa-landmark"></i>
+            Data Dapil
+          </li>
+
+          <li>
+            <i class="fa-solid fa-flag"></i>
+            Data Partai
+          </li>
+
+          <li>
+            <i class="fa-solid fa-user"></i>
+            Data Calon
+          </li>
+
+          <li>
+            <i class="fa-solid fa-building"></i>
+            Data TPS
+          </li>
+
+          <li>
+            <i class="fa-solid fa-file-import"></i>
+            Import Data
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <i class="fa-solid fa-map-location-dot"></i>
+        Analisis Wilayah
+      </li>
+
+      <li>
+        <i class="fa-solid fa-fire"></i>
+        Heatmap
+      </li>
+
+      <li>
+        <i class="fa-solid fa-users"></i>
+        Kompetitor
+      </li>
+
+      <li>
+        <i class="fa-solid fa-brain"></i>
+        AI Recommendation
+      </li>
+
+      <li>
+        <i class="fa-solid fa-bullseye"></i>
+        Simulasi Menang
+      </li>
+
+      <li>
+        <i class="fa-solid fa-user-group"></i>
+        Relawan
+      </li>
+
+      <li>
+        <i class="fa-solid fa-file-lines"></i>
+        Laporan
+      </li>
+
+      <li>
+        <i class="fa-solid fa-gear"></i>
+        Pengaturan
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div>
+        <h2>Data Wilayah</h2>
+
+        <small>Master Data Political Intelligence Dashboard</small>
       </div>
 
-      <ul>
-        <li onclick="location.href = '/index.html'">
-          <i class="fa-solid fa-chart-line"></i>
-          Dashboard
-        </li>
+      <div class="right">
+        <i class="fa-solid fa-bell"></i>
 
-        <li class="has-submenu active">
-          <div class="menu-toggle">
-            <div class="menu-left">
-              <i class="fa-solid fa-database"></i>
+        <i class="fa-solid fa-envelope"></i>
 
-              <span>Master Data</span>
-            </div>
+        <img src="https://i.pravatar.cc/45" />
+      </div>
+    </header>
 
-            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
-          </div>
+    <!-- CONTENT -->
 
-          <ul class="submenu">
-            <li class="active" onclick="location.href = '../../pages/master-data/wilayah.html'">
-              <i class="fa-solid fa-map-location-dot"></i>
-              Data Wilayah
-            </li>
+    <section class="wilayah-container">
+      <!-- PAGE HEADER -->
 
-            <li>
-              <i class="fa-solid fa-landmark"></i>
-              Data Dapil
-            </li>
-
-            <li>
-              <i class="fa-solid fa-flag"></i>
-              Data Partai
-            </li>
-
-            <li>
-              <i class="fa-solid fa-user"></i>
-              Data Calon
-            </li>
-
-            <li>
-              <i class="fa-solid fa-building"></i>
-              Data TPS
-            </li>
-
-            <li>
-              <i class="fa-solid fa-file-import"></i>
-              Import Data
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <i class="fa-solid fa-map-location-dot"></i>
-          Analisis Wilayah
-        </li>
-
-        <li>
-          <i class="fa-solid fa-fire"></i>
-          Heatmap
-        </li>
-
-        <li>
-          <i class="fa-solid fa-users"></i>
-          Kompetitor
-        </li>
-
-        <li>
-          <i class="fa-solid fa-brain"></i>
-          AI Recommendation
-        </li>
-
-        <li>
-          <i class="fa-solid fa-bullseye"></i>
-          Simulasi Menang
-        </li>
-
-        <li>
-          <i class="fa-solid fa-user-group"></i>
-          Relawan
-        </li>
-
-        <li>
-          <i class="fa-solid fa-file-lines"></i>
-          Laporan
-        </li>
-
-        <li>
-          <i class="fa-solid fa-gear"></i>
-          Pengaturan
-        </li>
-      </ul>
-    </aside>
-
-    <!-- MAIN -->
-    <main>
-      <!-- TOPBAR -->
-      <header class="topbar">
+      <div class="page-header">
         <div>
-          <h2>Data Wilayah</h2>
+          <h1>Data Wilayah</h1>
 
-          <small>Master Data Political Intelligence Dashboard</small>
+          <p>
+            Kelola seluruh data wilayah mulai Provinsi, Kabupaten/Kota,
+            Kecamatan, Desa/Kelurahan hingga TPS.
+          </p>
         </div>
 
-        <div class="right">
-          <i class="fa-solid fa-bell"></i>
+        <button class="btn-primary">
+          <i class="fa-solid fa-plus"></i>
 
-          <i class="fa-solid fa-envelope"></i>
+          Tambah Data
+        </button>
+      </div>
 
-          <img src="https://i.pravatar.cc/45" />
-        </div>
-      </header>
+      <!-- TAB -->
 
-      <!-- CONTENT -->
+      <div class="tabs">
+        <button class="tab active">Provinsi</button>
 
-      <section class="wilayah-container">
-        <!-- PAGE HEADER -->
+        <button class="tab">Kabupaten</button>
 
-        <div class="page-header">
-          <div>
-            <h1>Data Wilayah</h1>
+        <button class="tab">Kecamatan</button>
 
-            <p>
-              Kelola seluruh data wilayah mulai Provinsi, Kabupaten/Kota,
-              Kecamatan, Desa/Kelurahan hingga TPS.
-            </p>
-          </div>
+        <button class="tab">Desa</button>
 
-          <button class="btn-primary">
-            <i class="fa-solid fa-plus"></i>
+        <button class="tab">TPS</button>
+      </div>
 
-            Tambah Data
+      <!-- TOOLBAR -->
+
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button class="btn-secondary">
+            <i class="fa-solid fa-file-import"></i>
+
+            Import
+          </button>
+
+          <button class="btn-secondary">
+            <i class="fa-solid fa-file-excel"></i>
+
+            Export Excel
+          </button>
+
+          <button class="btn-secondary">
+            <i class="fa-solid fa-file-pdf"></i>
+
+            Export PDF
           </button>
         </div>
 
-        <!-- TAB -->
-
-        <div class="tabs">
-          <button class="tab active">Provinsi</button>
-
-          <button class="tab">Kabupaten</button>
-
-          <button class="tab">Kecamatan</button>
-
-          <button class="tab">Desa</button>
-
-          <button class="tab">TPS</button>
+        <div class="toolbar-right">
+          <input type="text" placeholder="Cari data wilayah..." />
         </div>
+      </div>
 
-        <!-- TOOLBAR -->
+      <!-- TABLE -->
 
-        <div class="toolbar">
-          <div class="toolbar-left">
-            <button class="btn-secondary">
-              <i class="fa-solid fa-file-import"></i>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
 
-              Import
-            </button>
+              <th>Nama Wilayah</th>
 
-            <button class="btn-secondary">
-              <i class="fa-solid fa-file-excel"></i>
+              <th>Kode</th>
 
-              Export Excel
-            </button>
+              <th>Jumlah TPS</th>
 
-            <button class="btn-secondary">
-              <i class="fa-solid fa-file-pdf"></i>
+              <th>Status</th>
 
-              Export PDF
-            </button>
-          </div>
+              <th width="120">Aksi</th>
+            </tr>
+          </thead>
 
-          <div class="toolbar-right">
-            <input type="text" placeholder="Cari data wilayah..." />
-          </div>
-        </div>
+          <tbody id="wilayahTable"></tbody>
+        </table>
+      </div>
 
-        <!-- TABLE -->
+      <!-- PAGINATION -->
 
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
+      <div class="pagination">
+        <button>«</button>
 
-                <th>Nama Wilayah</th>
+        <button class="active">1</button>
 
-                <th>Kode</th>
+        <button>2</button>
 
-                <th>Jumlah TPS</th>
+        <button>3</button>
 
-                <th>Status</th>
+        <button>»</button>
+      </div>
+    </section>
+  </main>
+  <script src="../../assets/js/app.js"></script>
+  <script src="../../assets/js/master/wilayah.js"></script>
+</body>
 
-                <th width="120">Aksi</th>
-              </tr>
-            </thead>
-
-            <tbody id="wilayahTable"></tbody>
-          </table>
-        </div>
-
-        <!-- PAGINATION -->
-
-        <div class="pagination">
-          <button>«</button>
-
-          <button class="active">1</button>
-
-          <button>2</button>
-
-          <button>3</button>
-
-          <button>»</button>
-        </div>
-      </section>
-    </main>
-    <script src="../../assets/js/app.js"></script>
-    <script src="../../assets/js/master/wilayah.js"></script>
-  </body>
 </html>
