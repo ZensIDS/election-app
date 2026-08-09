@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Analisis Wilayah | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Analisis Wilayah -->
+    <link
+      rel="stylesheet"
+      href="../../assets/css/analisis-wilayah/analisis-wilayah.css"
+    />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          class="active"
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          ">
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li onclick="location.href = '/pages/simulasi-menang/simulasi-menang.html'">
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li
+              onclick="location.href = '../../pages/master-data/wilayah.html'"
+            >
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Analisis Wilayah</h2>
+            <small
+              >Gap suara, potensi, dan prioritas pemenangan per wilayah</small
+            >
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="analisis-container">
+        <!-- PAGE HEADER -->
+        <!-- <div class="page-header">
+          <div>
+            <h1>Analisis Wilayah</h1>
+            <p>
+              "Kalau mau menang, saya harus mendapatkan berapa suara dan dari
+              wilayah mana?" — jawabannya ada di bawah ini.
+            </p>
+          </div>
+        </div> -->
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label>Provinsi</label>
+            <select id="filterProvinsi">
+              <option>Kalimantan Timur</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Kabupaten/Kota</label>
+            <select id="filterKabupaten">
+              <option value="">Semua Kabupaten/Kota</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Kecamatan</label>
+            <select id="filterKecamatan">
+              <option value="">Semua Kecamatan</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Desa/Kelurahan</label>
+            <select id="filterDesa" disabled>
+              <option value="">Semua Desa</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>TPS</label>
+            <select id="filterTps" disabled>
+              <option value="">Semua TPS</option>
+            </select>
+          </div>
+
+          <button class="btn-reset-filter" id="resetFilterBtn">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset
+          </button>
+        </div>
+
+        <!-- MODE TABS -->
+        <div class="mode-tabs" id="modeTabs">
+          <button class="mode-tab active" data-mode="historis">
+            <i class="fa-solid fa-clock-rotate-left"></i> Historis
+          </button>
+          <button class="mode-tab" data-mode="potensi">
+            <i class="fa-solid fa-seedling"></i> Potensi
+          </button>
+          <button class="mode-tab" data-mode="target">
+            <i class="fa-solid fa-bullseye"></i> Target
+          </button>
+          <button class="mode-tab" data-mode="kompetitor">
+            <i class="fa-solid fa-users"></i> Kompetitor
+          </button>
+          <button class="mode-tab" data-mode="simulasi">
+            <i class="fa-solid fa-sliders"></i> Simulasi
+          </button>
+        </div>
+
+        <!-- KPI ROW -->
+        <div class="analisis-kpi-grid" id="analisisKpiGrid"></div>
+
+        <!-- ROW: MAP + RANKING -->
+        <div class="analisis-grid">
+          <div class="analisis-widget map-widget">
+            <div class="analisis-widget-header">
+              <h3>
+                <i class="fa-solid fa-map-location-dot"></i> Peta Interaktif
+              </h3>
+              <span>Klik wilayah untuk drill-down</span>
+            </div>
+            <div id="analisisMap" class="analisis-map-container"></div>
+          </div>
+
+          <div class="analisis-widget ranking-widget">
+            <div class="analisis-widget-header">
+              <h3><i class="fa-solid fa-ranking-star"></i> Ranking Wilayah</h3>
+              <span id="rankingScopeLabel">Semua Kabupaten/Kota</span>
+            </div>
+            <ol class="ranking-list" id="rankingList"></ol>
+          </div>
+        </div>
+
+        <!-- ROW: TREND -->
+        <div class="analisis-widget trend-widget">
+          <div class="analisis-widget-header">
+            <h3><i class="fa-solid fa-chart-line"></i> Tren Perolehan Suara</h3>
+            <span>Historis &rarr; Target 2029</span>
+          </div>
+          <div id="trendChart" class="analisis-chart-container"></div>
+        </div>
+
+        <!-- ROW: POTENSI + GAP -->
+        <div class="analisis-grid">
+          <div class="analisis-widget">
+            <div class="analisis-widget-header">
+              <h3><i class="fa-solid fa-seedling"></i> Potensi Wilayah</h3>
+              <span>% capaian terhadap target</span>
+            </div>
+            <div id="potensiChart" class="analisis-chart-container"></div>
+          </div>
+
+          <div class="analisis-widget">
+            <div class="analisis-widget-header">
+              <h3><i class="fa-solid fa-bullseye"></i> Gap Menuju Target</h3>
+              <span>Kekurangan / kelebihan suara</span>
+            </div>
+            <div id="gapChart" class="analisis-chart-container"></div>
+          </div>
+        </div>
+
+        <!-- SIMULASI PANEL -->
+        <div class="analisis-widget simulasi-widget" id="simulasiPanel">
+          <div class="analisis-widget-header">
+            <h3><i class="fa-solid fa-sliders"></i> Simulasi Peluang Menang</h3>
+            <span>"Kalau target naik, bagaimana gap-nya berubah?"</span>
+          </div>
+
+          <div class="simulasi-body">
+            <div class="simulasi-control">
+              <label for="simulasiKecamatan">Pilih Kecamatan</label>
+              <select id="simulasiKecamatan"></select>
+
+              <label for="simulasiSlider">
+                Tambahan Suara: <strong id="simulasiValueLabel">0</strong>
+              </label>
+              <input
+                type="range"
+                id="simulasiSlider"
+                min="0"
+                max="20000"
+                step="500"
+                value="0"
+              />
+            </div>
+
+            <div class="simulasi-result" id="simulasiResult"></div>
+          </div>
+        </div>
+
+        <!-- KOMPETITOR PLACEHOLDER -->
+        <div class="analisis-widget kompetitor-widget" id="kompetitorPanel">
+          <div class="analisis-widget-header">
+            <h3><i class="fa-solid fa-users"></i> Analisis Kompetitor</h3>
+          </div>
+          <div class="empty-state">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+              Data kompetitor belum tersedia. Sambungkan modul
+              <strong>Kompetitor</strong> untuk mengaktifkan analisis
+              head-to-head di sini.
+            </p>
+          </div>
+        </div>
+
+        <!-- REKOMENDASI -->
+        <div class="analisis-widget rekomendasi-widget">
+          <div class="analisis-widget-header">
+            <h3><i class="fa-solid fa-lightbulb"></i> Rekomendasi</h3>
+            <span>Wilayah yang harus dikejar</span>
+          </div>
+          <div class="rekomendasi-list" id="rekomendasiList"></div>
+        </div>
+
+        <!-- TPS PRIORITAS -->
+        <div class="analisis-widget">
+          <div class="analisis-widget-header">
+            <h3><i class="fa-solid fa-building"></i> TPS Prioritas</h3>
+            <span>TPS dengan gap tertinggi pada wilayah terpilih</span>
+          </div>
+          <div class="table-responsive">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>TPS</th>
+                  <th>Kecamatan</th>
+                  <th>DPT</th>
+                  <th>Historis</th>
+                  <th>Target</th>
+                  <th>Gap</th>
+                  <th>Prioritas</th>
+                </tr>
+              </thead>
+              <tbody id="tpsPrioritasTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="../../assets/js/analisis-wilayah/analisis-wilayah.js"></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>

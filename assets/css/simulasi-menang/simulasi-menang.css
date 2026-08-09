@@ -1,0 +1,785 @@
+/*=====================================================
+  SIMULASI MENANG
+  Mengikuti token warna & komponen dari style.css global
+=====================================================*/
+
+.simulasi-container {
+  padding: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.simulasi-widget {
+  position: relative;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+}
+
+.simulasi-widget::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+}
+
+.simulasi-widget-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.simulasi-widget-header h3 {
+  font-size: 17px;
+
+  font-weight: 600;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.simulasi-widget-header h3 i {
+  color: var(--primary);
+}
+
+.simulasi-widget-header span {
+  font-size: 13px;
+
+  color: var(--text-light);
+}
+
+/*=====================================================
+  1. PARAMETER SIMULASI
+=====================================================*/
+
+.param-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  align-items: end;
+}
+
+.param-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.param-group label {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: var(--text-light);
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.03em;
+}
+
+.param-group label strong {
+  color: var(--primary);
+
+  text-transform: none;
+
+  letter-spacing: normal;
+}
+
+.param-group select,
+.param-group input[type="number"] {
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--border);
+
+  background: #f9fafb;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  color: var(--text);
+}
+
+.param-group input[type="range"] {
+  accent-color: var(--primary);
+
+  width: 100%;
+}
+
+.param-action {
+  justify-content: flex-end;
+}
+
+.btn-run-simulasi {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+
+  color: #fff;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+
+  font-size: 14px;
+
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.3);
+
+  transition: 0.25s;
+}
+
+.btn-run-simulasi:hover {
+  filter: brightness(1.08);
+
+  transform: translateY(-1px);
+}
+
+/*=====================================================
+  2. HASIL SIMULASI (hero stat)
+=====================================================*/
+
+.hasil-simulasi-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.hasil-card {
+  position: relative;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  text-align: center;
+}
+
+.hasil-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+}
+
+.hasil-card span {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: var(--text-light);
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.04em;
+}
+
+.hasil-card h2 {
+  font-size: 32px;
+
+  margin: 12px 0 6px;
+
+  color: var(--text);
+}
+
+.hasil-card.gap-card.status-belum h2 {
+  color: var(--danger);
+}
+
+.hasil-card.gap-card.status-menang h2 {
+  color: var(--success);
+}
+
+.hasil-card.status-card {
+  color: #fff;
+}
+
+.hasil-card.status-card.menang {
+  background: linear-gradient(135deg, #16a34a, #4ade80);
+}
+
+.hasil-card.status-card.belum {
+  background: linear-gradient(135deg, #dc2626, #f87171);
+}
+
+.hasil-card.status-card span,
+.hasil-card.status-card h2 {
+  color: #fff;
+}
+
+.hasil-card.status-card h2 {
+  font-size: 22px;
+}
+
+/*=====================================================
+  3. DISTRIBUSI TARGET
+=====================================================*/
+
+.distribusi-body {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.simulasi-chart-container {
+  width: 100%;
+
+  height: 340px;
+}
+
+.gap-cell.positive {
+  color: var(--danger);
+
+  font-weight: 600;
+}
+
+.gap-cell.negative {
+  color: var(--success);
+
+  font-weight: 600;
+}
+
+/*=====================================================
+  4. SCENARIO COMPARISON
+=====================================================*/
+
+.scenario-body {
+  display: grid;
+
+  grid-template-columns: 1.4fr 1fr;
+
+  gap: 24px;
+
+  align-items: start;
+}
+
+.scenario-cards {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.scenario-card {
+  border-radius: 14px;
+
+  padding: 16px 18px;
+
+  border: 1px solid var(--border);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.scenario-card h4 {
+  font-size: 14px;
+
+  margin-bottom: 4px;
+}
+
+.scenario-card small {
+  color: var(--text-light);
+
+  font-size: 12px;
+}
+
+.scenario-card .scenario-value {
+  text-align: right;
+}
+
+.scenario-card .scenario-value strong {
+  display: block;
+
+  font-size: 18px;
+}
+
+.scenario-badge {
+  display: inline-block;
+
+  margin-top: 6px;
+
+  padding: 3px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.scenario-badge.menang {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.scenario-badge.belum {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+/*=====================================================
+  5. WHAT-IF ANALYSIS
+=====================================================*/
+
+.whatif-body {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px;
+}
+
+.whatif-controls {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.whatif-item {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.whatif-item label {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: var(--text);
+
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.whatif-item label strong {
+  color: var(--primary);
+}
+
+.whatif-item input[type="range"] {
+  width: 100%;
+
+  accent-color: var(--secondary);
+}
+
+.whatif-turnout {
+  grid-column: 1 / -1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  padding-top: 6px;
+
+  border-top: 1px dashed var(--border);
+}
+
+.whatif-turnout label {
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.whatif-turnout input[type="range"] {
+  accent-color: var(--accent-teal, #06b6d4);
+}
+
+.whatif-result {
+  background: #f9fafb;
+
+  border-radius: 14px;
+
+  padding: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  font-size: 14px;
+}
+
+.whatif-result .row {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.whatif-result .row.total {
+  font-weight: 700;
+
+  border-top: 1px solid var(--border);
+
+  padding-top: 10px;
+
+  margin-top: 4px;
+}
+
+.whatif-result .row.margin strong.positive {
+  color: var(--success);
+}
+
+.whatif-result .row.margin strong.negative {
+  color: var(--danger);
+}
+
+.whatif-status {
+  margin-top: 6px;
+
+  text-align: center;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.whatif-status.menang {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.whatif-status.belum {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+/*=====================================================
+  6. VICTORY MAP
+=====================================================*/
+
+.victory-map-body {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr;
+
+  gap: 20px;
+
+  align-items: stretch;
+}
+
+.simulasi-map-container {
+  width: 100%;
+
+  height: 440px;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+}
+
+.victory-detail {
+  background: #f9fafb;
+
+  border-radius: 14px;
+
+  padding: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.victory-detail h4 {
+  font-size: 16px;
+}
+
+.victory-detail .vd-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 14px;
+
+  padding: 8px 0;
+
+  border-bottom: 1px solid #ececec;
+}
+
+.victory-detail .vd-row:last-of-type {
+  border-bottom: none;
+}
+
+.victory-detail .vd-row strong {
+  color: var(--text);
+}
+
+.empty-state {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  gap: 10px;
+
+  color: var(--text-light);
+
+  padding: 20px 10px;
+}
+
+.empty-state i {
+  font-size: 26px;
+
+  color: var(--primary-light);
+}
+
+/*=====================================================
+  7. ACTION RECOMMENDATION
+=====================================================*/
+
+.recommendation-summary {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.06), rgba(236, 72, 153, 0.05));
+
+  border: 1px solid rgba(79, 70, 229, 0.12);
+
+  border-radius: 14px;
+
+  padding: 18px 20px;
+
+  margin-bottom: 18px;
+
+  font-size: 14px;
+
+  line-height: 1.9;
+}
+
+.recommendation-summary strong {
+  color: var(--primary);
+}
+
+.recommendation-list {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 16px;
+}
+
+.recommendation-card {
+  border-radius: 14px;
+
+  padding: 16px 18px;
+
+  background: #f9fafb;
+
+  border: 1px solid var(--border);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+.recommendation-rank {
+  width: 34px;
+
+  height: 34px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: 700;
+
+  color: #fff;
+
+  background: var(--gradient-primary, linear-gradient(135deg, #4f46e5, #6366f1));
+
+  flex-shrink: 0;
+}
+
+.recommendation-card h4 {
+  font-size: 14px;
+
+  margin-bottom: 4px;
+}
+
+.recommendation-card span {
+  font-size: 13px;
+
+  color: var(--danger);
+
+  font-weight: 600;
+}
+
+/*=====================================================
+  MAP LEGEND & LABEL (Leaflet, shared style)
+=====================================================*/
+
+.map-legend {
+  background: #ffffff;
+
+  padding: 12px 16px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+}
+
+.map-legend h4 {
+  margin: 0 0 8px;
+
+  font-size: 14px;
+
+  color: #111827;
+}
+
+.map-area-label {
+  background: transparent !important;
+
+  border: none !important;
+
+  box-shadow: none !important;
+
+  font-weight: 600;
+
+  font-size: 11px;
+
+  color: #111827;
+
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+
+/*=====================================================
+  RESPONSIVE
+=====================================================*/
+
+@media (max-width: 1200px) {
+  .param-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hasil-simulasi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .scenario-body,
+  .whatif-body,
+  .victory-map-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .simulasi-container {
+    padding: 15px;
+
+    gap: 18px;
+  }
+
+  .param-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hasil-simulasi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .simulasi-map-container {
+    height: 320px;
+  }
+}

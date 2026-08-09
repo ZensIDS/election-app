@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Simulasi Menang | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Simulasi Menang -->
+    <link rel="stylesheet" href="../../assets/css/simulasi-menang/simulasi-menang.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li onclick="location.href = '/pages/analisis-wilayah/analisis-wilayah.html'">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li class="active" onclick="location.href = '/pages/simulasi-menang/simulasi-menang.html'">
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Simulasi Menang</h2>
+            <small>Jika asumsi berubah, apakah target kemenangan tercapai?</small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="simulasi-container">
+        <!-- 1. PARAMETER SIMULASI -->
+        <div class="simulasi-widget param-widget">
+          <div class="simulasi-widget-header">
+            <h3><i class="fa-solid fa-sliders"></i> Parameter Simulasi</h3>
+            <span>Ubah asumsi, hasil dihitung ulang otomatis</span>
+          </div>
+
+          <div class="param-grid">
+            <div class="param-group">
+              <label>Dapil</label>
+              <select id="paramDapil">
+                <option>Dapil Kaltim 1 (Samarinda, Kukar, Kutim, Bontang)</option>
+              </select>
+            </div>
+
+            <div class="param-group">
+              <label>Target Suara</label>
+              <input type="number" id="paramTarget" value="85000" step="500" min="0" />
+            </div>
+
+            <div class="param-group">
+              <label>Asumsi Turnout: <strong id="paramTurnoutLabel">82%</strong></label>
+              <input type="range" id="paramTurnout" min="60" max="95" value="82" />
+            </div>
+
+            <div class="param-group">
+              <label>Basis Data</label>
+              <select id="paramBasis">
+                <option>Data Pemilu 2025 (baseline)</option>
+                <option>Data Pemilu 2020</option>
+              </select>
+            </div>
+
+            <div class="param-group">
+              <label>Skenario</label>
+              <select id="paramSkenario">
+                <option value="conservative">Conservative (+4%)</option>
+                <option value="moderate" selected>Moderate (+15%)</option>
+                <option value="aggressive">Aggressive (+27%)</option>
+              </select>
+            </div>
+
+            <div class="param-group param-action">
+              <button class="btn-run-simulasi" id="btnRunSimulasi">
+                <i class="fa-solid fa-play"></i> Jalankan Simulasi
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. HASIL SIMULASI -->
+        <div class="hasil-simulasi-grid" id="hasilSimulasiGrid"></div>
+
+        <!-- 3. DISTRIBUSI TARGET -->
+        <div class="simulasi-widget">
+          <div class="simulasi-widget-header">
+            <h3><i class="fa-solid fa-chart-column"></i> Distribusi Target Suara</h3>
+            <span id="distribusiSubtitle">Target harus dicari dari mana</span>
+          </div>
+
+          <div class="distribusi-body">
+            <div id="distribusiChart" class="simulasi-chart-container"></div>
+
+            <div class="table-responsive">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Wilayah</th>
+                    <th>Current</th>
+                    <th>Target Bagian</th>
+                    <th>Gap</th>
+                    <th>Kontribusi</th>
+                  </tr>
+                </thead>
+                <tbody id="distribusiTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. SCENARIO COMPARISON -->
+        <div class="simulasi-widget">
+          <div class="simulasi-widget-header">
+            <h3><i class="fa-solid fa-code-compare"></i> Scenario Comparison</h3>
+            <span>Conservative vs Moderate vs Aggressive</span>
+          </div>
+
+          <div class="scenario-body">
+            <div id="scenarioChart" class="simulasi-chart-container"></div>
+
+            <div class="scenario-cards" id="scenarioCards"></div>
+          </div>
+        </div>
+
+        <!-- 5. WHAT-IF ANALYSIS -->
+        <div class="simulasi-widget whatif-widget">
+          <div class="simulasi-widget-header">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> What-If Analysis</h3>
+            <span>"Jika wilayah ini naik sekian, apakah target tercapai?"</span>
+          </div>
+
+          <div class="whatif-body">
+            <div class="whatif-controls" id="whatifControls"></div>
+
+            <div class="whatif-turnout">
+              <label>
+                Tambahan Turnout: <strong id="whatifTurnoutLabel">+0%</strong>
+              </label>
+              <input type="range" id="whatifTurnout" min="0" max="10" value="0" />
+            </div>
+
+            <div class="whatif-result" id="whatifResult"></div>
+          </div>
+        </div>
+
+        <!-- 6. VICTORY MAP -->
+        <div class="simulasi-widget">
+          <div class="simulasi-widget-header">
+            <h3><i class="fa-solid fa-map-location-dot"></i> Victory Map</h3>
+            <span>Wilayah mana yang perlu menghasilkan suara agar target tercapai</span>
+          </div>
+
+          <div class="victory-map-body">
+            <div id="victoryMap" class="simulasi-map-container"></div>
+
+            <div class="victory-detail" id="victoryDetail">
+              <div class="empty-state">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <p>Klik salah satu wilayah di peta untuk lihat detail target, current, gap, dan kontribusinya terhadap target kemenangan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. ACTION RECOMMENDATION -->
+        <div class="simulasi-widget">
+          <div class="simulasi-widget-header">
+            <h3><i class="fa-solid fa-lightbulb"></i> Action Recommendation</h3>
+            <span>Simulation insight</span>
+          </div>
+
+          <div class="recommendation-summary" id="recommendationSummary"></div>
+
+          <div class="recommendation-list" id="recommendationList"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="../../assets/js/simulasi-menang/simulasi-menang.js"></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>

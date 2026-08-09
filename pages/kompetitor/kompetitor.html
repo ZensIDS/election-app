@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Kompetitor Intelligence | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Kompetitor -->
+    <link rel="stylesheet" href="../../assets/css/kompetitor/kompetitor.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li
+          class="active"
+          onclick="location.href = '/pages/kompetitor/kompetitor.html'"
+        >
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li onclick="location.href = '/pages/simulasi-menang/simulasi-menang.html'">
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li
+              onclick="location.href = '../../pages/master-data/wilayah.html'"
+            >
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Kompetitor Intelligence</h2>
+            <small
+              >Siapa kompetitor utama, seberapa kuat, dan di mana mereka
+              kuat?</small
+            >
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="komp-container">
+        <!-- PAGE HEADER -->
+        <!-- <div class="page-header">
+          <div>
+            <h1>Kompetitor Intelligence</h1>
+            <p>
+              Siapa kompetitor utama, seberapa kuat mereka, di mana basisnya,
+              dan bagaimana posisi kita dibanding mereka.
+            </p>
+          </div>
+        </div> -->
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label>Partai</label>
+            <select id="filterPartai">
+              <option value="">Semua Partai</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Kabupaten/Kota</label>
+            <select id="filterKabupaten">
+              <option value="">Semua Kabupaten/Kota</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label>Kecamatan</label>
+            <select id="filterKecamatan" disabled>
+              <option value="">Semua Kecamatan</option>
+            </select>
+          </div>
+
+          <button class="btn-reset-filter" id="resetFilterBtn">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset
+          </button>
+        </div>
+
+        <p class="scope-note">
+          <i class="fa-solid fa-circle-info"></i>
+          Filter <strong>Pemilu</strong> &amp; <strong>Dapil</strong> belum
+          tersedia karena modulnya belum diisi &mdash; tinggal ditambahkan ke
+          filter bar ini begitu datanya ada.
+        </p>
+
+        <!-- 2. KPI KOMPETITOR -->
+        <div class="komp-kpi-grid" id="kompKpiGrid"></div>
+
+        <!-- 3. RANKING + COMPETITOR PROFILE -->
+        <div class="komp-grid">
+          <div class="komp-widget ranking-widget">
+            <div class="komp-widget-header">
+              <h3>
+                <i class="fa-solid fa-ranking-star"></i> Ranking Kompetitor
+              </h3>
+              <span>Klik salah satu untuk lihat profil lengkap</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dashboard-table" id="rankingTable">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Kompetitor</th>
+                    <th>Partai</th>
+                    <th>Suara</th>
+                    <th>Vote Share</th>
+                    <th>Strength Score</th>
+                  </tr>
+                </thead>
+                <tbody id="rankingTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="komp-widget profile-widget">
+            <div class="komp-widget-header">
+              <h3><i class="fa-solid fa-id-card"></i> Competitor Profile</h3>
+            </div>
+            <div id="competitorProfile" class="competitor-profile"></div>
+          </div>
+        </div>
+
+        <!-- 4. PETA KEKUATAN KOMPETITOR -->
+        <div class="komp-grid">
+          <div class="komp-widget map-widget">
+            <div class="komp-widget-header">
+              <h3>
+                <i class="fa-solid fa-map-location-dot"></i> Peta Kekuatan
+                Kompetitor
+              </h3>
+              <span id="mapCompetitorLabel">&mdash;</span>
+            </div>
+            <div id="kompMap" class="komp-map-container"></div>
+          </div>
+
+          <div class="komp-side-panel">
+            <div class="komp-widget legend-widget">
+              <div class="komp-widget-header">
+                <h3><i class="fa-solid fa-palette"></i> Legend</h3>
+              </div>
+              <div id="mapLegend" class="dynamic-legend"></div>
+            </div>
+
+            <div class="komp-widget detail-widget">
+              <div class="komp-widget-header">
+                <h3>
+                  <i class="fa-solid fa-circle-info"></i> Kita vs Kompetitor
+                </h3>
+              </div>
+              <div id="wilayahDetail" class="wilayah-detail">
+                <div class="empty-state">
+                  <i class="fa-solid fa-hand-pointer"></i>
+                  <p>Klik area pada peta untuk melihat perbandingan wilayah.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. KITA VS KOMPETITOR -->
+        <div class="komp-grid">
+          <div class="komp-widget">
+            <div class="komp-widget-header">
+              <h3><i class="fa-solid fa-chart-column"></i> Suara Historis</h3>
+              <span>Kita vs seluruh kompetitor</span>
+            </div>
+            <div id="suaraChart" class="komp-chart-container"></div>
+          </div>
+
+          <div class="komp-widget">
+            <div class="komp-widget-header">
+              <h3><i class="fa-solid fa-chart-pie"></i> Vote Share</h3>
+              <span>Distribusi perolehan suara</span>
+            </div>
+            <div id="shareChart" class="komp-chart-container"></div>
+          </div>
+        </div>
+
+        <!-- COMPETITIVE ALERT -->
+        <div class="komp-widget">
+          <div class="komp-widget-header">
+            <h3>
+              <i class="fa-solid fa-triangle-exclamation"></i> Competitive
+              Alert
+            </h3>
+            <span>Kompetitor/wilayah yang perlu diperhatikan</span>
+          </div>
+          <div class="alert-list" id="alertList"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="../../assets/js/kompetitor/kompetitor.js"></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>

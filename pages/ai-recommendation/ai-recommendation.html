@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>AI Recommendation | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- AI Recommendation -->
+    <link
+      rel="stylesheet"
+      href="../../assets/css/ai-recommendation/ai-recommendation.css"
+    />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          class="active"
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li onclick="location.href = '/pages/simulasi-menang/simulasi-menang.html'">
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li
+              onclick="location.href = '../../pages/master-data/wilayah.html'"
+            >
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>AI Recommendation</h2>
+            <small>Apa yang sebaiknya dilakukan?</small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="air-container">
+        <!-- PAGE HEADER -->
+        <!-- <div class="page-header">
+          <div>
+            <h1>AI Recommendation</h1>
+            <p>
+              Mesin interpretasi &mdash; menerjemahkan evidence dari Heatmap dan
+              Analisis Wilayah menjadi rekomendasi tindakan yang bisa langsung
+              dieksekusi tim lapangan.
+            </p>
+          </div>
+        </div> -->
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label>Kabupaten/Kota</label>
+            <select id="filterKabupaten">
+              <option value="">Semua Kabupaten/Kota</option>
+            </select>
+          </div>
+
+          <button class="btn-reset-filter" id="resetFilterBtn">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset
+          </button>
+        </div>
+
+        <!-- 1. EXECUTIVE SUMMARY -->
+        <div class="air-widget summary-widget">
+          <div class="air-widget-header">
+            <h3><i class="fa-solid fa-file-lines"></i> Executive Summary</h3>
+            <span>Ringkasan kondisi &amp; peluang</span>
+          </div>
+
+          <div class="summary-kpi-grid" id="summaryKpiGrid"></div>
+
+          <p class="summary-narrative" id="summaryNarrative"></p>
+        </div>
+
+        <!-- 2. WILAYAH PRIORITAS -->
+        <div class="air-widget">
+          <div class="air-widget-header">
+            <h3><i class="fa-solid fa-ranking-star"></i> Wilayah Prioritas</h3>
+            <span>Diurutkan berdasarkan Priority Score</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table" id="prioritasTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Kecamatan</th>
+                  <th>Kabupaten</th>
+                  <th>Historis</th>
+                  <th>Target 2029</th>
+                  <th>Gap</th>
+                  <th>Priority Score</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="prioritasTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3. REKOMENDASI PER WILAYAH -->
+        <div class="air-widget">
+          <div class="air-widget-header">
+            <h3>
+              <i class="fa-solid fa-lightbulb"></i> Rekomendasi Per Wilayah
+            </h3>
+            <span>Wilayah &rarr; masalah &rarr; peluang &rarr; tindakan</span>
+          </div>
+
+          <div class="rekomendasi-cards" id="rekomendasiCards"></div>
+        </div>
+
+        <!-- 4. STRATEGI SEGMEN -->
+        <div class="air-widget">
+          <div class="air-widget-header">
+            <h3><i class="fa-solid fa-people-group"></i> Strategi Segmen</h3>
+            <span>Pendekatan berdasarkan tingkat prioritas wilayah</span>
+          </div>
+
+          <div class="segmen-grid" id="segmenGrid"></div>
+        </div>
+
+        <!-- 5. PRIORITAS TPS -->
+        <div class="air-widget">
+          <div class="air-widget-header">
+            <h3><i class="fa-solid fa-building"></i> Prioritas TPS</h3>
+            <span>TPS yang perlu diperhatikan lebih dulu</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>TPS</th>
+                  <th>Kecamatan</th>
+                  <th>DPT</th>
+                  <th>Historis</th>
+                  <th>Target</th>
+                  <th>Gap</th>
+                  <th>Prioritas</th>
+                </tr>
+              </thead>
+              <tbody id="tpsPrioritasTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6. ACTION PLAN -->
+        <div class="air-widget">
+          <div class="air-widget-header">
+            <h3><i class="fa-solid fa-list-check"></i> Action Plan</h3>
+            <span
+              >Apa &middot; di mana &middot; prioritas &middot; estimasi
+              dampak</span
+            >
+          </div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Tindakan</th>
+                  <th>Wilayah</th>
+                  <th>Prioritas</th>
+                  <th>Estimasi Dampak</th>
+                </tr>
+              </thead>
+              <tbody id="actionPlanTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../assets/js/ai-recommendation/ai-recommendation.js"></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>
