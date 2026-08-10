@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-base-depth="2">
   <head>
     <meta
       http-equiv="Cache-Control"
@@ -42,7 +42,9 @@
     <!-- Global Style -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
-    <!-- Analisis Wilayah -->
+    
+    <script src="../../assets/js/base-path.js"></script>
+<!-- Analisis Wilayah -->
     <link
       rel="stylesheet"
       href="../../assets/css/analisis-wilayah/analisis-wilayah.css"
@@ -70,7 +72,7 @@
       </div>
 
       <ul>
-        <li onclick="location.href = '/index.html'">
+        <li onclick="location.href = BASE_PATH + 'index.html'">
           <i class="fa-solid fa-chart-line"></i>
           <span>Dashboard</span>
         </li>
@@ -78,31 +80,31 @@
         <li
           class="active"
           onclick="
-            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+            location.href = BASE_PATH + 'pages/analisis-wilayah/analisis-wilayah.html'
           "
         >
           <i class="fa-solid fa-map-location-dot"></i>
           <span>Analisis Wilayah</span>
         </li>
 
-        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+        <li onclick="location.href = BASE_PATH + 'pages/heatmap/heatmap.html'">
           <i class="fa-solid fa-fire"></i>
           <span>Heatmap</span>
         </li>
 
         <li onclick="
-            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+            location.href = BASE_PATH + 'pages/ai-recommendation/ai-recommendation.html'
           ">
           <i class="fa-solid fa-brain"></i>
           <span>AI Recommendation</span>
         </li>
 
-        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+        <li onclick="location.href = BASE_PATH + 'pages/kompetitor/kompetitor.html'">
           <i class="fa-solid fa-users"></i>
           <span>Kompetitor</span>
         </li>
 
-        <li onclick="location.href = '/pages/simulasi-menang/simulasi-menang.html'">
+        <li onclick="location.href = BASE_PATH + 'pages/simulasi-menang/simulasi-menang.html'">
           <i class="fa-solid fa-bullseye"></i>
           <span>Simulasi Menang</span>
         </li>
@@ -119,7 +121,7 @@
 
           <ul class="submenu">
             <li
-              onclick="location.href = '../../pages/master-data/wilayah.html'"
+              onclick="location.href = BASE_PATH + 'pages/master-data/wilayah.html'"
             >
               <i class="fa-solid fa-map-location-dot"></i>
               <span>Data Wilayah</span>
