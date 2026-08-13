@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Data TPS | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Data TPS -->
+    <link rel="stylesheet" href="../../assets/css/master-data/tps.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/simulasi-menang/simulasi-menang.html'
+          "
+        >
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu active">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/dapil.html'">
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/calon.html'">
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li
+              class="active"
+              onclick="location.href = '../../pages/master-data/tps.html'"
+            >
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/import.html'">
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li onclick="location.href = '../../pages/relawan/relawan.html'">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/laporan/laporan.html'">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/pengaturan/pengaturan.html'">
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/45?img=12" alt="Admin" />
+          <div class="sidebar-user-info">
+            <strong>Admin</strong>
+            <small>admin@pid2029.id</small>
+          </div>
+        </div>
+ 
+        <button class="logout-btn" onclick="location.href = '/login.html'">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Data TPS</h2>
+            <small>Fondasi analisis suara tingkat mikro</small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="tps-container">
+        <!-- PAGE HEADER -->
+        <div style="justify-content: flex-end;" class="page-header">
+          <!-- <div>
+            <h1>Data TPS</h1>
+            <p>
+              Kelola data Tempat Pemungutan Suara sebagai basis analisis
+              suara tingkat mikro.
+            </p>
+          </div> -->
+
+          <div class="header-actions">
+            <button class="btn-secondary" id="btnImportTps">
+              <i class="fa-solid fa-file-import"></i>
+              Import TPS
+            </button>
+            <button class="btn-primary" id="btnTambahTps">
+              <i class="fa-solid fa-plus"></i>
+              Tambah TPS
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. SUMMARY CARDS -->
+        <div class="summary-grid" id="summaryGrid"></div>
+
+        <!-- 3. FILTER -->
+        <div class="tps-widget filter-widget">
+          <div class="filter-bar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="searchInput" placeholder="Cari TPS, desa, kecamatan..." />
+            </div>
+
+            <div class="filter-group">
+              <label>Provinsi</label>
+              <select id="filterProvinsi">
+                <option value="">Kalimantan Timur</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Kabupaten</label>
+              <select id="filterKabupaten">
+                <option value="">Semua Kabupaten</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Kecamatan</label>
+              <select id="filterKecamatan" disabled>
+                <option value="">Semua Kecamatan</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Desa</label>
+              <select id="filterDesa" disabled>
+                <option value="">Semua Desa</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Status</label>
+              <select id="filterStatus">
+                <option value="">Semua Status</option>
+                <option value="Aktif">Aktif</option>
+                <option value="Nonaktif">Nonaktif</option>
+              </select>
+            </div>
+
+            <button class="btn-reset-filter" id="resetFilterBtn">
+              <i class="fa-solid fa-rotate-left"></i>
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. VIEW TOGGLE + TABLE/MAP -->
+        <div class="tps-widget">
+          <div class="toolbar">
+            <span class="data-count" id="dataCount">0 TPS</span>
+
+            <div class="view-toggle" id="viewToggle">
+              <button class="view-btn active" data-view="table">
+                <i class="fa-solid fa-table-list"></i> Table
+              </button>
+              <button class="view-btn" data-view="map">
+                <i class="fa-solid fa-map-location-dot"></i> Map
+              </button>
+            </div>
+          </div>
+
+          <!-- TABLE VIEW -->
+          <div id="tableViewPanel">
+            <div class="table-responsive">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Kode TPS</th>
+                    <th>Nomor</th>
+                    <th>Desa/Kelurahan</th>
+                    <th>Kecamatan</th>
+                    <th>Kabupaten/Kota</th>
+                    <th>Dapil</th>
+                    <th>DPT</th>
+                    <th>Laki-laki</th>
+                    <th>Perempuan</th>
+                    <th>Status</th>
+                    <th>Potensi</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tpsTableBody"></tbody>
+              </table>
+            </div>
+            <div class="pagination" id="pagination"></div>
+          </div>
+
+          <!-- MAP VIEW -->
+          <div id="mapViewPanel" class="hidden">
+            <div class="map-note" id="mapNote"></div>
+            <div id="tpsMap" class="tps-map-container"></div>
+            <div class="map-legend-inline" id="mapLegendInline"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- DETAIL DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay">
+      <div class="drawer-box" id="drawerBox">
+        <div class="drawer-header">
+          <h3>Detail TPS</h3>
+          <button class="drawer-close-btn" id="drawerCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="drawer-body" id="drawerBody"></div>
+      </div>
+    </div>
+
+    <!-- MODAL: TAMBAH TPS -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>Tambah TPS</h3>
+          <button class="modal-close-btn" id="modalCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-field">
+            <label>Kabupaten/Kota</label>
+            <select id="modalKabupaten"></select>
+          </div>
+
+          <div class="modal-field">
+            <label>Kecamatan</label>
+            <select id="modalKecamatan"></select>
+          </div>
+
+          <div class="modal-field">
+            <label>Desa/Kelurahan</label>
+            <select id="modalDesa"></select>
+          </div>
+
+          <div class="modal-field">
+            <label>Nomor TPS</label>
+            <input type="text" id="modalNomor" placeholder="cth. 012" />
+          </div>
+
+          <div class="modal-field-row">
+            <div class="modal-field">
+              <label>Laki-laki</label>
+              <input type="number" id="modalLaki" min="0" step="1" />
+            </div>
+            <div class="modal-field">
+              <label>Perempuan</label>
+              <input type="number" id="modalPerempuan" min="0" step="1" />
+            </div>
+          </div>
+
+          <div class="modal-field">
+            <label>Status</label>
+            <select id="modalStatus">
+              <option value="Aktif">Aktif</option>
+              <option value="Nonaktif">Nonaktif</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" id="modalCancelBtn">Batal</button>
+          <button class="btn-primary" id="modalSaveBtn">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="../../assets/js/master-data/tps.js"></script>
+    <script src="../../assets/js/app.js"></script>
+  </body>
+</html>

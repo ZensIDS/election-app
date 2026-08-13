@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masuk | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./assets/css/login.css" />
+  </head>
+
+  <body>
+    <div class="login-screen">
+      <!-- LEFT: COMMAND CENTER PANEL -->
+      <section class="command-panel">
+        <div class="radar-sweep" aria-hidden="true"></div>
+        <div class="grid-overlay" aria-hidden="true"></div>
+
+        <div class="command-content">
+          <div class="brand-mark">
+            <i class="fa-solid fa-landmark"></i>
+            <span>PID 2029</span>
+          </div>
+
+          <p class="eyebrow">COMMAND CENTER &mdash; KALIMANTAN TIMUR</p>
+          <h1>Satu peta.<br />Satu strategi.<br /><span>Kaltim 2029.</span></h1>
+          <p class="lede">
+            Semua sinyal suara, wilayah, dan kompetitor terkumpul di satu
+            ruang kendali &mdash; supaya setiap keputusan kampanye didasari
+            data, bukan tebakan.
+          </p>
+
+          <!-- SIGNATURE: peta pulsa 8 kabupaten Kaltim -->
+          <div class="pulse-map" id="pulseMap">
+            <svg viewBox="0 0 340 340" aria-hidden="true">
+              <!-- garis hub dari Samarinda ke tiap kabupaten -->
+              <g class="hub-lines" stroke="rgba(255,255,255,0.16)" stroke-width="1">
+                <line x1="260.2" y1="152.2" x2="211.7" y2="240.9" />
+                <line x1="260.2" y1="152.2" x2="310" y2="78.5" />
+                <line x1="260.2" y1="152.2" x2="181.0" y2="132.1" />
+                <line x1="260.2" y1="152.2" x2="277.6" y2="30" />
+                <line x1="260.2" y1="152.2" x2="30" y2="162.4" />
+                <line x1="260.2" y1="152.2" x2="109.5" y2="310" />
+                <line x1="260.2" y1="152.2" x2="195" y2="243.7" />
+              </g>
+
+              <!-- titik kabupaten -->
+              <g class="node" style="--delay: 0s" transform="translate(260.2,152.2)">
+                <circle r="7" class="node-core hub" />
+                <circle r="7" class="node-ring hub" />
+                <text x="12" y="4">Samarinda</text>
+              </g>
+              <g class="node" style="--delay: .3s" transform="translate(211.7,240.9)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="10" y="4">Balikpapan</text>
+              </g>
+              <g class="node" style="--delay: .6s" transform="translate(310,78.5)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="-46" y="4">Bontang</text>
+              </g>
+              <g class="node" style="--delay: .9s" transform="translate(181.0,132.1)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="-88" y="4">Kutai Kartanegara</text>
+              </g>
+              <g class="node" style="--delay: 1.2s" transform="translate(277.6,30)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="10" y="4">Kutai Timur</text>
+              </g>
+              <g class="node" style="--delay: 1.5s" transform="translate(30,162.4)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="10" y="4">Kutai Barat</text>
+              </g>
+              <g class="node" style="--delay: 1.8s" transform="translate(109.5,310)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="10" y="4">Paser</text>
+              </g>
+              <g class="node" style="--delay: 2.1s" transform="translate(195,243.7)">
+                <circle r="5" class="node-core" />
+                <circle r="5" class="node-ring" />
+                <text x="10" y="16">Penajam Paser Utara</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="telemetry-strip">
+            <div class="telemetry-item">
+              <span>WILAYAH TERPANTAU</span>
+              <strong>8 Kab/Kota &middot; 24 Kec</strong>
+            </div>
+            <div class="telemetry-item">
+              <span>TPS TERDATA</span>
+              <strong>2.129</strong>
+            </div>
+            <div class="telemetry-item live">
+              <span><i class="fa-solid fa-circle"></i> STATUS SISTEM</span>
+              <strong>Live &middot; <time id="liveClock">00:00:00</time></strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: LOGIN FORM -->
+      <section class="form-panel">
+        <div class="form-card">
+          <div class="form-card-header">
+            <h2>Masuk ke akun kamu</h2>
+            <p>Lanjutkan ke dashboard Political Intelligence 2029.</p>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="field">
+              <label for="email">Email</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-envelope"></i>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="nama@partai.id"
+                  autocomplete="username"
+                  required
+                />
+              </div>
+              <small class="field-error" id="emailError"></small>
+            </div>
+
+            <div class="field">
+              <label for="password">Kata Sandi</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Masukkan kata sandi"
+                  autocomplete="current-password"
+                  required
+                />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  id="togglePassword"
+                  aria-label="Tampilkan kata sandi"
+                >
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+              <small class="field-error" id="passwordError"></small>
+            </div>
+
+            <div class="field-row">
+              <label class="checkbox-row">
+                <input type="checkbox" id="rememberMe" checked />
+                <span>Ingat saya</span>
+              </label>
+
+              <a href="#" class="forgot-link">Lupa kata sandi?</a>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btnSubmit">
+              <span class="btn-label">Masuk</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <p class="demo-note">
+              <i class="fa-solid fa-circle-info"></i>
+              Halaman demo &mdash; isi email &amp; kata sandi apa saja untuk
+              masuk ke dashboard.
+            </p>
+          </form>
+        </div>
+
+        <p class="form-footer">&copy; 2029 Political Intelligence &middot; Kalimantan Timur</p>
+      </section>
+    </div>
+
+    <script src="./assets/js/login.js"></script>
+  </body>
+</html>

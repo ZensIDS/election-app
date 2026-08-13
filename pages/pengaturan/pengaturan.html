@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Pengaturan | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Pengaturan -->
+    <link rel="stylesheet" href="../../assets/css/pengaturan/pengaturan.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/simulasi-menang/simulasi-menang.html'
+          "
+        >
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/dapil.html'">
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/calon.html'">
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li>
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/import.html'">
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li onclick="location.href = '/pages/relawan/relawan.html'">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li onclick="location.href = '/pages/laporan/laporan.html'">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li
+          class="active"
+          onclick="location.href = '/pages/pengaturan/pengaturan.html'"
+        >
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/45?img=12" alt="Admin" />
+          <div class="sidebar-user-info">
+            <strong>Admin</strong>
+            <small>admin@pid2029.id</small>
+          </div>
+        </div>
+ 
+        <button class="logout-btn" onclick="location.href = '/login.html'">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Pengaturan</h2>
+            <small>Konfigurasi sistem &amp; parameter analytics engine</small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="pengaturan-container">
+        <!-- <div class="page-header">
+          <div>
+            <h1>Pengaturan</h1>
+            <p>Konfigurasi dasar sistem, profil kandidat, dan parameter yang dipakai analytics engine.</p>
+          </div>
+        </div> -->
+
+        <div class="pengaturan-layout">
+          <!-- TAB NAV -->
+          <nav class="settings-nav" id="settingsNav">
+            <button class="settings-nav-item active" data-tab="umum">
+              <i class="fa-solid fa-gear"></i> Umum
+            </button>
+            <button class="settings-nav-item" data-tab="kandidat">
+              <i class="fa-solid fa-user"></i> Profil Kandidat
+            </button>
+            <button class="settings-nav-item" data-tab="parameter">
+              <i class="fa-solid fa-sliders"></i> Parameter Analisis
+            </button>
+            <button class="settings-nav-item" data-tab="target">
+              <i class="fa-solid fa-trophy"></i> Target Pemilu
+            </button>
+            <button class="settings-nav-item" data-tab="pengguna">
+              <i class="fa-solid fa-users"></i> Pengguna &amp; Hak Akses
+            </button>
+            <button class="settings-nav-item" data-tab="notifikasi">
+              <i class="fa-solid fa-bell"></i> Notifikasi
+            </button>
+            <button class="settings-nav-item" data-tab="importdata">
+              <i class="fa-solid fa-file-import"></i> Import &amp; Data
+            </button>
+            <button class="settings-nav-item" data-tab="backup">
+              <i class="fa-solid fa-database"></i> Backup &amp; Sistem
+            </button>
+            <button class="settings-nav-item" data-tab="tampilan">
+              <i class="fa-solid fa-palette"></i> Tampilan
+            </button>
+          </nav>
+
+          <!-- TAB PANELS -->
+          <div class="settings-content">
+            <!-- 1. UMUM -->
+            <div class="settings-panel active" id="panel-umum">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Pengaturan Umum</h3>
+                  <span>Konfigurasi dasar aplikasi</span>
+                </div>
+
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Nama Aplikasi</label>
+                    <input type="text" id="umumNamaAplikasi" />
+                  </div>
+                  <div class="form-group">
+                    <label>Nama Singkat</label>
+                    <input type="text" id="umumNamaSingkat" />
+                  </div>
+                  <div class="form-group">
+                    <label>Tahun Pemilu</label>
+                    <input type="number" id="umumTahunPemilu" />
+                  </div>
+                  <div class="form-group">
+                    <label>Provinsi Utama</label>
+                    <select id="umumProvinsi">
+                      <option>Kalimantan Timur</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Bahasa</label>
+                    <select id="umumBahasa">
+                      <option>Indonesia</option>
+                      <option>English</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Timezone</label>
+                    <select id="umumTimezone">
+                      <option value="Asia/Jakarta">Asia/Jakarta (WIB)</option>
+                      <option value="Asia/Makassar">Asia/Makassar (WITA)</option>
+                      <option value="Asia/Jayapura">Asia/Jayapura (WIT)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" data-save="umum">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Pengaturan
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. PROFIL KANDIDAT -->
+            <div class="settings-panel" id="panel-kandidat">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Profil Kandidat</h3>
+                  <span>Ditampilkan di Dashboard, Simulasi Menang, Laporan &amp; AI Recommendation</span>
+                </div>
+
+                <div class="kandidat-photo-row">
+                  <img id="kandidatFotoPreview" src="" alt="Foto kandidat" />
+                  <div>
+                    <button type="button" class="btn-secondary" id="btnUploadFoto">
+                      <i class="fa-solid fa-camera"></i> Upload Foto
+                    </button>
+                    <input type="file" id="kandidatFotoInput" accept="image/*" hidden />
+                    <p class="hint-text">JPG/PNG, disimpan sebagai preview lokal (localStorage).</p>
+                  </div>
+                </div>
+
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" id="kandidatNama" />
+                  </div>
+                  <div class="form-group">
+                    <label>Partai</label>
+                    <select id="kandidatPartai">
+                      <option>Partai A</option>
+                      <option>Partai B</option>
+                      <option>Partai C</option>
+                      <option>Partai D</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Dapil</label>
+                    <select id="kandidatDapil">
+                      <option>Kalimantan Timur 1</option>
+                      <option>Kalimantan Timur 2</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Nomor Urut</label>
+                    <input type="number" id="kandidatNoUrut" min="1" />
+                  </div>
+                  <div class="form-group">
+                    <label>Target Kursi</label>
+                    <input type="number" id="kandidatTargetKursi" min="1" />
+                  </div>
+                  <div class="form-group">
+                    <label>Status</label>
+                    <select id="kandidatStatus">
+                      <option>Aktif</option>
+                      <option>Nonaktif</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" data-save="kandidat">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Profil
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. PARAMETER ANALISIS -->
+            <div class="settings-panel" id="panel-parameter">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Parameter Analisis</h3>
+                  <span>Bobot yang dipakai analytics engine (harus total 100%)</span>
+                </div>
+
+                <div class="weight-list" id="weightList"></div>
+
+                <div class="weight-total" id="weightTotal"></div>
+
+                <div class="settings-widget-header" style="margin-top: 26px;">
+                  <h3>Threshold Prioritas</h3>
+                  <span>Menentukan label/warna TPS, kecamatan, kabupaten, wilayah prioritas</span>
+                </div>
+
+                <div class="threshold-grid">
+                  <div class="threshold-row high">
+                    <span>Prioritas Tinggi</span>
+                    <span>Score &ge;</span>
+                    <input type="number" id="thresholdTinggi" min="0" max="100" />
+                  </div>
+                  <div class="threshold-row medium">
+                    <span>Prioritas Sedang</span>
+                    <span>Score &ge;</span>
+                    <input type="number" id="thresholdSedang" min="0" max="100" />
+                  </div>
+                  <div class="threshold-row low">
+                    <span>Prioritas Rendah</span>
+                    <span>Score &lt;</span>
+                    <span id="thresholdRendahLabel">-</span>
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" data-save="parameter">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Parameter
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. TARGET PEMILU -->
+            <div class="settings-panel" id="panel-target">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Target Pemilu 2029</h3>
+                  <span>"Kalau mau menang, harus dapat berapa suara?"</span>
+                </div>
+
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Target Kursi</label>
+                    <input type="number" id="targetKursi" min="1" />
+                  </div>
+                  <div class="form-group">
+                    <label>Target Suara</label>
+                    <input type="number" id="targetSuara" min="0" step="100" />
+                  </div>
+                  <div class="form-group">
+                    <label>Minimum Winning Vote</label>
+                    <input type="number" id="targetMinWin" min="0" step="100" />
+                  </div>
+                  <div class="form-group">
+                    <label>Safety Margin (%)</label>
+                    <input type="number" id="targetSafetyMargin" min="0" max="50" />
+                  </div>
+                  <div class="form-group">
+                    <label>Target Coverage TPS (%)</label>
+                    <input type="number" id="targetCoverageTps" min="0" max="100" />
+                  </div>
+                  <div class="form-group">
+                    <label>Target Relawan</label>
+                    <input type="number" id="targetRelawan" min="0" />
+                  </div>
+                </div>
+
+                <div class="settings-actions">
+                  <button class="btn-secondary" id="btnHitungUlang">
+                    <i class="fa-solid fa-rotate"></i> Hitung Ulang Target
+                  </button>
+                  <button class="btn-primary" data-save="target">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Target
+                  </button>
+                </div>
+              </div>
+
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Target Kemenangan</h3>
+                </div>
+                <div class="target-kemenangan-grid" id="targetKemenanganGrid"></div>
+              </div>
+            </div>
+
+            <!-- 5. PENGGUNA & HAK AKSES -->
+            <div class="settings-panel" id="panel-pengguna">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Role &amp; Hak Akses</h3>
+                </div>
+                <div class="role-grid" id="roleGrid"></div>
+              </div>
+
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Daftar Pengguna</h3>
+                  <span>Untuk dummy &mdash; belum ada autentikasi backend</span>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Last Login</th>
+                        <th width="90">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="penggunaTable"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. NOTIFIKASI -->
+            <div class="settings-panel" id="panel-notifikasi">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Notifikasi</h3>
+                  <span>Alert apa saja yang ingin dimunculkan di dashboard</span>
+                </div>
+
+                <div class="checkbox-list" id="notifikasiList"></div>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" data-save="notifikasi">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Notifikasi
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. IMPORT & DATA -->
+            <div class="settings-panel" id="panel-importdata">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Import &amp; Data</h3>
+                  <span>Terhubung dengan Master Data &rarr; Import Data</span>
+                </div>
+
+                <div class="radio-group">
+                  <label class="radio-group-title">Duplikasi Data</label>
+                  <label class="radio-item"><input type="radio" name="duplikasi" value="abaikan" /> Abaikan</label>
+                  <label class="radio-item"><input type="radio" name="duplikasi" value="update" /> Update data lama</label>
+                  <label class="radio-item"><input type="radio" name="duplikasi" value="baru" /> Buat data baru</label>
+                </div>
+
+                <div class="radio-group">
+                  <label class="radio-group-title">Data Tidak Valid</label>
+                  <label class="radio-item"><input type="radio" name="dataInvalid" value="tolak" /> Tolak import</label>
+                  <label class="radio-item"><input type="radio" name="dataInvalid" value="warning" /> Import dengan warning</label>
+                </div>
+
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Format Default</label>
+                    <select id="importFormatDefault">
+                      <option>XLSX</option>
+                      <option>CSV</option>
+                      <option>XLS</option>
+                    </select>
+                  </div>
+                </div>
+
+                <label class="checkbox-item-inline">
+                  <input type="checkbox" id="importBackupSebelum" />
+                  Backup sebelum import
+                </label>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" data-save="importdata">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8. BACKUP & SISTEM -->
+            <div class="settings-panel" id="panel-backup">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Backup &amp; Sistem</h3>
+                </div>
+
+                <div class="backup-status-grid" id="backupStatusGrid"></div>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" id="btnBackupSekarang">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Backup Sekarang
+                  </button>
+                  <button class="btn-secondary" id="btnRestore">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Restore
+                  </button>
+                </div>
+
+                <hr class="divider" />
+
+                <div class="danger-zone">
+                  <div>
+                    <strong>Clear Dummy Data</strong>
+                    <p>Menghapus seluruh pengaturan yang tersimpan di browser ini dan mengembalikan ke default.</p>
+                  </div>
+                  <button class="btn-danger" id="btnResetSystem">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Reset System
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9. TAMPILAN -->
+            <div class="settings-panel" id="panel-tampilan">
+              <div class="settings-widget">
+                <div class="settings-widget-header">
+                  <h3>Tampilan</h3>
+                  <span>Preview diterapkan ke panel Pengaturan ini saja (lihat catatan di bawah)</span>
+                </div>
+
+                <div class="radio-group">
+                  <label class="radio-group-title">Sidebar</label>
+                  <label class="radio-item"><input type="radio" name="sidebarMode" value="expanded" /> Expanded</label>
+                  <label class="radio-item"><input type="radio" name="sidebarMode" value="collapsed" /> Collapsed</label>
+                </div>
+
+                <div class="radio-group">
+                  <label class="radio-group-title">Tema</label>
+                  <label class="radio-item"><input type="radio" name="tema" value="light" /> Light</label>
+                  <label class="radio-item"><input type="radio" name="tema" value="dark" /> Dark</label>
+                </div>
+
+                <label class="checkbox-item-inline">
+                  <input type="checkbox" id="tampilanCompact" />
+                  Compact Mode
+                </label>
+
+                <label class="checkbox-item-inline">
+                  <input type="checkbox" id="tampilanAnimasi" />
+                  Animasi
+                </label>
+
+                <div class="settings-actions">
+                  <button class="btn-primary" data-save="tampilan">
+                    <i class="fa-solid fa-floppy-disk"></i> Simpan Tampilan
+                  </button>
+                </div>
+
+                <div class="import-notice">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <p>
+                    Untuk demo ini, toggle tema/compact/sidebar hanya mem-preview area konten
+                    Pengaturan (lihat kotak di bawah). Menerapkan ke seluruh halaman aplikasi
+                    (Dashboard, Master Data, dst) perlu retrofit CSS di semua halaman &mdash;
+                    belum dikerjakan di tahap ini.
+                  </p>
+                </div>
+
+                <div class="theme-preview" id="themePreview">
+                  <div class="theme-preview-card">
+                    <strong>Contoh Card</strong>
+                    <p>Begini kira-kira tampilan komponen dengan tema yang dipilih.</p>
+                    <span class="status-badge success">Aktif</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL: EDIT PENGGUNA -->
+    <div class="modal-overlay" id="userModalOverlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>Edit Pengguna</h3>
+          <button class="modal-close-btn" id="userModalCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" id="userFormId" />
+          <div class="form-group">
+            <label>Nama</label>
+            <input type="text" id="userFormNama" disabled />
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <select id="userFormRole">
+              <option>Administrator</option>
+              <option>Analyst</option>
+              <option>Operator</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="userFormStatus">
+              <option>Aktif</option>
+              <option>Nonaktif</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" id="userModalCancelBtn">Batal</button>
+          <button class="btn-primary" id="userModalSaveBtn">Simpan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: KONFIRMASI RESET SYSTEM -->
+    <div class="modal-overlay" id="resetModalOverlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-triangle-exclamation" style="color:#dc2626;"></i> Konfirmasi Reset System</h3>
+          <button class="modal-close-btn" id="resetModalCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p>
+            Tindakan ini akan menghapus <strong>semua pengaturan tersimpan</strong> di browser
+            ini dan mengembalikannya ke default pabrik. Tindakan ini tidak bisa dibatalkan.
+          </p>
+          <p>Ketik <strong>RESET</strong> untuk konfirmasi:</p>
+          <input type="text" id="resetConfirmInput" placeholder="Ketik RESET" />
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" id="resetModalCancelBtn">Batal</button>
+          <button class="btn-danger" id="resetModalConfirmBtn" disabled>
+            <i class="fa-solid fa-trash"></i> Hapus &amp; Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/pengaturan/pengaturan.js"></script>
+  </body>
+</html>

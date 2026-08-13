@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Data Dapil | Political Intelligence 2029</title>
+    <title>Relawan | Political Intelligence 2029</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,15 +21,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     />
 
-    <!-- Highcharts (untuk grafik historis suara) -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
     <!-- Global Style -->
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
-    <!-- Master Data -->
-    <link rel="stylesheet" href="../../assets/css/master-data/dapil.css" />
+    <!-- Relawan -->
+    <link rel="stylesheet" href="../../assets/css/relawan/relawan.css" />
   </head>
 
   <body>
@@ -94,7 +90,7 @@
           <span>Simulasi Menang</span>
         </li>
 
-        <li class="has-submenu active">
+        <li class="has-submenu">
           <div class="menu-toggle">
             <div class="menu-left">
               <i class="fa-solid fa-database"></i>
@@ -110,7 +106,7 @@
               <span>Data Wilayah</span>
             </li>
 
-            <li class="active" onclick="location.href = '../../pages/master-data/dapil.html'">
+            <li onclick="location.href = '../../pages/master-data/dapil.html'">
               <i class="fa-solid fa-landmark"></i>
               <span>Data Dapil</span>
             </li>
@@ -137,7 +133,7 @@
           </ul>
         </li>
 
-        <li onclick="location.href = '../../pages/relawan/relawan.html'">
+        <li class="active" onclick="location.href = '../../pages/relawan/relawan.html'">
           <i class="fa-solid fa-user-group"></i>
           <span>Relawan</span>
         </li>
@@ -182,8 +178,8 @@
           </button>
 
           <div class="topbar-title">
-            <h2>Data Dapil</h2>
-            <small>Daerah pemilihan &mdash; jembatan antara wilayah administratif dan arena kompetisi</small>
+            <h2>Relawan</h2>
+            <small>Modul operasional lapangan &mdash; wilayah, TPS, aktivitas, dan performa relawan</small>
           </div>
         </div>
 
@@ -197,41 +193,49 @@
       <!-- ===========================
            LIST VIEW
       =========================== -->
-      <section class="dapil-container" id="listView">
+      <section class="relawan-container" id="listView">
         <div style="justify-content: flex-end;" class="page-header">
-          <div style="display: none;">
-            <h1>Data Dapil</h1>
-            <p>Kelola daerah pemilihan dan distribusi kursi.</p>
-          </div>
+          <!-- <div>
+            <h1>Relawan</h1>
+            <p>Pantau siapa yang bekerja, wilayah & TPS yang ditangani, aktivitas, dan performanya.</p>
+          </div> -->
 
-          <button class="btn-primary" id="btnTambahDapil">
+          <button class="btn-primary" id="btnTambahRelawan">
             <i class="fa-solid fa-plus"></i>
-            Tambah Dapil
+            Tambah Relawan
           </button>
         </div>
 
-        <!-- FILTER -->
-        <div class="dapil-widget filter-widget">
-          <div class="dapil-widget-header">
-            <h3><i class="fa-solid fa-filter"></i> Filter Dapil</h3>
+        <!-- 1. OVERVIEW -->
+        <div class="kpi-grid" id="kpiSummaryGrid"></div>
+
+        <div class="quick-stats-row" id="quickStatsRow"></div>
+
+        <!-- 2. FILTER -->
+        <div class="relawan-widget filter-widget">
+          <div class="relawan-widget-header">
+            <h3><i class="fa-solid fa-filter"></i> Filter Relawan</h3>
           </div>
 
           <div class="filter-bar">
             <div class="filter-group">
-              <label>Provinsi</label>
-              <select id="filterProvinsi">
-                <option value="">Semua Provinsi</option>
-                <option>Kalimantan Timur</option>
+              <label>Kabupaten</label>
+              <select id="filterKabupaten">
+                <option value="">Semua Kabupaten</option>
               </select>
             </div>
 
             <div class="filter-group">
-              <label>Jenis Pemilu</label>
-              <select id="filterJenis">
-                <option value="">Semua Jenis Pemilu</option>
-                <option>DPR RI</option>
-                <option>DPRD Provinsi</option>
-                <option>DPRD Kab/Kota</option>
+              <label>Kecamatan</label>
+              <select id="filterKecamatan">
+                <option value="">Semua Kecamatan</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Koordinator</label>
+              <select id="filterKoordinator">
+                <option value="">Semua Koordinator</option>
               </select>
             </div>
 
@@ -251,12 +255,12 @@
           </div>
         </div>
 
-        <!-- TOOLBAR: SEARCH + COUNT -->
-        <div class="dapil-widget table-widget">
+        <!-- DATA RELAWAN -->
+        <div class="relawan-widget table-widget">
           <div class="toolbar">
             <div class="search-box">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" id="searchDapil" placeholder="Cari dapil..." />
+              <input type="text" id="searchRelawan" placeholder="Cari nama relawan..." />
             </div>
             <span class="data-count" id="dataCount">0 Data</span>
           </div>
@@ -266,146 +270,201 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Dapil</th>
+                  <th>Nama</th>
                   <th>Wilayah</th>
-                  <th>Kursi</th>
-                  <th>DPT</th>
                   <th>TPS</th>
-                  <th>Target Suara</th>
+                  <th>Koordinator</th>
                   <th>Status</th>
+                  <th>Aktivitas</th>
                   <th width="130">Aksi</th>
                 </tr>
               </thead>
-              <tbody id="dapilTable"></tbody>
+              <tbody id="relawanTable"></tbody>
             </table>
           </div>
 
-          <!-- PAGINATION -->
           <div class="pagination" id="pagination"></div>
+        </div>
+
+        <!-- 3. STRUKTUR ORGANISASI + 4/5. COVERAGE TPS -->
+        <div class="relawan-grid">
+          <div class="relawan-widget">
+            <div class="relawan-widget-header">
+              <h3><i class="fa-solid fa-sitemap"></i> Struktur Organisasi</h3>
+              <span>Koordinator &rarr; Kecamatan &rarr; Desa &rarr; TPS</span>
+            </div>
+            <div class="org-tree" id="orgTree"></div>
+          </div>
+
+          <div class="relawan-widget">
+            <div class="relawan-widget-header">
+              <h3><i class="fa-solid fa-map-pin"></i> Coverage TPS</h3>
+              <span id="coverageSubtitle"></span>
+            </div>
+            <div class="tps-coverage-grid" id="tpsCoverageGrid"></div>
+            <div class="tps-legend">
+              <div class="tps-legend-item"><span class="dot tercover"></span> Tercover</div>
+              <div class="tps-legend-item"><span class="dot sebagian"></span> Sebagian</div>
+              <div class="tps-legend-item"><span class="dot belum"></span> Belum Tercover</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. TARGET VS REALISASI -->
+        <div class="relawan-widget">
+          <div class="relawan-widget-header">
+            <h3><i class="fa-solid fa-bullseye"></i> Target vs Realisasi Aktivitas</h3>
+            <span>Minggu ini</span>
+          </div>
+
+          <div class="target-hero">
+            <div class="target-numbers">
+              Realisasi <strong id="targetRealisasi">0</strong> dari
+              <strong id="targetAngka">0</strong> target
+            </div>
+            <div class="target-percent" id="targetPercent">0%</div>
+          </div>
+          <div class="target-hero-bar">
+            <div class="target-hero-fill" id="targetHeroFill"></div>
+          </div>
+
+          <div class="priority-bars" id="targetPerWilayah"></div>
         </div>
       </section>
 
       <!-- ===========================
            DETAIL VIEW
       =========================== -->
-      <section class="dapil-container" id="detailView" style="display: none">
+      <section class="relawan-container" id="detailView" style="display: none">
         <button class="btn-back" id="btnBackToList">
-          <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Dapil
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Relawan
         </button>
 
         <div class="detail-header">
-          <div>
-            <span class="detail-kode" id="detailKode"></span>
-            <h1 id="detailNama"></h1>
-            <p id="detailJenisProvinsi"></p>
+          <div class="detail-header-left">
+            <div class="relawan-avatar-lg" id="detailAvatar"></div>
+            <div>
+              <span class="detail-jabatan" id="detailJabatan"></span>
+              <h1 id="detailNama"></h1>
+              <p id="detailWilayahInfo"></p>
+            </div>
           </div>
 
           <button class="btn-primary" id="btnEditFromDetail">
-            <i class="fa-solid fa-pen"></i> Edit Dapil
+            <i class="fa-solid fa-pen"></i> Edit Relawan
           </button>
         </div>
 
-        <!-- 3. STATISTIK DAPIL -->
-        <div class="detail-kpi-grid" id="detailKpiGrid"></div>
+        <!-- KPI DETAIL -->
+        <div class="kpi-grid" id="detailKpiGrid"></div>
 
         <div class="detail-grid">
-          <!-- 2. WILAYAH CAKUPAN -->
+          <!-- PROFIL -->
           <div class="detail-widget">
             <div class="detail-widget-header">
-              <h3><i class="fa-solid fa-sitemap"></i> Wilayah Cakupan</h3>
-              <span>Dapil &rarr; Kabupaten/Kota &rarr; Kecamatan &rarr; Desa</span>
+              <h3><i class="fa-solid fa-id-card"></i> Profil Relawan</h3>
             </div>
-            <div class="wilayah-tree" id="wilayahTree"></div>
+            <div class="detail-info-list" id="detailInfoList"></div>
           </div>
 
-          <!-- 6. WILAYAH PRIORITAS -->
+          <!-- PERFORMANCE SCORE -->
           <div class="detail-widget">
             <div class="detail-widget-header">
-              <h3><i class="fa-solid fa-ranking-star"></i> Wilayah Prioritas</h3>
-              <span>Capaian terhadap potensi</span>
+              <h3><i class="fa-solid fa-chart-simple"></i> Performance Score</h3>
             </div>
-            <div class="priority-bars" id="priorityBars"></div>
+            <div class="score-hero">
+              <div class="score-number"><span id="scoreTotal">0</span><small>/100</small></div>
+              <div class="score-hero-bar"><div class="score-hero-fill" id="scoreHeroFill"></div></div>
+              <span class="score-hero-tag" id="scoreTag"></span>
+            </div>
+            <div class="score-breakdown" id="scoreBreakdown"></div>
           </div>
         </div>
 
         <div class="detail-grid">
-          <!-- 4. DATA SUARA HISTORIS -->
+          <!-- TPS YANG DITANGANI -->
           <div class="detail-widget">
             <div class="detail-widget-header">
-              <h3><i class="fa-solid fa-clock-rotate-left"></i> Performa Dapil</h3>
-              <span>Historis &rarr; Target 2029</span>
+              <h3><i class="fa-solid fa-map-pin"></i> TPS yang Ditangani</h3>
             </div>
-            <div id="historisChart" class="detail-chart-container"></div>
-            <table class="historis-table" id="historisTable"></table>
+            <div class="tps-coverage-grid" id="detailTpsGrid"></div>
+            <div class="tps-legend">
+              <div class="tps-legend-item"><span class="dot tercover"></span> Tercover</div>
+              <div class="tps-legend-item"><span class="dot sebagian"></span> Sebagian</div>
+              <div class="tps-legend-item"><span class="dot belum"></span> Belum Tercover</div>
+            </div>
           </div>
 
-          <!-- 5. TARGET KEMENANGAN -->
+          <!-- AKTIVITAS -->
           <div class="detail-widget">
             <div class="detail-widget-header">
-              <h3><i class="fa-solid fa-trophy"></i> Target Kemenangan</h3>
+              <h3><i class="fa-solid fa-list-check"></i> Aktivitas Terbaru</h3>
             </div>
-            <div class="target-kemenangan" id="targetKemenangan"></div>
+            <div class="activity-timeline" id="activityTimeline"></div>
           </div>
         </div>
       </section>
     </main>
 
     <!-- ===========================
-         MODAL TAMBAH / EDIT DAPIL
+         MODAL TAMBAH / EDIT RELAWAN
     =========================== -->
-    <div class="modal-overlay" id="dapilModalOverlay">
+    <div class="modal-overlay" id="relawanModalOverlay">
       <div class="modal-box">
         <div class="modal-header">
-          <h3 id="modalTitle">Tambah Dapil</h3>
+          <h3 id="modalTitle">Tambah Relawan</h3>
           <button class="modal-close-btn" id="modalCloseBtn">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
 
-        <form id="dapilForm">
+        <form id="relawanForm">
           <input type="hidden" id="formId" />
 
           <div class="modal-body">
+            <div class="form-section-title">Identitas</div>
             <div class="form-grid">
-              <div class="form-group">
-                <label>Jenis Pemilu</label>
-                <select id="formJenis" required>
-                  <option>DPR RI</option>
-                  <option>DPRD Provinsi</option>
-                  <option>DPRD Kab/Kota</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label>Provinsi</label>
-                <select id="formProvinsi" required>
-                  <option>Kalimantan Timur</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label>Kode Dapil</label>
-                <input type="text" id="formKode" placeholder="cth. KALTIM-03" required />
-              </div>
-
-              <div class="form-group">
-                <label>Nama Dapil</label>
-                <input type="text" id="formNama" placeholder="cth. Kalimantan Timur 3" required />
-              </div>
-
-              <div class="form-group">
-                <label>Jumlah Kursi</label>
-                <input type="number" id="formKursi" min="1" value="1" required />
-              </div>
-
-              <div class="form-group">
-                <label>Target Suara 2029</label>
-                <input type="number" id="formTarget" min="0" step="500" value="50000" required />
+              <div class="form-group full">
+                <label>Nama Lengkap</label>
+                <input type="text" id="formNama" placeholder="cth. Ahmad Wijaya" required />
               </div>
 
               <div class="form-group full">
-                <label>Wilayah (Kabupaten/Kota tercakup)</label>
-                <div class="checkbox-grid" id="wilayahCheckboxGrid"></div>
+                <label>Nomor Kontak</label>
+                <input type="text" id="formKontak" placeholder="cth. 0812xxxxxxx" required />
+              </div>
+            </div>
+
+            <div class="form-section-title">Wilayah &amp; Struktur</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Kabupaten/Kota</label>
+                <input type="text" id="formKabupaten" placeholder="cth. Samarinda" required />
+              </div>
+
+              <div class="form-group">
+                <label>Kecamatan</label>
+                <input type="text" id="formKecamatan" placeholder="cth. Samarinda Utara" required />
+              </div>
+
+              <div class="form-group">
+                <label>Desa/Kelurahan</label>
+                <input type="text" id="formDesa" placeholder="cth. Sempaja" required />
+              </div>
+
+              <div class="form-group">
+                <label>Jabatan</label>
+                <select id="formJabatan" required>
+                  <option>Koordinator Wilayah</option>
+                  <option>Koordinator Kabupaten</option>
+                  <option>Koordinator Kecamatan</option>
+                  <option selected>Relawan Desa</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Koordinator</label>
+                <input type="text" id="formKoordinator" placeholder="cth. Budi" required />
               </div>
 
               <div class="form-group">
@@ -415,18 +474,36 @@
                   <option>Nonaktif</option>
                 </select>
               </div>
+
+              <div class="form-group full">
+                <label>TPS yang Ditangani</label>
+                <div class="checkbox-grid" id="tpsCheckboxGrid"></div>
+              </div>
+            </div>
+
+            <div class="form-section-title">Lainnya</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Tanggal Bergabung</label>
+                <input type="date" id="formTanggalBergabung" required />
+              </div>
+
+              <div class="form-group full">
+                <label>Catatan</label>
+                <textarea id="formCatatan" placeholder="Catatan tambahan tentang relawan ini..."></textarea>
+              </div>
             </div>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn-secondary" id="modalCancelBtn">Batal</button>
-            <button type="submit" class="btn-primary">Simpan</button>
+            <button type="submit" class="btn-primary">Simpan Relawan</button>
           </div>
         </form>
       </div>
     </div>
 
     <script src="../../assets/js/app.js"></script>
-    <script src="../../assets/js/master-data/dapil.js"></script>
+    <script src="../../assets/js/relawan/relawan.js"></script>
   </body>
 </html>

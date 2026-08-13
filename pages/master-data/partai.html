@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Data Partai | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Partai CSS -->
+    <link rel="stylesheet" href="../../assets/css/master-data/partai.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/simulasi-menang/simulasi-menang.html'
+          "
+        >
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu active">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/dapil.html'">
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li class="active" onclick="location.href = '../../pages/master-data/partai.html'">
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/calon.html'">
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/tps.html'">
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/import.html'">
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li onclick="location.href = '../../pages/relawan/relawan.html'">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/laporan/laporan.html'">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/pengaturan/pengaturan.html'">
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/45?img=12" alt="Admin" />
+          <div class="sidebar-user-info">
+            <strong>Admin</strong>
+            <small>admin@pid2029.id</small>
+          </div>
+        </div>
+ 
+        <button class="logout-btn" onclick="location.href = '/login.html'">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- =====================================================
+MAIN
+===================================================== -->
+
+    <main>
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Data Partai</h2>
+
+            <small>
+              Kelola partai politik, performa historis, dan kekuatan kompetisi
+              wilayah
+            </small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+
+          <i class="fa-solid fa-envelope"></i>
+
+          <img src="https://i.pravatar.cc/45" alt="User" />
+        </div>
+      </header>
+
+      <!-- =================================================
+    CONTENT
+    ================================================= -->
+
+      <section class="partai-container" id="listView">
+        <!-- PAGE HEADER -->
+
+        <div style="justify-content: flex-end;" class="page-header">
+          <!-- <div>
+            <h1>Data Partai</h1>
+
+            <p>Master data partai politik dan performa elektoral historis.</p>
+          </div> -->
+
+          <button class="btn-primary" id="btnTambahPartai">
+            <i class="fa-solid fa-plus"></i>
+
+            Tambah Partai
+          </button>
+        </div>
+
+        <!-- =================================================
+        KPI
+        ================================================= -->
+
+        <div class="partai-kpi-grid">
+          <div class="partai-kpi-card">
+            <span>Total Partai</span>
+            <h2 id="kpiTotalPartai">0</h2>
+          </div>
+
+          <div class="partai-kpi-card">
+            <span>Partai Aktif</span>
+            <h2 id="kpiPartaiAktif">0</h2>
+          </div>
+
+          <div class="partai-kpi-card">
+            <span>Total Kursi</span>
+            <h2 id="kpiTotalKursi">0</h2>
+          </div>
+
+          <div class="partai-kpi-card">
+            <span>Total Suara</span>
+            <h2 id="kpiTotalSuara">0</h2>
+          </div>
+        </div>
+
+        <!-- =================================================
+        FILTER
+        ================================================= -->
+
+        <div class="partai-widget">
+          <div class="partai-widget-header">
+            <h3>
+              <i class="fa-solid fa-filter"></i>
+
+              Filter Partai
+            </h3>
+          </div>
+
+          <div class="filter-bar">
+            <div class="filter-group">
+              <label>Jenis Pemilu</label>
+
+              <select id="filterJenis">
+                <option value="">Semua Jenis Pemilu</option>
+
+                <option>DPR RI</option>
+                <option>DPRD Provinsi</option>
+                <option>DPRD Kab/Kota</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Dapil</label>
+
+              <select id="filterDapil">
+                <option value="">Semua Dapil</option>
+
+                <option>Kaltim 1</option>
+                <option>Kaltim 2</option>
+                <option>Kaltim 3</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Status</label>
+
+              <select id="filterStatus">
+                <option value="">Semua Status</option>
+
+                <option>Aktif</option>
+                <option>Nonaktif</option>
+              </select>
+            </div>
+
+            <button class="btn-reset-filter" id="btnResetFilter">
+              <i class="fa-solid fa-rotate-right"></i>
+
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- =================================================
+        TABLE (search+count menyatu dengan kartu tabel)
+        ================================================= -->
+
+        <div class="partai-widget table-widget">
+          <div class="toolbar">
+            <div class="search-box">
+              <i class="fa-solid fa-search"></i>
+
+              <input
+                type="text"
+                id="searchPartai"
+                placeholder="Cari nama partai, kode, atau singkatan..."
+              />
+            </div>
+
+            <span class="data-count" id="dataCount"> 0 Data </span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+
+                  <th>Partai</th>
+
+                  <th>Jenis Pemilu</th>
+
+                  <th>Dapil</th>
+
+                  <th>Suara 2024</th>
+
+                  <th>Kursi</th>
+
+                  <th>Persentase</th>
+
+                  <th>Status</th>
+
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+
+              <tbody id="partaiTable"></tbody>
+            </table>
+          </div>
+
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </section>
+
+      <!-- ===========================
+           DETAIL VIEW
+      =========================== -->
+      <section class="partai-container" id="detailView" style="display: none">
+        <button class="btn-back" id="btnBackToList">
+          <i class="fa-solid fa-arrow-left"></i> Kembali ke Daftar Partai
+        </button>
+
+        <div class="detail-header">
+          <div>
+            <span class="detail-kode" id="detailKode"></span>
+            <h1 id="detailNama"></h1>
+            <p id="detailInfo"></p>
+          </div>
+
+          <button class="btn-primary" id="btnEditFromDetail">
+            <i class="fa-solid fa-pen"></i>
+            Edit Partai
+          </button>
+        </div>
+
+        <!-- DETAIL KPI -->
+        <div class="detail-kpi-grid" id="detailKpiGrid"></div>
+
+        <!-- DETAIL GRID -->
+        <div class="detail-grid">
+          <!-- PERFORMA HISTORIS -->
+          <div class="partai-detail-widget">
+            <div class="detail-widget-header">
+              <h3>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Performa Historis
+              </h3>
+              <span>2019 &rarr; 2024 &rarr; Target 2029</span>
+            </div>
+
+            <div id="historisChart" class="detail-chart"></div>
+            <div id="historisTable" class="historis-table"></div>
+          </div>
+
+          <!-- PERFORMA DAPIL -->
+          <div class="partai-detail-widget">
+            <div class="detail-widget-header">
+              <h3>
+                <i class="fa-solid fa-layer-group"></i>
+                Performa per Dapil
+              </h3>
+            </div>
+
+            <div id="dapilPerformance" class="performance-list"></div>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <!-- WILAYAH -->
+          <div class="partai-detail-widget">
+            <div class="detail-widget-header">
+              <h3>
+                <i class="fa-solid fa-map-location-dot"></i>
+                Performa per Wilayah
+              </h3>
+              <span>Wilayah basis suara</span>
+            </div>
+
+            <div id="wilayahPerformance" class="wilayah-performance"></div>
+          </div>
+
+          <!-- CALON -->
+          <div class="partai-detail-widget">
+            <div class="detail-widget-header">
+              <h3>
+                <i class="fa-solid fa-user-tie"></i>
+                Daftar Calon
+              </h3>
+              <span>Kandidat dalam partai</span>
+            </div>
+
+            <div class="candidate-grid" id="candidateGrid"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================
+MODAL TAMBAH / EDIT
+===================================================== -->
+
+    <div class="modal-overlay" id="partaiModalOverlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="modalTitle">Tambah Partai</h3>
+
+          <button class="modal-close-btn" id="modalCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="partaiForm">
+          <input type="hidden" id="formId" />
+
+          <div class="modal-body">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nomor Urut</label>
+
+                <input type="number" id="formNomor" min="1" required />
+              </div>
+
+              <div class="form-group">
+                <label>Kode Partai</label>
+
+                <input type="text" id="formKode" placeholder="PA" required />
+              </div>
+
+              <div class="form-group full">
+                <label>Nama Partai</label>
+
+                <input
+                  type="text"
+                  id="formNama"
+                  placeholder="Nama Partai"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Singkatan</label>
+
+                <input
+                  type="text"
+                  id="formSingkatan"
+                  placeholder="PA"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Jenis Pemilu</label>
+
+                <select id="formJenis" required>
+                  <option>DPR RI</option>
+                  <option>DPRD Provinsi</option>
+                  <option>DPRD Kab/Kota</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Dapil</label>
+
+                <select id="formDapil" required>
+                  <option>Kaltim 1</option>
+                  <option>Kaltim 2</option>
+                  <option>Kaltim 3</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Suara 2024</label>
+
+                <input
+                  type="number"
+                  id="formSuara"
+                  min="0"
+                  value="0"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Persentase</label>
+
+                <input
+                  type="number"
+                  id="formPersentase"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="0"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Jumlah Kursi</label>
+
+                <input
+                  type="number"
+                  id="formKursi"
+                  min="0"
+                  value="0"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Status</label>
+
+                <select id="formStatus" required>
+                  <option>Aktif</option>
+                  <option>Nonaktif</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" id="modalCancelBtn">
+              Batal
+            </button>
+
+            <button type="submit" class="btn-primary">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JS -->
+
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/master-data/partai.js"></script>
+  </body>
+</html>

@@ -1,0 +1,970 @@
+/*=====================================================
+  LAPORAN
+  Mengikuti design system Dapil/Partai/Calon/Relawan:
+  widget wrapper dgn aksen gradient atas, kpi-card polos,
+  toolbar+search-box+data-count, status-badge, row-actions,
+  pagination, modal-overlay/box (.open). Tab mengikuti pola
+  .tabs/.tab dari Data Wilayah.
+=====================================================*/
+
+.laporan-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/*=====================================================
+  PAGE HEADER
+=====================================================*/
+
+.laporan-container .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.laporan-container .page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.laporan-container .page-header p {
+  color: var(--text-light);
+  max-width: 620px;
+}
+
+/*=====================================================
+  BUTTONS
+=====================================================*/
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #f3f4f6;
+}
+
+/*=====================================================
+  KPI GRID
+=====================================================*/
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.kpi-card {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+}
+
+.kpi-card span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.kpi-card h2 {
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+/*=====================================================
+  TABS (samakan dgn Data Wilayah)
+=====================================================*/
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tab {
+  border: none;
+  background: #eef2ff;
+  color: #374151;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.tab:hover {
+  background: #e0e7ff;
+}
+
+.tab.active {
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.25);
+}
+
+.tab-panel {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tab-panel.active {
+  display: flex;
+}
+
+/*=====================================================
+  WIDGET
+=====================================================*/
+
+.laporan-widget {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.laporan-widget::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+}
+
+.laporan-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.laporan-widget-header h3 {
+  font-size: 17px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.laporan-widget-header h3 i {
+  color: var(--primary);
+}
+
+.laporan-widget-header span {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.laporan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/*=====================================================
+  DETAIL INFO LIST (reuse pola Data Calon/Relawan)
+=====================================================*/
+
+.detail-info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+.detail-info-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-info-row span {
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+
+.detail-info-row strong {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+}
+
+/*=====================================================
+  REPORT TYPE CARDS (tab Overview)
+=====================================================*/
+
+.report-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.report-type-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.report-type-card:hover {
+  border-color: var(--primary);
+  background: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.report-type-card i {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.report-type-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.report-type-card p {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/*=====================================================
+  MINI TABLE (dipakai di banyak tab)
+=====================================================*/
+
+.mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.mini-table th,
+.mini-table td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.mini-table th {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.mini-table td.highlight {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/*=====================================================
+  PRIORITY BARS (ranking wilayah, TPS, dst)
+=====================================================*/
+
+.priority-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.priority-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.priority-item-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.priority-item-label span.rank {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.priority-bar-track {
+  width: 100%;
+  height: 10px;
+  background: #edf2f7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.priority-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4f46e5, #ec4899);
+}
+
+/*=====================================================
+  TARGET HERO (gap suara)
+=====================================================*/
+
+.target-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.target-hero-stat {
+  text-align: center;
+  padding: 16px;
+  border-radius: 14px;
+  background: #f9fafb;
+}
+
+.target-hero-stat span {
+  display: block;
+  font-size: 12px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.target-hero-stat strong {
+  font-size: 22px;
+  color: var(--text);
+}
+
+.target-hero-stat.gap strong {
+  color: var(--danger, #dc2626);
+}
+
+.target-hero-bar {
+  width: 100%;
+  height: 12px;
+  background: #edf2f7;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.target-hero-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--gradient-brand, linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4));
+}
+
+/*=====================================================
+  RECOMMENDATION LIST (kesimpulan & rekomendasi)
+=====================================================*/
+
+.recommendation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+}
+
+.recommendation-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  background: var(--gradient-primary, linear-gradient(135deg, #4f46e5, #6366f1));
+  flex-shrink: 0;
+}
+
+.recommendation-item p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/*=====================================================
+  SCHEDULED REPORTS
+=====================================================*/
+
+.scheduled-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scheduled-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+}
+
+.scheduled-item h4 {
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.scheduled-item span {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.scheduled-time {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/*=====================================================
+  STATUS BADGE
+=====================================================*/
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.selesai {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.terjadwal {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-badge.draft {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/*=====================================================
+  TOOLBAR (riwayat) + TABLE + ROW ACTIONS + PAGINATION
+=====================================================*/
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+}
+
+.search-box i {
+  color: var(--text-light);
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+}
+
+.data-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  background: #f3f4f6;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 760px;
+}
+
+.dashboard-table td small {
+  color: var(--text-light);
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.row-action-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.row-action-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: #eef2ff;
+}
+
+.row-action-btn.delete-btn:hover {
+  color: #dc2626;
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.pagination button {
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  transition: 0.2s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #eef2ff;
+  color: var(--primary);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/*=====================================================
+  CHART CONTAINER
+=====================================================*/
+
+.laporan-chart-container {
+  width: 100%;
+  height: 260px;
+}
+
+/*=====================================================
+  MODAL: REPORT BUILDER
+=====================================================*/
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  font-size: 17px;
+  margin: 0;
+}
+
+.modal-close-btn {
+  border: none;
+  background: #f3f4f6;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background: #e5e7eb;
+}
+
+.modal-body {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.komponen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  background: #f9fafb;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.checkbox-item input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+}
+
+.format-group {
+  display: flex;
+  gap: 12px;
+}
+
+.format-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.format-option input {
+  accent-color: var(--primary);
+}
+
+.format-option.selected {
+  border-color: var(--primary);
+  background: #eef2ff;
+  color: var(--primary);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 24px;
+  border-top: 1px solid var(--border);
+}
+
+/*=====================================================
+  PREVIEW REPORT (dokumen)
+=====================================================*/
+
+.preview-box {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 30px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.preview-masthead {
+  text-align: center;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--text);
+}
+
+.preview-masthead .brand {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.preview-masthead h2 {
+  font-size: 22px;
+  margin: 6px 0;
+}
+
+.preview-masthead .periode {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.preview-section {
+  margin-bottom: 20px;
+}
+
+.preview-section h4 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.preview-section ol,
+.preview-section ul {
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.preview-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-light);
+}
+
+.preview-empty i {
+  font-size: 30px;
+  margin-bottom: 12px;
+  color: var(--primary-light, #a5b4fc);
+}
+
+/*=====================================================
+  RESPONSIVE
+=====================================================*/
+
+@media (max-width: 1200px) {
+  .kpi-grid,
+  .target-hero-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .laporan-grid,
+  .report-type-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .form-grid,
+  .komponen-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .laporan-container {
+    padding: 15px;
+    gap: 16px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: none;
+  }
+
+  .laporan-container .page-header {
+    flex-direction: column;
+  }
+
+  .kpi-grid,
+  .target-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .format-group {
+    flex-direction: column;
+  }
+}

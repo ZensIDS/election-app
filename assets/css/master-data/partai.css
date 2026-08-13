@@ -1,0 +1,1133 @@
+/* =====================================================
+   DATA PARTAI
+   POLITICAL INTELLIGENCE 2029
+===================================================== */
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.partai-container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+
+  padding: 30px;
+}
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.partai-container .page-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.partai-container .page-header h1 {
+  font-size: 26px;
+
+  margin-bottom: 5px;
+}
+
+.partai-container .page-header p {
+  color: var(--text-light);
+
+  font-size: 14px;
+}
+
+/* =====================================================
+   KPI
+===================================================== */
+
+.partai-kpi-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.partai-kpi-card {
+  position: relative;
+
+  background: #fff;
+
+  padding: 20px;
+
+  border-radius: 18px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+}
+
+.partai-kpi-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+.partai-kpi-card span {
+  display: block;
+
+  color: var(--text-light);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.partai-kpi-card h2 {
+  margin-top: 10px;
+
+  font-size: 26px;
+}
+
+/* =====================================================
+   WIDGET
+===================================================== */
+
+.partai-widget {
+  position: relative;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  padding: 22px 24px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+}
+
+.partai-widget::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+.partai-widget-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 16px;
+}
+
+.partai-widget-header h3 {
+  font-size: 17px;
+
+  font-weight: 600;
+}
+
+.partai-widget-header h3 i {
+  color: var(--primary);
+
+  margin-right: 8px;
+}
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 170px;
+  flex: 1;
+}
+
+.filter-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.filter-group select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.btn-reset-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: #f3f4f6;
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.25s;
+  height: 42px;
+  font-family: inherit;
+}
+
+.btn-reset-filter:hover {
+  background: var(--gradient-primary, linear-gradient(135deg, #4f46e5, #6366f1));
+  color: #fff;
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 16px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+}
+
+.search-box i {
+  color: var(--text-light);
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+}
+
+.data-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  background: #f3f4f6;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/*=====================================================
+  TABLE RESPONSIVE (wajib)
+=====================================================*/
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 640px;
+}
+
+.dashboard-table td small {
+  color: var(--text-light);
+}
+
+.partai-identity {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.partai-logo {
+  width: 38px;
+
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  color: #fff;
+
+  font-weight: 700;
+
+  font-size: 12px;
+}
+
+.partai-name {
+  font-weight: 600;
+
+  color: #111827;
+}
+
+.partai-code {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--text-light);
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.status-badge.aktif {
+  background: #dcfce7;
+
+  color: #15803d;
+}
+
+.status-badge.nonaktif {
+  background: #f3f4f6;
+
+  color: #6b7280;
+}
+
+/* =====================================================
+   ROW ACTION
+===================================================== */
+
+.row-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+.row-action-btn {
+  width: 34px;
+
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  background: #fff;
+
+  color: #64748b;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.row-action-btn:hover {
+  color: var(--primary);
+
+  border-color: var(--primary);
+
+  background: #eef2ff;
+}
+
+.row-action-btn.delete-btn:hover {
+  color: #dc2626;
+
+  border-color: #fecaca;
+
+  background: #fef2f2;
+}
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 18px;
+}
+
+.pagination button {
+  border: 1px solid var(--border);
+
+  background: #fff;
+
+  color: var(--text-light);
+
+  padding: 8px 13px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #eef2ff;
+
+  color: var(--primary);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 13px;
+
+  color: var(--text-light);
+}
+
+/* =====================================================
+   DETAIL
+===================================================== */
+
+.partai-detail {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+.detail-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: #eef2ff;
+  color: var(--primary);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  font-family: inherit;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.btn-back:hover {
+  background: #e0e7ff;
+}
+
+.detail-kode {
+  display: inline-block;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: var(--primary);
+
+  background: #eef2ff;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+}
+
+.detail-header h1 {
+  font-size: 26px;
+
+  margin: 8px 0 4px;
+}
+
+.detail-header p {
+  color: var(--text-light);
+
+  font-size: 14px;
+}
+
+/* =====================================================
+   DETAIL KPI
+===================================================== */
+
+.detail-kpi-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.detail-kpi-card {
+  position: relative;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+}
+
+.detail-kpi-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+.detail-kpi-card span {
+  color: var(--text-light);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+}
+
+.detail-kpi-card h2 {
+  font-size: 26px;
+
+  margin-top: 8px;
+}
+
+/* =====================================================
+   DETAIL GRID
+===================================================== */
+
+.detail-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px;
+}
+
+.partai-detail-widget {
+  position: relative;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+}
+
+.partai-detail-widget::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 4px;
+
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+.detail-widget-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+.detail-widget-header h3 {
+  font-size: 17px;
+
+  font-weight: 600;
+}
+
+.detail-widget-header h3 i {
+  color: var(--primary);
+
+  margin-right: 8px;
+}
+
+.detail-widget-header span {
+  color: var(--text-light);
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   CHART
+===================================================== */
+
+.detail-chart {
+  width: 100%;
+
+  height: 300px;
+}
+
+/* =====================================================
+   HISTORIS TABLE
+===================================================== */
+
+.historis-table table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.historis-table th,
+.historis-table td {
+  padding: 10px;
+
+  text-align: left;
+
+  font-size: 12px;
+
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.historis-table th {
+  color: var(--text-light);
+}
+
+/* =====================================================
+   PERFORMANCE
+===================================================== */
+
+.performance-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.performance-item {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.performance-info {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.performance-info span {
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+.performance-info strong {
+  color: var(--primary);
+
+  font-size: 13px;
+}
+
+.performance-bar {
+  width: 100%;
+
+  height: 9px;
+
+  background: #eef2f7;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+}
+
+.performance-fill {
+  height: 100%;
+
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+}
+
+/* =====================================================
+   WILAYAH
+===================================================== */
+
+.wilayah-performance {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 15px;
+}
+
+.wilayah-item {
+  padding: 16px;
+
+  background: #f8fafc;
+
+  border-radius: 12px;
+}
+
+.wilayah-item strong {
+  display: block;
+
+  margin-bottom: 5px;
+}
+
+.wilayah-item span {
+  color: var(--text-light);
+
+  font-size: 12px;
+}
+
+/* =====================================================
+   CANDIDATE
+===================================================== */
+
+.candidate-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+.candidate-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 15px;
+
+  background: #f8fafc;
+
+  border-radius: 12px;
+}
+
+.candidate-avatar {
+  width: 42px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #eef2ff;
+
+  color: var(--primary);
+
+  border-radius: 50%;
+
+  font-weight: 700;
+}
+
+.candidate-card strong {
+  display: block;
+
+  font-size: 13px;
+}
+
+.candidate-card span {
+  color: var(--text-light);
+
+  font-size: 11px;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+
+  max-width: 560px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #fff;
+
+  border-radius: 18px;
+
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+}
+
+.modal-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 20px 24px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  font-size: 18px;
+}
+
+.modal-close-btn {
+  width: 35px;
+
+  height: 35px;
+
+  border: none;
+
+  background: #f1f5f9;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #475569;
+}
+
+.form-group input,
+.form-group select {
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+}
+
+.modal-footer {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding: 18px 24px;
+
+  border-top: 1px solid var(--border);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+
+  background: #fff;
+
+  color: #475569;
+
+  padding: 10px 18px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1200px) {
+  .partai-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .candidate-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wilayah-performance {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .partai-container {
+    padding: 15px;
+  }
+
+  .partai-container .page-header {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .partai-container .page-header .btn-primary {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .partai-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: none;
+  }
+
+  .candidate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full {
+    grid-column: auto;
+  }
+}

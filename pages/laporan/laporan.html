@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Laporan | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Laporan -->
+    <link rel="stylesheet" href="../../assets/css/laporan/laporan.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/simulasi-menang/simulasi-menang.html'
+          "
+        >
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/dapil.html'">
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/partai.html'">
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/calon.html'">
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/tps.html'">
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/import.html'">
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li onclick="location.href = '../../pages/relawan/relawan.html'">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li class="active" onclick="location.href = '../../pages/laporan/laporan.html'">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/pengaturan/pengaturan.html'">
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/45?img=12" alt="Admin" />
+          <div class="sidebar-user-info">
+            <strong>Admin</strong>
+            <small>admin@pid2029.id</small>
+          </div>
+        </div>
+ 
+        <button class="logout-btn" onclick="location.href = '/login.html'">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Laporan</h2>
+            <small>Generate, lihat, dan export laporan analisis politik Pemilu 2029</small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="laporan-container">
+        <div style="justify-content: flex-end;" class="page-header">
+          <!-- <div>
+            <h1>Laporan</h1>
+            <p>Generate, lihat, dan export laporan analisis politik Pemilu 2029.</p>
+          </div> -->
+
+          <button class="btn-primary" id="btnBuatLaporan">
+            <i class="fa-solid fa-plus"></i>
+            Buat Laporan
+          </button>
+        </div>
+
+        <!-- SUMMARY CARDS -->
+        <div class="kpi-grid" id="kpiSummaryGrid"></div>
+
+        <!-- TABS -->
+        <div class="tabs" id="laporanTabs">
+          <button class="tab active" data-tab="overview">Overview</button>
+          <button class="tab" data-tab="executive">Executive</button>
+          <button class="tab" data-tab="wilayah">Wilayah</button>
+          <button class="tab" data-tab="target">Target</button>
+          <button class="tab" data-tab="kompetitor">Kompetitor</button>
+          <button class="tab" data-tab="tps">TPS</button>
+          <button class="tab" data-tab="relawan">Relawan</button>
+          <button class="tab" data-tab="riwayat">Riwayat</button>
+        </div>
+
+        <!-- ===========================
+             TAB: OVERVIEW
+        =========================== -->
+        <div class="tab-panel active" id="panel-overview">
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-layer-group"></i> Jenis Laporan</h3>
+              <span>Klik untuk lihat detail laporan</span>
+            </div>
+            <div class="report-type-grid" id="reportTypeGrid"></div>
+          </div>
+
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-clock"></i> Laporan Otomatis</h3>
+              <span>Scheduled reports (dummy)</span>
+            </div>
+            <div class="scheduled-list" id="scheduledList"></div>
+          </div>
+
+          <div class="laporan-widget" id="previewWidget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-file-lines"></i> Preview Laporan Terakhir</h3>
+            </div>
+            <div id="previewContent"></div>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: EXECUTIVE
+        =========================== -->
+        <div class="tab-panel" id="panel-executive">
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-briefcase"></i> Executive Summary</h3>
+              <span>Ringkasan untuk client/pimpinan</span>
+            </div>
+            <div class="detail-info-list" id="executiveSummaryList"></div>
+          </div>
+
+          <div class="laporan-grid">
+            <div class="laporan-widget">
+              <div class="laporan-widget-header">
+                <h3><i class="fa-solid fa-map-location-dot"></i> Wilayah Prioritas</h3>
+              </div>
+              <div class="priority-bars" id="executiveWilayahBars"></div>
+            </div>
+
+            <div class="laporan-widget">
+              <div class="laporan-widget-header">
+                <h3><i class="fa-solid fa-user-tie"></i> Kekuatan Kandidat &amp; Ancaman Kompetitor</h3>
+              </div>
+              <table class="mini-table" id="executiveKandidatTable"></table>
+            </div>
+          </div>
+
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-lightbulb"></i> Kesimpulan &amp; Rekomendasi Utama</h3>
+            </div>
+            <div class="recommendation-list" id="recommendationList"></div>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: WILAYAH
+        =========================== -->
+        <div class="tab-panel" id="panel-wilayah">
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-ranking-star"></i> Ranking Wilayah Prioritas</h3>
+              <span>Menjawab: di mana kandidat harus fokus?</span>
+            </div>
+            <div id="wilayahChart" class="laporan-chart-container"></div>
+          </div>
+
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-table"></i> Detail per Wilayah</h3>
+            </div>
+            <table class="mini-table" id="wilayahDetailTable"></table>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: TARGET
+        =========================== -->
+        <div class="tab-panel" id="panel-target">
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-bullseye"></i> Target Kemenangan</h3>
+            </div>
+
+            <div class="target-hero-grid" id="targetHeroGrid"></div>
+            <div class="target-hero-bar">
+              <div class="target-hero-fill" id="targetHeroFill"></div>
+            </div>
+
+            <table class="mini-table" id="targetBreakdownTable"></table>
+          </div>
+
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-chart-line"></i> Trend Suara</h3>
+              <span>2019 &rarr; 2024 &rarr; 2029</span>
+            </div>
+            <div id="trendChart" class="laporan-chart-container"></div>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: KOMPETITOR
+        =========================== -->
+        <div class="tab-panel" id="panel-kompetitor">
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-users"></i> Competitor Analysis</h3>
+            </div>
+            <table class="mini-table" id="kompetitorTable"></table>
+          </div>
+
+          <div class="laporan-grid">
+            <div class="laporan-widget">
+              <div class="laporan-widget-header">
+                <h3><i class="fa-solid fa-circle-exclamation"></i> Kompetitor Terkuat &amp; Basis</h3>
+              </div>
+              <div class="detail-info-list" id="kompetitorBasisList"></div>
+            </div>
+
+            <div class="laporan-widget">
+              <div class="laporan-widget-header">
+                <h3><i class="fa-solid fa-map"></i> Wilayah Dominasi Kompetitor</h3>
+              </div>
+              <div class="priority-bars" id="kompetitorWilayahBars"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: TPS
+        =========================== -->
+        <div class="tab-panel" id="panel-tps">
+          <div class="laporan-widget">
+            <div class="laporan-widget-header">
+              <h3><i class="fa-solid fa-map-pin"></i> Top TPS Prioritas</h3>
+              <span>TPS mana yang harus dikejar?</span>
+            </div>
+            <table class="mini-table" id="tpsPrioritasTable"></table>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: RELAWAN
+        =========================== -->
+        <div class="tab-panel" id="panel-relawan">
+          <div class="kpi-grid" id="relawanKpiGrid"></div>
+
+          <div class="laporan-grid">
+            <div class="laporan-widget">
+              <div class="laporan-widget-header">
+                <h3><i class="fa-solid fa-map-location-dot"></i> Wilayah Kekurangan Relawan</h3>
+              </div>
+              <table class="mini-table" id="relawanKurangTable"></table>
+            </div>
+
+            <div class="laporan-widget">
+              <div class="laporan-widget-header">
+                <h3><i class="fa-solid fa-bullseye"></i> Target vs Realisasi Aktivitas</h3>
+              </div>
+              <div class="target-hero-bar">
+                <div class="target-hero-fill" id="relawanTargetFill"></div>
+              </div>
+              <div class="priority-bars" id="relawanTargetBars"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===========================
+             TAB: RIWAYAT
+        =========================== -->
+        <div class="tab-panel" id="panel-riwayat">
+          <div class="laporan-widget table-widget">
+            <div class="toolbar">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchRiwayat" placeholder="Cari nama laporan..." />
+              </div>
+              <span class="data-count" id="dataCount">0 Data</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Nama Laporan</th>
+                    <th>Jenis</th>
+                    <th>Wilayah</th>
+                    <th>Status</th>
+                    <th width="130">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="riwayatTable"></tbody>
+              </table>
+            </div>
+
+            <div class="pagination" id="pagination"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===========================
+         MODAL: REPORT BUILDER
+    =========================== -->
+    <div class="modal-overlay" id="builderModalOverlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>Buat Laporan</h3>
+          <button class="modal-close-btn" id="modalCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="builderForm">
+          <div class="modal-body">
+            <div class="form-section-title">Jenis &amp; Periode</div>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label>Jenis Laporan</label>
+                <select id="builderJenis" required>
+                  <option>Executive Summary</option>
+                  <option>Analisis Wilayah</option>
+                  <option>Target Suara</option>
+                  <option>Kompetitor</option>
+                  <option>TPS Prioritas</option>
+                  <option>Relawan</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Periode Awal</label>
+                <input type="month" id="builderPeriodeAwal" value="2026-01" required />
+              </div>
+
+              <div class="form-group">
+                <label>Periode Akhir</label>
+                <input type="month" id="builderPeriodeAkhir" value="2026-08" required />
+              </div>
+
+              <div class="form-group full">
+                <label>Wilayah</label>
+                <select id="builderWilayah" required>
+                  <option>Semua Wilayah</option>
+                  <option>Kalimantan Timur 1</option>
+                  <option>Kalimantan Timur 2</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-section-title">Komponen</div>
+            <div class="komponen-grid" id="komponenGrid">
+              <label class="checkbox-item"><input type="checkbox" value="Summary" checked /> Summary</label>
+              <label class="checkbox-item"><input type="checkbox" value="Grafik Suara" checked /> Grafik Suara</label>
+              <label class="checkbox-item"><input type="checkbox" value="Analisis Wilayah" checked /> Analisis Wilayah</label>
+              <label class="checkbox-item"><input type="checkbox" value="Kompetitor" checked /> Kompetitor</label>
+              <label class="checkbox-item"><input type="checkbox" value="Target Suara" checked /> Target Suara</label>
+              <label class="checkbox-item"><input type="checkbox" value="Relawan" /> Relawan</label>
+              <label class="checkbox-item"><input type="checkbox" value="TPS" /> TPS</label>
+            </div>
+
+            <div class="form-section-title">Format</div>
+            <div class="format-group" id="formatGroup">
+              <label class="format-option selected">
+                <input type="radio" name="format" value="PDF" checked />
+                <i class="fa-solid fa-file-pdf"></i> PDF
+              </label>
+              <label class="format-option">
+                <input type="radio" name="format" value="Excel" />
+                <i class="fa-solid fa-file-excel"></i> Excel
+              </label>
+              <label class="format-option">
+                <input type="radio" name="format" value="Print" />
+                <i class="fa-solid fa-print"></i> Print
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" id="modalCancelBtn">Batal</button>
+            <button type="submit" class="btn-primary">Generate Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/laporan/laporan.js"></script>
+  </body>
+</html>

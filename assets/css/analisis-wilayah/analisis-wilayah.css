@@ -145,6 +145,20 @@
 }
 
 /*=====================================================
+  TABLE RESPONSIVE (WAJIB - tanpa ini tabel lebar akan
+  meluber dan menabrak widget lain)
+=====================================================*/
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 760px;
+}
+
+/*=====================================================
   MODE TABS
 =====================================================*/
 

@@ -1,0 +1,951 @@
+/*=====================================================
+  DATA CALON
+  Mengikuti token warna & komponen dari dapil.css/wilayah.css
+=====================================================*/
+
+.calon-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/*=====================================================
+  PAGE HEADER
+=====================================================*/
+
+.calon-container .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.calon-container .page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.calon-container .page-header p {
+  color: var(--text-light);
+  max-width: 560px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/*=====================================================
+  TABLE RESPONSIVE (WAJIB - tanpa ini tabel lebar akan
+  meluber dan menabrak widget lain)
+=====================================================*/
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 760px;
+}
+
+/*=====================================================
+  SUMMARY CARDS
+=====================================================*/
+
+.summary-grid {
+  display: grid;
+  /* auto-fit + minmax = reflow berdasarkan lebar CONTAINER (bukan
+     lebar viewport). Ini penting karena sidebar statis 270px memakan
+     ruang nyata di dalam <main>, jadi breakpoint berbasis viewport saja
+     tidak cukup - pada viewport ~1200-1450px ruang sebenarnya sudah
+     sempit padahal media query belum tentu aktif. */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.summary-card {
+  position: relative;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+.summary-card span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.summary-card h2 {
+  font-size: 26px;
+  margin-top: 8px;
+}
+
+/*=====================================================
+  WIDGET
+=====================================================*/
+
+.calon-widget {
+  position: relative;
+  min-width: 0;
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.calon-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.calon-widget-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.calon-widget-header h3 i {
+  color: var(--primary);
+}
+
+.calon-widget-header span {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/*=====================================================
+  FILTER BAR
+=====================================================*/
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 170px;
+  flex: 1;
+}
+
+.filter-group.search-group {
+  flex: 1.6;
+  min-width: 220px;
+}
+
+.filter-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.filter-group select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.filter-group .search-box {
+  margin: 0;
+}
+
+.btn-reset-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: #f3f4f6;
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.25s;
+  height: 42px;
+  font-family: inherit;
+}
+
+.btn-reset-filter:hover {
+  background: var(
+    --gradient-primary,
+    linear-gradient(135deg, #4f46e5, #6366f1)
+  );
+  color: #fff;
+}
+
+/*=====================================================
+  TOOLBAR
+=====================================================*/
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.search-box i {
+  color: var(--text-light);
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+}
+
+.data-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  background: #f3f4f6;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/*=====================================================
+  TABLE EXTRA (foto, checkbox, badge)
+=====================================================*/
+
+.calon-photo-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calon-photo-cell img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.aktif {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.nonaktif {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.incumbent-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.incumbent-badge.ya {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.incumbent-badge.tidak {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.kursi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.kursi-badge i {
+  font-size: 11px;
+}
+
+.kursi-badge.pending {
+  background: transparent;
+  color: #9ca3af;
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.row-action-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #64748b;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.row-action-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: #eef2ff;
+}
+
+.row-action-btn.delete-btn:hover {
+  color: #dc2626;
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+
+.compare-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/*=====================================================
+  PAGINATION
+=====================================================*/
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.pagination button {
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  transition: 0.2s;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/*=====================================================
+  DETAIL VIEW: PROFILE HEADER
+=====================================================*/
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: #eef2ff;
+  color: var(--primary);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+  font-family: inherit;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.btn-back:hover {
+  background: #e0e7ff;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-photo {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.profile-heading {
+  flex: 1;
+  min-width: 200px;
+}
+
+.profile-heading h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.profile-heading p {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.profile-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/*=====================================================
+  KPI GRID (reuse dari dapil)
+=====================================================*/
+
+.detail-kpi-grid {
+  display: grid;
+  /* auto-fit: sama seperti summary-grid, reflow mengikuti lebar
+     container aktual, tidak bergantung breakpoint viewport */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.detail-kpi-card {
+  min-width: 0;
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.detail-kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+.detail-kpi-card span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.detail-kpi-card h2 {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.detail-grid > .calon-widget {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-chart-container {
+  width: 100%;
+  max-width: 100%;
+  height: 260px;
+}
+
+/*=====================================================
+  COMPETITOR STRENGTH SCORE
+=====================================================*/
+
+.score-gauge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.score-gauge .score-value {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(135deg, #4f46e5, #8b5cf6 55%, #ec4899);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.score-gauge .score-value strong {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.score-gauge .score-value small {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.score-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.score-item-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.score-bar-track {
+  width: 100%;
+  height: 8px;
+  background: #edf2f7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #4f46e5, #ec4899);
+}
+
+/*=====================================================
+  KEKUATAN WILAYAH
+=====================================================*/
+
+.strength-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.strength-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.strength-item-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.strength-item-label span.tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.strength-item-label span.tag.basis {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.strength-item-label span.tag.kuat {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.strength-item-label span.tag.sedang {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.strength-item-label span.tag.lemah {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.strength-bar-track {
+  width: 100%;
+  height: 10px;
+  background: #edf2f7;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.strength-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(
+    --gradient-brand,
+    linear-gradient(90deg, #4f46e5, #ec4899, #06b6d4)
+  );
+}
+
+/*=====================================================
+  CATATAN
+=====================================================*/
+
+.catatan-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/*=====================================================
+  MODAL
+=====================================================*/
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.modal-box-lg {
+  max-width: 720px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  font-size: 17px;
+  margin: 0;
+}
+
+.modal-close-btn {
+  border: none;
+  background: #f3f4f6;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background: #e5e7eb;
+}
+
+.modal-body {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.modal-body > .modal-section-title:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.modal-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.modal-field select,
+.modal-field input,
+.modal-field textarea {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  resize: vertical;
+}
+
+.modal-field select:focus,
+.modal-field input:focus,
+.modal-field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 24px;
+  border-top: 1px solid var(--border);
+}
+
+/*=====================================================
+  COMPARE TABLE
+=====================================================*/
+
+#compareTable th,
+#compareTable td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+#compareTable th:first-child,
+#compareTable td:first-child {
+  font-weight: 600;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/*=====================================================
+  RESPONSIVE
+=====================================================*/
+
+@media (max-width: 1200px) {
+  /* summary-grid, detail-kpi-grid, detail-grid TIDAK perlu override di
+     sini - base rule-nya sudah pakai auto-fit + minmax(0,...) di atas,
+     yang otomatis reflow sesuai lebar container asli (bukan viewport).
+     JANGAN tambahkan grid-template-columns dengan angka fix (repeat(N,1fr))
+     di breakpoint manapun tanpa minmax(0,...) - "1fr" polos punya lebar
+     minimum otomatis mengikuti kontennya (min-width:auto), jadi kalau
+     konten card (angka KPI, chart) lebih lebar dari jatah 1fr-nya, grid
+     track dipaksa melebar dan card jadi meluber/menempel ke sebelahnya.
+     Itulah akar masalah "kartu bertumpuk" yang dilaporkan. */
+}
+
+@media (max-width: 900px) {
+  .modal-field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .calon-container {
+    padding: 15px;
+    gap: 16px;
+  }
+
+  /* summary-grid & detail-kpi-grid: sama, tidak perlu override -
+     auto-fit + minmax(0,...) di base rule sudah menangani mobile juga */
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-reset-filter {
+    justify-content: center;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calon-container .page-header {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}

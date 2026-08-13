@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Import Data | Political Intelligence 2029</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+
+    <!-- SheetJS (parsing XLSX/XLS/CSV sungguhan di browser) -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- Global Style -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <!-- Import Data -->
+    <link rel="stylesheet" href="../../assets/css/master-data/import.css" />
+  </head>
+
+  <body>
+    <!-- OVERLAY (mobile sidebar backdrop) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <i class="fa-solid fa-landmark"></i>
+
+        <span>PID 2029</span>
+
+        <button
+          class="sidebar-close-btn"
+          id="sidebarCloseBtn"
+          aria-label="Tutup menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul>
+        <li onclick="location.href = '/index.html'">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/analisis-wilayah/analisis-wilayah.html'
+          "
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Analisis Wilayah</span>
+        </li>
+
+        <li onclick="location.href = '/pages/heatmap/heatmap.html'">
+          <i class="fa-solid fa-fire"></i>
+          <span>Heatmap</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/ai-recommendation/ai-recommendation.html'
+          "
+        >
+          <i class="fa-solid fa-brain"></i>
+          <span>AI Recommendation</span>
+        </li>
+
+        <li onclick="location.href = '/pages/kompetitor/kompetitor.html'">
+          <i class="fa-solid fa-users"></i>
+          <span>Kompetitor</span>
+        </li>
+
+        <li
+          onclick="
+            location.href = '/pages/simulasi-menang/simulasi-menang.html'
+          "
+        >
+          <i class="fa-solid fa-bullseye"></i>
+          <span>Simulasi Menang</span>
+        </li>
+
+        <li class="has-submenu active">
+          <div class="menu-toggle">
+            <div class="menu-left">
+              <i class="fa-solid fa-database"></i>
+              <span>Master Data</span>
+            </div>
+
+            <i class="fa-solid fa-chevron-right submenu-arrow"></i>
+          </div>
+
+          <ul class="submenu">
+            <li onclick="location.href = '../../pages/master-data/wilayah.html'">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>Data Wilayah</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/dapil.html'">
+              <i class="fa-solid fa-landmark"></i>
+              <span>Data Dapil</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/partai.html'">
+              <i class="fa-solid fa-flag"></i>
+              <span>Data Partai</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/calon.html'">
+              <i class="fa-solid fa-user"></i>
+              <span>Data Calon</span>
+            </li>
+
+            <li onclick="location.href = '../../pages/master-data/tps.html'">
+              <i class="fa-solid fa-building"></i>
+              <span>Data TPS</span>
+            </li>
+
+            <li
+              class="active"
+              onclick="location.href = '../../pages/master-data/import.html'"
+            >
+              <i class="fa-solid fa-file-import"></i>
+              <span>Import Data</span>
+            </li>
+          </ul>
+        </li>
+
+        <li onclick="location.href = '../../pages/relawan/relawan.html'">
+          <i class="fa-solid fa-user-group"></i>
+          <span>Relawan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/laporan/laporan.html'">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Laporan</span>
+        </li>
+
+        <li onclick="location.href = '../../pages/pengaturan/pengaturan.html'">
+          <i class="fa-solid fa-gear"></i>
+          <span>Pengaturan</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://i.pravatar.cc/45?img=12" alt="Admin" />
+          <div class="sidebar-user-info">
+            <strong>Admin</strong>
+            <small>admin@pid2029.id</small>
+          </div>
+        </div>
+ 
+        <button class="logout-btn" onclick="location.href = '/login.html'">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button
+            class="sidebar-toggle-btn"
+            id="sidebarToggleBtn"
+            aria-label="Buka menu"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+
+          <div class="topbar-title">
+            <h2>Import Data</h2>
+            <small>Import dan sinkronisasi data Pemilu ke dalam Political Intelligence Dashboard</small>
+          </div>
+        </div>
+
+        <div class="right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-envelope"></i>
+          <img src="https://i.pravatar.cc/45" />
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="import-container">
+        <!-- <div class="page-header">
+          <div>
+            <h1>Import Data</h1>
+            <p>Import dan sinkronisasi data Pemilu ke dalam Political Intelligence Dashboard.</p>
+          </div>
+        </div> -->
+
+        <!-- IMPORT SUMMARY -->
+        <div class="summary-grid" id="summaryGrid"></div>
+
+        <!-- STEP INDICATOR -->
+        <div class="step-indicator" id="stepIndicator">
+          <div class="step-dot active" data-step="1">
+            <span class="dot">1</span>
+            <span class="label">Jenis Data</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="2">
+            <span class="dot">2</span>
+            <span class="label">Upload</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="3">
+            <span class="dot">3</span>
+            <span class="label">Mapping Kolom</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="4">
+            <span class="dot">4</span>
+            <span class="label">Validasi</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot" data-step="5">
+            <span class="dot">5</span>
+            <span class="label">Preview &amp; Import</span>
+          </div>
+        </div>
+
+        <!-- ===========================
+             STEP 1: PILIH JENIS DATA
+        =========================== -->
+        <div class="import-widget step-panel active" id="step1">
+          <div class="import-widget-header">
+            <h3><i class="fa-solid fa-layer-group"></i> Pilih Jenis Data</h3>
+            <span>Tentukan data ini akan masuk ke Master Data yang mana</span>
+          </div>
+
+          <div class="jenis-grid" id="jenisGrid"></div>
+        </div>
+
+        <!-- ===========================
+             STEP 2: UPLOAD
+        =========================== -->
+        <div class="import-widget step-panel" id="step2">
+          <div class="import-widget-header">
+            <h3><i class="fa-solid fa-cloud-arrow-up"></i> Upload File</h3>
+            <span id="step2Subtitle"></span>
+          </div>
+
+          <div class="upload-area" id="uploadArea">
+            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+            <p>Drag &amp; drop file di sini</p>
+            <p class="upload-or">atau</p>
+            <button type="button" class="btn-primary" id="btnPilihFile">Pilih File</button>
+            <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,.pdf" hidden />
+            <small>XLSX &middot; XLS &middot; CSV &middot; PDF</small>
+          </div>
+
+          <div class="file-info" id="fileInfo" style="display: none"></div>
+
+          <!-- Simulasi baca PDF -->
+          <div class="pdf-progress" id="pdfProgress" style="display: none">
+            <p><i class="fa-solid fa-file-pdf"></i> Membaca PDF...</p>
+            <div class="progress-track">
+              <div class="progress-fill" id="pdfProgressFill" style="width: 0%"></div>
+            </div>
+            <small id="pdfProgressLabel">0%</small>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn-secondary" data-goto="1">
+              <i class="fa-solid fa-arrow-left"></i> Kembali
+            </button>
+            <button class="btn-primary" id="btnToMapping" disabled>
+              Lanjut ke Mapping Kolom <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===========================
+             STEP 3: MAPPING KOLOM
+        =========================== -->
+        <div class="import-widget step-panel" id="step3">
+          <div class="import-widget-header">
+            <h3><i class="fa-solid fa-table-columns"></i> Mapping Kolom</h3>
+            <span>Cocokkan kolom file dengan kolom sistem</span>
+          </div>
+
+          <div class="mapping-table" id="mappingTable"></div>
+
+          <div class="step-actions">
+            <button class="btn-secondary" data-goto="2">
+              <i class="fa-solid fa-arrow-left"></i> Kembali
+            </button>
+            <button class="btn-primary" id="btnToValidasi">
+              Lanjut ke Validasi <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===========================
+             STEP 4: VALIDASI
+        =========================== -->
+        <div class="import-widget step-panel" id="step4">
+          <div class="import-widget-header">
+            <h3><i class="fa-solid fa-shield-halved"></i> Validasi Data</h3>
+            <span id="validasiSubtitle"></span>
+          </div>
+
+          <div class="validasi-grid" id="validasiGrid"></div>
+
+          <button class="btn-link" id="btnLihatError">
+            <i class="fa-solid fa-list-check"></i> Lihat Detail Error &amp; Warning
+          </button>
+
+          <div class="error-detail-list" id="errorDetailList" style="display: none"></div>
+
+          <div class="step-actions">
+            <button class="btn-secondary" data-goto="3">
+              <i class="fa-solid fa-arrow-left"></i> Kembali
+            </button>
+            <button class="btn-primary" id="btnToPreview">
+              Lanjut ke Preview <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ===========================
+             STEP 5: PREVIEW & IMPORT
+        =========================== -->
+        <div class="import-widget step-panel" id="step5">
+          <div class="import-widget-header">
+            <h3><i class="fa-solid fa-eye"></i> Preview Data</h3>
+            <span>Data yang berstatus Error / Duplikat tidak akan diimport</span>
+          </div>
+
+          <div class="preview-banner" id="previewBanner"></div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table" id="previewTable"></table>
+          </div>
+
+          <div class="import-notice">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+              Demo ini murni berjalan di browser (belum ada backend/database bersama).
+              Data yang di-import <strong>tidak</strong> otomatis muncul di halaman Data
+              Wilayah/Dapil/Partai/Calon/TPS lain &mdash; tervalidasi di sini, lalu tercatat
+              di Riwayat Import di bawah.
+            </p>
+          </div>
+
+          <div class="step-actions">
+            <button class="btn-secondary" id="btnBatalImport">Batal</button>
+            <button class="btn-primary" id="btnKonfirmasiImport">
+              <i class="fa-solid fa-check"></i> Import <span id="importCountLabel">0</span> Data
+            </button>
+          </div>
+        </div>
+
+        <!-- ===========================
+             RIWAYAT IMPORT
+        =========================== -->
+        <div class="import-widget">
+          <div class="import-widget-header">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Import</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>File</th>
+                  <th>Jenis</th>
+                  <th>Data</th>
+                  <th>User</th>
+                  <th>Status</th>
+                  <th width="160">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="riwayatTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- MODAL: DETAIL RIWAYAT -->
+    <div class="modal-overlay" id="detailModalOverlay">
+      <div class="modal-box modal-box-lg">
+        <div class="modal-header">
+          <h3 id="detailModalTitle">Detail Import</h3>
+          <button class="modal-close-btn" id="detailModalCloseBtn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="detailModalBody"></div>
+      </div>
+    </div>
+
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/master-data/import.js"></script>
+  </body>
+</html>
