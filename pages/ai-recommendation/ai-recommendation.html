@@ -43,6 +43,13 @@
       rel="stylesheet"
       href="../../assets/css/ai-recommendation/ai-recommendation.css"
     />
+
+    <!-- Style widget studi kasus (di-reuse dari halaman Kompetitor & Analisis Wilayah) -->
+    <link rel="stylesheet" href="../../assets/css/kompetitor/kompetitor.css" />
+    <link
+      rel="stylesheet"
+      href="../../assets/css/analisis-wilayah/analisis-wilayah.css"
+    />
   </head>
 
   <body>
@@ -223,6 +230,35 @@
 
         <!-- FILTER BAR -->
         <div class="filter-bar">
+          <div class="filter-group filter-group-studi-kasus">
+            <label>Studi Kasus</label>
+            <select id="studiKasusSelect">
+              <option value="">&mdash; Pilih Studi Kasus &mdash;</option>
+              <option value="1">
+                1. Berapa tambahan suara yang dibutuhkan untuk memperoleh 2
+                kursi DPR RI berdasarkan hasil Pemilu 2024?
+              </option>
+              <option value="2">
+                2. Berapa estimasi indeks atau harga suara per kursi DPR RI
+                berdasarkan hasil Pemilu 2024?
+              </option>
+              <option value="3">
+                3. Wilayah mana saja yang memiliki potensi perolehan suara
+                berdasarkan analisis data historis Pemilu 2019 dan 2024?
+              </option>
+              <option value="4">
+                4. Siapa saja kandidat DPRD yang memiliki perolehan suara
+                tinggi, tetapi menunjukkan ketidaksesuaian (non-linearitas)
+                dengan perolehan suara DPR RI di wilayah yang sama?
+              </option>
+              <option value="5">
+                5. Bagaimana Breakdown Perolehan Suara Individual dari 8
+                Caleg Terpilih untuk Mendukung Asumsi Rata-Rata 80 Ribu
+                Suara per Kursi?
+              </option>
+            </select>
+          </div>
+
           <div class="filter-group">
             <label>Kabupaten/Kota</label>
             <select id="filterKabupaten">
@@ -236,6 +272,1216 @@
           </button>
         </div>
 
+        <!-- ================================================
+             PANEL STUDI KASUS (muncul saat dipilih di dropdown
+             di atas; masing-masing data REAL dapil-level, tidak
+             terpengaruh filter Kabupaten/Kota)
+        ================================================= -->
+        <div id="studiKasusPanels">
+          <div class="studi-kasus-panel" id="studiKasusPanel1" style="display: none">
+                    <div class="komp-widget simulasi-kursi-widget">
+          <div class="komp-widget-header">
+            <h3>
+              <i class="fa-solid fa-scale-balanced"></i> Simulasi Kebutuhan
+              Suara &mdash; 2 Kursi DPR RI
+            </h3>
+            <span
+              >Dapil Kalimantan Timur &bull; Metode Sainte Lague &bull; Pemilu
+              2024</span
+            >
+          </div>
+
+          <div class="simulasi-info-box">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+              Dari <strong>8 kursi DPR RI Dapil Kalimantan Timur</strong>,
+              hanya <strong>Partai Golkar</strong> yang berhasil mengamankan
+              <strong>2 kursi</strong> (538.147 suara). Agar partai lain yang
+              saat ini baru memperoleh 1 kursi bisa meraih kursi ke-2, nilai
+              suara pada pembagian ke-3 harus mengalahkan batas kursi terakhir
+              (kursi ke-8) yang dikunci <strong>PAN dengan 111.141 suara</strong>.
+              Ambang batas (threshold) suara partai untuk merebut 2 kursi
+              adalah <strong>333.424 suara</strong>.
+            </p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dashboard-table" id="simulasiKursiTable">
+              <thead>
+                <tr>
+                  <th>Partai</th>
+                  <th>Suara 2024</th>
+                  <th>Threshold 2 Kursi</th>
+                  <th>Kekurangan Suara</th>
+                  <th>Kenaikan Dibutuhkan</th>
+                  <th>Catatan</th>
+                </tr>
+              </thead>
+              <tbody id="skSimulasiKursiTableBody"></tbody>
+            </table>
+          </div>
+
+          <div id="skSimulasiKursiChart" class="komp-chart-container"></div>
+        </div>
+
+          </div>
+
+          <div class="studi-kasus-panel" id="studiKasusPanel2" style="display: none">
+                    <div class="komp-widget indeks-kursi-widget">
+          <div class="komp-widget-header">
+            <h3>
+              <i class="fa-solid fa-coins"></i> Indeks Harga Kursi &amp;
+              Proyeksi Pemilu 2029
+            </h3>
+            <span
+              >Dapil Kalimantan Timur &bull; Data KPU 2019 &amp; 2024</span
+            >
+          </div>
+
+          <div class="simulasi-info-box">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+              Selain kebutuhan suara untuk 2 kursi, penting juga mengetahui
+              <strong>"harga" rata-rata 1 kursi DPR RI</strong> di Dapil
+              Kalimantan Timur. Total <strong>2.013.394 suara sah</strong>
+              dibagi <strong>8 kursi</strong> menghasilkan BPP nominal
+              <strong>251.674 suara/kursi</strong>, sementara ambang batas
+              riil (kursi terakhir/ke-8) hanya
+              <strong>111.142 suara</strong>, ditentukan oleh perolehan PAN.
+              Di level individu, rata-rata caleg yang berhasil lolos ke
+              Senayan (data Pemilu 2019) membawa
+              <strong>80.647 suara</strong>.
+            </p>
+          </div>
+
+          <div class="ringkasan-indeks-table-wrap">
+            <h4>Ringkasan Indeks Utama (Pemilu 2024)</h4>
+            <div class="table-responsive">
+              <table class="dashboard-table ringkasan-indeks-table">
+                <thead>
+                  <tr>
+                    <th>Indeks</th>
+                    <th>Nilai</th>
+                    <th>Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Harga Kursi Rata-rata</strong><br /><small>(BPP Normal)</small></td>
+                    <td class="ringkasan-nilai">251.674<br /><small>Suara/kursi</small></td>
+                    <td>Patokan rata-rata kursi suara untuk 1 kursi di Kaltim</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Harga Kursi Minimal/<br />Batas Aman Riil</strong></td>
+                    <td class="ringkasan-nilai">111.142<br /><small>Suara</small></td>
+                    <td>Ambang batas bawah nyata untuk memperoleh 1 kursi (kursi ke-8)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rata-rata Suara<br />Individu Caleg Terpilih</strong></td>
+                    <td class="ringkasan-nilai">80.647<br /><small>Suara/caleg</small></td>
+                    <td>Rata-rata kontribusi suara figur caleg yang berhasil lolos ke Senayan (data Pemilu 2019)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="indeks-kpi-grid" id="skIndeksKpiGrid"></div>
+
+          <div class="komp-grid indeks-analisis-grid">
+            <div class="table-responsive">
+              <table class="dashboard-table" id="indeksKursiTable">
+                <thead>
+                  <tr>
+                    <th>Partai</th>
+                    <th>Suara 2024</th>
+                    <th>Target 2 Kursi (Suara : 3)</th>
+                    <th>Threshold 2 Kursi</th>
+                    <th>Kekurangan Suara</th>
+                    <th>Kenaikan Dibutuhkan</th>
+                  </tr>
+                </thead>
+                <tbody id="skIndeksKursiTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="posisi-batas-kursi-panel">
+              <h4>Posisi Batas Kursi Metode Sainte-Lague (2024)</h4>
+              <div id="skPosisiBatasKursiChart" class="komp-chart-container"></div>
+              <div class="posisi-batas-note">
+                <i class="fa-solid fa-lightbulb"></i>
+                <p>
+                  Ambang batas minimal untuk memperoleh 1 kursi di Dapil
+                  Kaltim adalah <strong>111.142 suara</strong>. Agar meraih 2
+                  kursi, nilai bagi ke-3 (<em>Suara Total : 3</em>) harus
+                  &ge; <strong>111.142 &times; 3 = 333.424 suara</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RUMUS-RUMUS UTAMA PERHITUNGAN -->
+          <div class="rumus-section-header">
+            <i class="fa-solid fa-square-root-variable"></i>
+            <span>Rumus-rumus Utama Perhitungan</span>
+          </div>
+
+          <div class="rumus-grid">
+            <div class="rumus-card">
+              <h4>Harga Kursi Nominal / BPP<br /><small>(Bilangan Pembagi Pemilih)</small></h4>
+              <p class="rumus-desc">
+                Mengukur harga rata-rata kasar satu kursi di suatu Dapil.
+              </p>
+              <div class="rumus-formula">
+                <div>Total Suara Sah Seluruh Partai di Dapil</div>
+                <hr />
+                <div>Jumlah Alokasi Kursi Dapil</div>
+              </div>
+              <div class="rumus-hasil">
+                <strong>Perhitungan Kaltim 2024:</strong>
+                2.013.394 : 8 = <strong>251.674 suara/kursi</strong>
+              </div>
+            </div>
+
+            <div class="rumus-card">
+              <h4>Pembagian Kursi<br /><small>Sainte-Lague (UU No. 7/2017)</small></h4>
+              <p class="rumus-desc">
+                Menentukan nilai bagi perolehan suara partai untuk
+                memperebutkan setiap kursi.
+              </p>
+              <div class="rumus-formula">
+                <div>Total Bagi Suara Partai = Total Suara Sah Partai</div>
+                <hr />
+                <div>1, 3, 5, 7, &hellip;</div>
+              </div>
+              <div class="rumus-hasil">
+                <strong>Harga Kursi Minimal Riil (Kursi ke-8):</strong>
+                111.142 : 1 = <strong>111.142 suara</strong>
+              </div>
+            </div>
+
+            <div class="rumus-card">
+              <h4>Rata-rata Suara Personal<br /><small>Caleg Terpilih (Data 2019)</small></h4>
+              <p class="rumus-desc">
+                Mengukur rata-rata suara individu Caleg yang lolos ke Senayan.
+              </p>
+              <div class="rumus-formula">
+                <div>Total Suara Pribadi Seluruh Caleg Terpilih</div>
+                <hr />
+                <div>Jumlah Total Caleg Terpilih</div>
+              </div>
+              <div class="rumus-hasil">
+                <strong>Perhitungan 2019:</strong>
+                45.242.731 : 561 = <strong>80.647 suara/caleg</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="catatan-strategis-grid">
+            <div class="catatan-strategis-card">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div>
+                <h4>Target Ambang Batas Aman Parpol</h4>
+                <p>
+                  Targetkan modal awal suara di Kaltim minimal
+                  <strong>125.000 suara</strong> agar tidak tergeser di
+                  perebutan kursi terakhir.
+                </p>
+              </div>
+            </div>
+
+            <div class="catatan-strategis-card">
+              <i class="fa-solid fa-user-tie"></i>
+              <div>
+                <h4>Target Individual Caleg</h4>
+                <p>
+                  Mengingat persaingan internal makin ketat, calon legislatif
+                  ditargetkan membawa minimal
+                  <strong>85.000 &ndash; 95.000 suara individu</strong>
+                  (naik dari rata-rata 2019 sebesar 80,6 ribu).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASUMSI PERTUMBUHAN & PROYEKSI 2029 -->
+          <div class="rumus-section-header">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Asumsi Dasar Pertumbuhan Pemilih (2024 ke 2029)</span>
+          </div>
+
+          <div class="asumsi-proyeksi-grid">
+            <div class="asumsi-table-wrap">
+              <table class="dashboard-table asumsi-table">
+                <tbody>
+                  <tr>
+                    <td>Suara Sah Pemilu 2024</td>
+                    <td><strong>2.013.394 suara</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Proyeksi Pertumbuhan Suara Sah (2029)</td>
+                    <td><strong>8% &ndash; 12%</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Estimasi Total Suara Sah 2029</td>
+                    <td><strong>2.170.000 &ndash; 2.250.000 suara</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="proyeksi-2029-grid">
+              <div class="proyeksi-card">
+                <div class="proyeksi-card-header">
+                  <i class="fa-solid fa-lock"></i>
+                  <span>Skenario Alokasi Tetap (8 Kursi)</span>
+                </div>
+                <h3 id="proyeksiTetapBpp">271.250 &ndash; 281.250</h3>
+                <small>suara/kursi &bull; naik 20.000&ndash;30.000 dari 2024</small>
+                <div class="proyeksi-sub">
+                  <span>Harga Kursi Minimal/Aman Kritis</span>
+                  <strong id="proyeksiTetapMinimal">120.000 &ndash; 125.000</strong>
+                  <small>suara &bull; &plusmn;5,5% dari total suara sah</small>
+                </div>
+              </div>
+
+              <div class="proyeksi-card">
+                <div class="proyeksi-card-header">
+                  <i class="fa-solid fa-arrow-up-right-dots"></i>
+                  <span>Skenario Alokasi Bertambah (Efek IKN &rarr; 9 Kursi)</span>
+                </div>
+                <h3 id="proyeksiIknBpp">241.000 &ndash; 250.000</h3>
+                <small>suara/kursi</small>
+                <div class="proyeksi-sub">
+                  <span>Harga Kursi Minimal</span>
+                  <strong id="proyeksiIknMinimal">110.000 &ndash; 115.000</strong>
+                  <small>suara</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="skIndeksTrendChart" class="komp-chart-container"></div>
+        </div>
+
+          </div>
+
+          <div class="studi-kasus-panel" id="studiKasusPanel3" style="display: none">
+                    <div class="analisis-widget potensi-historis-widget">
+          <div class="analisis-widget-header">
+            <h3>
+              <i class="fa-solid fa-chart-simple"></i> Pemetaan Potensi Suara
+              Berdasarkan Data Historis 2019 &amp; 2024
+            </h3>
+            <span
+              >Dapil Kalimantan Timur &bull; DPT, karakteristik demografi
+              &amp; proyeksi pertumbuhan pemilih menuju 2029</span
+            >
+          </div>
+
+          <p class="scope-note">
+            <i class="fa-solid fa-circle-info"></i>
+            Bagian ini memakai <strong>data real DPT Pemilu Dapil Kalimantan
+            Timur</strong>, dianalisis berdasarkan karakteristik demografi dan
+            proyeksi pertumbuhan pemilih menuju Pemilu 2029.
+          </p>
+
+          <!-- KPI RINGKASAN -->
+          <div class="potensi-summary-grid">
+            <div class="potensi-summary-card">
+              <div class="potensi-summary-icon icon-blue">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <div class="potensi-summary-text">
+                <span>Total Pemilih</span>
+                <h3>&plusmn; 2,68 Juta</h3>
+                <small>100% DPT Dapil Kaltim</small>
+              </div>
+            </div>
+
+            <div class="potensi-summary-card">
+              <div class="potensi-summary-icon icon-green">
+                <i class="fa-solid fa-city"></i>
+              </div>
+              <div class="potensi-summary-text">
+                <span>Jumlah Kab/Kota</span>
+                <h3>7 Kab &amp; 2 Kota</h3>
+                <small>cakupan Dapil Kalimantan Timur</small>
+              </div>
+            </div>
+
+            <div class="potensi-summary-card">
+              <div class="potensi-summary-icon icon-purple">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+              <div class="potensi-summary-text">
+                <span>Proyeksi Pertumbuhan</span>
+                <h3>8% &ndash; 12%</h3>
+                <small>pemilih 2024 menuju 2029</small>
+              </div>
+            </div>
+
+            <div class="potensi-summary-card">
+              <div class="potensi-summary-icon icon-orange">
+                <i class="fa-solid fa-landmark-dome"></i>
+              </div>
+              <div class="potensi-summary-text">
+                <span>Alokasi Kursi DPR RI</span>
+                <h3>8 Kursi</h3>
+                <small>Dapil Kalimantan Timur</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIER 1 -->
+          <div class="tier-section">
+            <div class="tier-section-header tier-1">
+              <span class="tier-badge">Tier 1</span>
+              <div>
+                <h4>Klaster &ldquo;Tiga Raksasa&rdquo; (Lumbung Suara Utama)</h4>
+                <p>
+                  Menguasai hampir 60% total suara di Kaltim (&plusmn; 1,65
+                  juta pemilih). Wilayah ini adalah segmen wajib
+                  <em>(must-win area)</em>.
+                </p>
+              </div>
+            </div>
+
+            <div class="tier-grid tier-grid-3">
+              <div class="tier-card">
+                <div class="tier-card-top">
+                  <span class="tier-rank">1</span>
+                  <div class="tier-card-icon icon-blue">
+                    <i class="fa-solid fa-city"></i>
+                  </div>
+                </div>
+                <h5>Kota Samarinda</h5>
+                <div class="tier-card-value">
+                  <strong>&plusmn; 604 Ribu</strong>
+                  <span class="tier-percent">21,7%</span>
+                </div>
+                <small class="tier-card-sub">pemilih</small>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Pusat pemerintahan,
+                    urban, heterogen, tingkat pendidikan tinggi.
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Dinamis, Milenial, Gen
+                    Z, ASN, dan kelompok terpelajar dominan. Efektif digarap
+                    dengan isu kebijakan publik, ekonomi perkotaan, dan
+                    kampanye digital/komunitas.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tier-card">
+                <div class="tier-card-top">
+                  <span class="tier-rank">2</span>
+                  <div class="tier-card-icon icon-amber">
+                    <i class="fa-solid fa-tractor"></i>
+                  </div>
+                </div>
+                <h5>Kabupaten Kutai Kartanegara (Kukar)</h5>
+                <div class="tier-card-value">
+                  <strong>&plusmn; 543 Ribu</strong>
+                  <span class="tier-percent">19,5%</span>
+                </div>
+                <small class="tier-card-sub">pemilih</small>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Wilayah terluas, basis
+                    pedesaan, pesisir, tambang dan perkebunan.
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Loyalitas pemilih
+                    berbasis figur lokal, kekerabatan, dan paguyuban kuat.
+                    Kunci garapan: tokoh masyarakat, kelompok
+                    Tani/Nelayan, buruh tambang.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tier-card">
+                <div class="tier-card-top">
+                  <span class="tier-rank">3</span>
+                  <div class="tier-card-icon icon-teal">
+                    <i class="fa-solid fa-oil-well"></i>
+                  </div>
+                </div>
+                <h5>Kota Balikpapan</h5>
+                <div class="tier-card-value">
+                  <strong>&plusmn; 509 Ribu</strong>
+                  <span class="tier-percent">18,3%</span>
+                </div>
+                <small class="tier-card-sub">pemilih</small>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Kota jasa, industri
+                    migas, pintu gerbang utama IKN, serta pusat bisnis.
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Pemilih rasional,
+                    swasta/pekerja industri, dan pendatang (migran). Karakter
+                    pilihan cenderung pragmatis dan realistis.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIER 2 -->
+          <div class="tier-section">
+            <div class="tier-section-header tier-2">
+              <span class="tier-badge">Tier 2</span>
+              <div>
+                <h4>Klaster Sabuk Pertumbuhan &amp; Industri</h4>
+                <p>
+                  Menyumbang sekitar 25% total suara (&sim;700 ribu
+                  pemilih). Menjadi penentu kemenangan untuk merebut kursi
+                  ke-6 s.d. ke-8.
+                </p>
+              </div>
+            </div>
+
+            <div class="tier-grid tier-grid-3">
+              <div class="tier-card">
+                <div class="tier-card-top">
+                  <span class="tier-rank">1</span>
+                  <div class="tier-card-icon icon-rose">
+                    <i class="fa-solid fa-tree"></i>
+                  </div>
+                </div>
+                <h5>Kabupaten Kutai Timur</h5>
+                <div class="tier-card-value">
+                  <strong>&plusmn; 300 Ribu</strong>
+                  <span class="tier-percent">10,8%</span>
+                </div>
+                <small class="tier-card-sub">pemilih</small>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Wilayah perkebunan,
+                    pertambangan, serta diwarnai komunitas pekerja migran.
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Pertumbuhan pemilih
+                    tinggi dan memiliki keheterogenan basis wilayah.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tier-card">
+                <div class="tier-card-top">
+                  <span class="tier-rank">2</span>
+                  <div class="tier-card-icon icon-cyan">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                  </div>
+                </div>
+                <h5>Kab. Paser &amp; Penajam Paser Utara</h5>
+                <div class="tier-card-value">
+                  <strong>&plusmn; 211 Ribu &amp; &plusmn; 134 Ribu</strong>
+                </div>
+                <small class="tier-card-sub">pemilih</small>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Sektor pertumbuhan
+                    tercepat (zona efek IKN).
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Pemilih berasal dari
+                    migrasi pekerja, ASN, dan berpotensi terjadi lonjakan
+                    jumlah pemilih.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="tier-card">
+                <div class="tier-card-top">
+                  <span class="tier-rank">3</span>
+                  <div class="tier-card-icon icon-indigo">
+                    <i class="fa-solid fa-industry"></i>
+                  </div>
+                </div>
+                <h5>Kabupaten Berau &amp; Kota Bontang</h5>
+                <div class="tier-card-value">
+                  <strong>&plusmn; 191 Ribu &amp; &plusmn; 191 Ribu</strong>
+                </div>
+                <small class="tier-card-sub">pemilih</small>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Kota industri berat/
+                    petrokimia, pertambangan, dan pariwisata.
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Pemilih rasional,
+                    swasta/pekerja industri, dan pendatang (migran).
+                    Karakter pilihan cenderung pragmatis dan realistis.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIER 3 -->
+          <div class="tier-section">
+            <div class="tier-section-header tier-3">
+              <span class="tier-badge">Tier 3</span>
+              <div>
+                <h4>Klaster Pedalaman dan Pesisir Khusus</h4>
+                <p>
+                  Menyumbang sekitar 10% total suara (&plusmn; 280 ribu
+                  pemilih). Sering menjadi suara penentu
+                  <em>(game changer)</em> di detik akhir.
+                </p>
+              </div>
+            </div>
+
+            <div class="tier-grid tier-grid-1">
+              <div class="tier-card tier-card-wide">
+                <div class="tier-card-top">
+                  <span class="tier-rank">1</span>
+                  <div class="tier-card-icon icon-slate">
+                    <i class="fa-solid fa-water"></i>
+                  </div>
+                </div>
+                <h5>Kabupaten Kutai Barat &amp; Kabupaten Mahakam Ulu</h5>
+                <div class="tier-card-value tier-card-value-split">
+                  <div>
+                    <strong>&plusmn; 125.000</strong>
+                    <small class="tier-card-sub">pemilih (Kubar)</small>
+                  </div>
+                  <div>
+                    <strong>&plusmn; 27.000</strong>
+                    <span class="tier-percent">1,0%</span>
+                    <small class="tier-card-sub">pemilih (Mahulu)</small>
+                  </div>
+                </div>
+                <ul>
+                  <li>
+                    <strong>Karakteristik:</strong> Basis pemilih
+                    adat/komunitas lokal yang sangat kompak.
+                  </li>
+                  <li>
+                    <strong>Potensi Politik:</strong> Penetrasi figur lokal
+                    atau kerja sama dengan tokoh adat/tokoh agama sangat
+                    efektif, karena pola memilihnya memiliki ketaatan
+                    komunal yang tinggi <em>(solidarity voting)</em>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="analisis-widget strategi-2029-widget">
+          <div class="analisis-widget-header">
+            <h3>
+              <i class="fa-solid fa-chess"></i> Strategi Pemetaan Suara
+              (Pemilu 2029)
+            </h3>
+            <span>Rekomendasi berbasis klasterisasi wilayah di atas</span>
+          </div>
+
+          <div class="strategi-grid">
+            <div class="strategi-card">
+              <span class="strategi-num">1</span>
+              <h4>
+                Strategi Poros Utama (Samarinda + Kukar + Balikpapan)
+              </h4>
+              <p>
+                <strong>Strategi:</strong> Partai politik wajib mendudukkan
+                minimal 1&ndash;2 caleg populer yang berasal dari/berbasis di
+                Samarinda, Kukar, dan Balikpapan untuk menjaga baseline
+                suara partai agar melampaui 100.000 suara.
+              </p>
+            </div>
+
+            <div class="strategi-card">
+              <span class="strategi-num">2</span>
+              <h4>Kombinasi Figur Urban &amp; Daerah</h4>
+              <p>
+                <strong>Strategi:</strong> Memadukan caleg tipe figur
+                publik/populer di kota (Samarinda/Balikpapan) dengan caleg
+                tokoh lokal/akar rumput di wilayah Kutim/Kukar/PPU/Paser.
+              </p>
+            </div>
+
+            <div class="strategi-card">
+              <span class="strategi-num">3</span>
+              <h4>Fokus Khusus Zona IKN (PPU &amp; Paser)</h4>
+              <p>
+                <strong>Strategi:</strong> Menjadikan PPU dan Paser sebagai
+                target ekspansi baru di 2029 karena masuknya demografi
+                pemilih baru (pekerja &amp; ASN) yang belum memiliki
+                loyalitas politik terikat pada partai tertentu.
+              </p>
+            </div>
+          </div>
+        </div>
+
+          </div>
+
+          <div class="studi-kasus-panel" id="studiKasusPanel4" style="display: none">
+                    <div class="komp-widget split-ticket-widget">
+          <div class="komp-widget-header">
+            <h3>
+              <i class="fa-solid fa-arrow-right-arrow-left"></i> Analisis
+              Fenomena Suara Caleg DPRD Tidak Linier dengan DPR RI
+            </h3>
+            <span>Split-Ticket Voting &bull; Pemilu Dapil Kalimantan Timur</span>
+          </div>
+
+          <div class="simulasi-info-box">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+              Gejala politik yang sangat menonjol pada Pemilu 2024 di
+              Kalimantan Timur: caleg DPRD meraup suara sangat besar, namun
+              tidak linier <em>(cross-voting / split-ticket voting)</em>
+              dengan suara DPR RI partainya &mdash; pemilih mencoblos figur
+              lokal di surat suara DPRD, tapi berpindah partai/caleg lain di
+              surat suara DPR RI.
+            </p>
+          </div>
+
+          <p class="scope-note">
+            <i class="fa-solid fa-circle-info"></i>
+            Studi kasus di bawah memakai
+            <strong>data real perolehan suara caleg DPRD Provinsi Kaltim &amp; DPR RI Dapil Kalimantan Timur, Pemilu 2024</strong>.
+          </p>
+
+          <h4 class="split-ticket-subheading">
+            Studi Kasus Tokoh &amp; Perolehan Suara DPRD di Kaltim
+          </h4>
+
+          <div class="tokoh-case-list">
+            <div class="tokoh-case-card">
+              <div class="tokoh-case-header">
+                <div class="tokoh-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="tokoh-header-text">
+                  <span class="tokoh-case-num">Kasus 1</span>
+                  <h5>&ldquo;Raja Suara&rdquo; DPRD Balikpapan: H. Abdulloh (Golkar)</h5>
+                </div>
+                <div class="tokoh-suara-badge">
+                  <strong>&plusmn; 48.180</strong>
+                  <small>suara</small>
+                </div>
+              </div>
+              <ul>
+                <li>
+                  Meraih suara pribadi yang sangat fantastis, yakni &plusmn;
+                  48.180 suara. Ini menjadikan beliau salah satu peraih
+                  suara individu terbesar di Kaltim.
+                </li>
+                <li>
+                  Di tingkat Kota Balikpapan, ribuan pemilih militan
+                  mencoblos di surat suara DPRD Provinsi Kaltim. Namun, pada
+                  surat suara DPR RI, sebagian signifikan dari pemilih
+                  basisnya terpecah ke partai atau figur lain (seperti caleg
+                  DPR RI dari Gerindra, PKS, atau NasDem).
+                </li>
+                <li>
+                  Figur sentral lokal mengikat komitmen politik langsung
+                  karena bantuan konstituen di tingkat lokal, bukan karena
+                  faktor keunggulan partai secara nasional/DPR RI. Selain
+                  itu, pemilih tidak mendapat penetrasi langsung dari caleg
+                  DPR RI separtai di lapangan.
+                </li>
+              </ul>
+            </div>
+
+            <div class="tokoh-case-card">
+              <div class="tokoh-case-header">
+                <div class="tokoh-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="tokoh-header-text">
+                  <span class="tokoh-case-num">Kasus 2</span>
+                  <h5>&ldquo;Akar Rumput Kutai&rdquo;: H. Hasanuddin Mas&rsquo;ud &amp; Tokoh Lokal Kukar</h5>
+                </div>
+                <div class="tokoh-suara-badge">
+                  <strong>&plusmn; 42.000+</strong>
+                  <small>suara</small>
+                </div>
+              </div>
+              <ul>
+                <li>
+                  Hasanuddin Mas&rsquo;ud (Ketua DPRD Kaltim) meraup
+                  &plusmn; 42.000+ suara di Dapil Kutai Kartanegara.
+                </li>
+                <li>
+                  Di Kukar, suara DPRD Kaltim milik figur lokal yang kuat
+                  kerap melampaui kontribusi suara caleg DPR RI dari partai
+                  yang sama di TPS-TPS tertentu.
+                </li>
+                <li>
+                  Masyarakat memilih caleg DPRD Kaltim dari Golkar/PDI-P,
+                  tetapi di tingkat DPR RI suara mereka justru mengalir
+                  deras ke Partai Gerindra atau NasDem (efek ekor jas /
+                  <em>coattail effect</em> Pilpres).
+                </li>
+              </ul>
+            </div>
+
+            <div class="tokoh-case-card">
+              <div class="tokoh-case-header">
+                <div class="tokoh-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="tokoh-header-text">
+                  <span class="tokoh-case-num">Kasus 3</span>
+                  <h5>Tokoh Muda Urban Samarinda: dr. Andi Satya Adi Saputra (Golkar) &amp; Agus Suwandy (Gerindra)</h5>
+                </div>
+                <div class="tokoh-suara-badge tokoh-suara-badge-split">
+                  <div>
+                    <strong>&plusmn; 28.000+</strong>
+                    <small>Andi Satya</small>
+                  </div>
+                  <div>
+                    <strong>&plusmn; 38.000+</strong>
+                    <small>Agus Suwandy</small>
+                  </div>
+                </div>
+              </div>
+              <ul>
+                <li>
+                  dr. Andi Satya (Golkar &ndash; Samarinda) meraup
+                  &plusmn; 28.000+ suara, dan Agus Suwandy (Gerindra &ndash;
+                  Samarinda) meraup &plusmn; 38.000+ suara.
+                </li>
+                <li>
+                  Pemilih dr. Andi Satya di Samarinda banyak berasal dari
+                  segmen pasien/komunitas muda/pemilih terpelajar.
+                </li>
+                <li>
+                  Saat mencoblos DPRD Provinsi Kaltim mereka memilih Andi
+                  Satya, namun untuk DPR RI mereka banyak mencoblos PKS atau
+                  NasDem. Kaitan loyalitas emosional profesional hanya
+                  mengunci suara di tingkat lokal.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 class="split-ticket-subheading">
+            Implikasi Strategis &amp; Solusi Pemilu 2029
+          </h4>
+
+          <div class="implikasi-strategis-grid">
+            <div class="implikasi-strategis-card">
+              <div class="implikasi-strategis-icon">
+                <i class="fa-solid fa-handshake"></i>
+              </div>
+              <div>
+                <span class="implikasi-num">1</span>
+                <h4>Kontrak Sistem Tandem Berikat (Lock-In Contract)</h4>
+                <p>
+                  Buat komitmen tertulis dan terukur (didukung
+                  insentif/pembagian logistik) dengan caleg-caleg DPRD
+                  Kaltim peraih suara jumbo seperti Abdulloh atau
+                  Hasanuddin Mas&rsquo;ud.
+                </p>
+              </div>
+            </div>
+
+            <div class="implikasi-strategis-card">
+              <div class="implikasi-strategis-icon">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <div>
+                <span class="implikasi-num">2</span>
+                <h4>Penguncian Suara TPS</h4>
+                <p>
+                  Kunci setiap suara DPRD lokal agar membawa
+                  lembaran/kartu instruksi coblos yang seragam untuk kertas
+                  suara DPR RI sejak di tingkat relawan RT.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          </div>
+
+          <div class="studi-kasus-panel" id="studiKasusPanel5" style="display: none">
+                    <div class="komp-widget caleg-korelasi-widget">
+          <div class="komp-widget-header">
+            <h3>
+              <i class="fa-solid fa-user-check"></i> Breakdown Caleg
+              Terpilih &amp; Korelasi Indeks Personal
+            </h3>
+            <span
+              >Dapil Kalimantan Timur &bull; Data KPU 2019 &amp; 2024</span
+            >
+          </div>
+
+          <!-- 1. MENDASARI PERHITUNGAN: ALUR SISTEM PEMILU -->
+          <h5 class="benchmark-block-title">
+            Alur Sistem Pemilu: Dari Suara ke Kursi
+          </h5>
+
+          <div class="alur-sistem-grid">
+            <div class="alur-box">
+              <span class="alur-tag">Filter 1</span>
+              <h5>Alokasi Kursi Partai<br /><small>(Sainte-Lague)</small></h5>
+              <p>
+                Total suara sah partai (gabungan coblos gambar + seluruh
+                caleg) dibagi bertahap dengan bilangan ganjil (1, 3, 5,
+                &hellip;). Angka hasil bagi seluruh partai diurutkan
+                nasional/dapil untuk memperebutkan 8 kuota kursi.
+              </p>
+            </div>
+
+            <div class="alur-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="alur-box">
+              <span class="alur-tag">Filter 2</span>
+              <h5>Caleg Terpilih<br /><small>(Proporsional Terbuka)</small></h5>
+              <p>
+                Kursi yang diraih partai diisi oleh caleg dengan suara
+                personal (perorangan) tertinggi, tanpa terikat nomor urut.
+              </p>
+            </div>
+
+            <div class="alur-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+            <div class="alur-box alur-box-result">
+              <h5>8 Caleg Terpilih</h5>
+              <p>DPR RI Dapil Kalimantan Timur Tahun 2024</p>
+            </div>
+          </div>
+
+          <!-- 3. POIN KUNCI DINAMIKA PERHITUNGAN -->
+          <h5 class="benchmark-block-title" style="margin-top: 24px;">
+            Poin Kunci Dinamika Perhitungan
+          </h5>
+
+          <div class="poin-kunci-grid">
+            <div class="poin-kunci-card">
+              <div class="poin-kunci-icon">
+                <i class="fa-solid fa-chair"></i>
+              </div>
+              <h5>Kunci 2 Kursi Golkar</h5>
+              <p>
+                Perolehan total Golkar (538.025) sangat tinggi sehingga
+                pembagi 3-nya (179.341,67) masih melampaui total suara
+                pembagi 1 milik PKS, PKB, dan PAN.
+              </p>
+            </div>
+
+            <div class="poin-kunci-card">
+              <div class="poin-kunci-icon">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <h5>Fenomena Penyalip Nomor Urut</h5>
+              <p>
+                Sistem proporsional terbuka terbukti efektif di NasDem
+                (Nabil Husien &ndash; No. 5) dan PAN (Edi Olgan Pasaribu
+                &ndash; No. 8), di mana caleg nomor urut bawah melenggang
+                ke Senayan karena unggul suara perorangan.
+              </p>
+            </div>
+
+            <div class="poin-kunci-card">
+              <div class="poin-kunci-icon poin-kunci-icon-warn">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <h5>Garis Batas Paling Kritis</h5>
+              <p>
+                Demokrat menempati posisi runner-up kelolosan (Peringkat 9)
+                dan gagal mendapatkan kursi hanya karena selisih 390 suara
+                dari PAN.
+              </p>
+            </div>
+          </div>
+
+          <!-- STUDI KASUS: BREAKDOWN CALEG TERPILIH & KORELASI INDEKS PERSONAL -->
+          <h4 class="split-ticket-subheading" style="margin-top: 4px;">
+            Tabel Rekapitulasi Pembagian Kursi &amp; Caleg Terpilih (Metode
+            Sainte-Lague)
+          </h4>
+
+          <div class="table-responsive">
+            <table class="dashboard-table caleg-terpilih-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Partai</th>
+                  <th>Total Suara</th>
+                  <th>Pembagi</th>
+                  <th>Nilai Bagi KPU</th>
+                  <th>Status</th>
+                  <th>Caleg Terpilih</th>
+                  <th>No.</th>
+                  <th>Suara Personal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Golkar</td>
+                  <td>538.025</td>
+                  <td>&divide; 1</td>
+                  <td>538.025</td>
+                  <td><span class="status-badge status-kursi">Kursi 1</span></td>
+                  <td>H. Rudy Mas&rsquo;ud, S.E., M.E.</td>
+                  <td>1</td>
+                  <td><strong>168.618</strong></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Gerindra</td>
+                  <td>307.259</td>
+                  <td>&divide; 1</td>
+                  <td>307.259</td>
+                  <td><span class="status-badge status-kursi">Kursi 2</span></td>
+                  <td>G. Budisatrio Djiwandono</td>
+                  <td>1</td>
+                  <td><strong>131.558</strong></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>PDIP</td>
+                  <td>252.370</td>
+                  <td>&divide; 1</td>
+                  <td>252.370</td>
+                  <td><span class="status-badge status-kursi">Kursi 3</span></td>
+                  <td>Dra. Safaruddin, M.I.Kom.</td>
+                  <td>1</td>
+                  <td><strong>68.312</strong></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>NasDem</td>
+                  <td>227.600</td>
+                  <td>&divide; 1</td>
+                  <td>227.600</td>
+                  <td><span class="status-badge status-kursi">Kursi 4</span></td>
+                  <td>Nabil Husien Said Amin Alrasydi</td>
+                  <td>5</td>
+                  <td><strong>82.029</strong></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Golkar</td>
+                  <td>538.025</td>
+                  <td>&divide; 3</td>
+                  <td>179.341</td>
+                  <td><span class="status-badge status-kursi">Kursi 5</span></td>
+                  <td>Dr. Ir. H. Hetifah Sjaifudian, M.P.P.</td>
+                  <td>2</td>
+                  <td><strong>146.023</strong></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>PKS</td>
+                  <td>145.738</td>
+                  <td>&divide; 1</td>
+                  <td>145.738</td>
+                  <td><span class="status-badge status-kursi">Kursi 6</span></td>
+                  <td>K.H. Aus Hidayat Nur</td>
+                  <td>1</td>
+                  <td><strong>34.957</strong></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>PKB</td>
+                  <td>143.738</td>
+                  <td>&divide; 1</td>
+                  <td>143.738</td>
+                  <td><span class="status-badge status-kursi">Kursi 7</span></td>
+                  <td>Syafruddin, S.Pd.</td>
+                  <td>1</td>
+                  <td><strong>86.048</strong></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>PAN</td>
+                  <td>111.142</td>
+                  <td>&divide; 1</td>
+                  <td>111.142</td>
+                  <td><span class="status-badge status-kursi">Kursi 8</span></td>
+                  <td>Edi Olgan Pasaribu, ST., M.M.</td>
+                  <td>8</td>
+                  <td><strong>34.128</strong></td>
+                </tr>
+                <tr class="row-gagal">
+                  <td>9</td>
+                  <td>Demokrat</td>
+                  <td>110.752</td>
+                  <td>&divide; 1</td>
+                  <td>110.752</td>
+                  <td><span class="status-badge status-gagal">Gagal</span></td>
+                  <td>
+                    Dr. H. Irwan, S.IP., M.P.
+                    <br /><small>(Selisih tipis 390 suara dari PAN)</small>
+                  </td>
+                  <td>&mdash;</td>
+                  <td>66.077</td>
+                </tr>
+                <tr class="row-gagal">
+                  <td>10</td>
+                  <td>Golkar</td>
+                  <td>538.025</td>
+                  <td>&divide; 5</td>
+                  <td>107.605</td>
+                  <td><span class="status-badge status-gagal">Gagal</span></td>
+                  <td>
+                    H. Sarifah Suraidah
+                    <br /><small>(Kurang 3.537 poin untuk Kursi 3)</small>
+                  </td>
+                  <td>&mdash;</td>
+                  <td>71.462</td>
+                </tr>
+                <tr class="row-gagal">
+                  <td>11</td>
+                  <td>Gerindra</td>
+                  <td>307.259</td>
+                  <td>&divide; 3</td>
+                  <td>102.419</td>
+                  <td><span class="status-badge status-gagal">Gagal</span></td>
+                  <td>
+                    dr. Etha Rimba Paembonan, M.B.A.
+                    <br /><small>(Kalah persaingan dari PAN)</small>
+                  </td>
+                  <td>&mdash;</td>
+                  <td>47.930</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="split-ticket-subheading">
+            Korelasi Indeks Personal 2019 vs Realita Kaltim 2024
+          </h4>
+
+          <h5 class="benchmark-block-title">A. Perbandingan Benchmark</h5>
+
+          <div class="benchmark-compare-grid">
+            <div class="benchmark-box">
+              <h5>Indeks Suara Personal Nasional 2019</h5>
+              <p class="benchmark-figures">
+                45.242.731 suara<br /><small>561 caleg</small>
+              </p>
+              <div class="benchmark-result">
+                = 80.647 <small>suara/caleg</small>
+              </div>
+            </div>
+
+            <div class="benchmark-vs-icon">
+              <i class="fa-solid fa-code-compare"></i>
+              <span>VS</span>
+            </div>
+
+            <div class="benchmark-box benchmark-box-highlight">
+              <h5>Rata-rata Suara Personal Kaltim 2024</h5>
+              <p class="benchmark-figures">
+                751.673 suara<br /><small>8 caleg</small>
+              </p>
+              <div class="benchmark-result highlight">
+                = 93.959 <small>suara/caleg</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="benchmark-temuan">
+            <i class="fa-solid fa-circle-info"></i>
+            <p>
+              <strong>Temuan:</strong> Nilai rata-rata suara personal caleg
+              terpilih di Kaltim 2024 16,5% lebih tinggi ketimbang indeks
+              rata-rata nasional 2019, menandakan persaingan figur
+              perorangan yang jauh lebih intensif.
+            </p>
+          </div>
+
+          <h5 class="benchmark-block-title">
+            B. Segmentasi Kontribusi Caleg Terpilih
+          </h5>
+
+          <div class="segmentasi-list">
+            <div class="segmentasi-item">
+              <div class="segmentasi-tag tag-super">
+                Super-Contribution
+                <small>(&gt;100% Indeks Nasional)</small>
+              </div>
+              <ul>
+                <li>
+                  <strong>Rudy Mas&rsquo;ud (168.618) &amp; Hetifah
+                  (146.023):</strong> Menjadi mesin penarik
+                  <em>(vote getter)</em> utama yang mendongkrak partai
+                  meraih 2 kursi.
+                </li>
+                <li>
+                  <strong>Budi Djiwandono (131.558):</strong> Menyumbang
+                  dari 42,8% total suara Gerindra.
+                </li>
+              </ul>
+            </div>
+
+            <div class="segmentasi-item">
+              <div class="segmentasi-tag tag-anchor">
+                Anchor / Standar Contributor
+                <small>(&asymp;100% Indeks Nasional)</small>
+              </div>
+              <ul>
+                <li>
+                  <strong>Syafruddin &ndash; PKB (86.048) &amp; Nabil
+                  Husien &ndash; NasDem (82.029):</strong> Berada tepat di
+                  ambang batas rata-rata nasional, menjadi jangkar utama
+                  kelolosan partai di daerah.
+                </li>
+              </ul>
+            </div>
+
+            <div class="segmentasi-item">
+              <div class="segmentasi-tag tag-party">
+                Party-Driven Contributor
+                <small>(&lt;50% Indeks Nasional)</small>
+              </div>
+              <ul>
+                <li>
+                  <strong>Aus Hidayat Nur &ndash; PKS (34.957) &amp; Edi
+                  Olgan &ndash; PAN (34.128):</strong> Meraih kursi meski
+                  suara personal berada di bawah indeks nasional, berkat
+                  solidnya akumulasi suara struktur/gambar partai.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 class="split-ticket-subheading">Kesimpulan Strategis</h4>
+
+          <div class="kesimpulan-strategis-grid">
+            <div class="kesimpulan-strategis-card">
+              <i class="fa-solid fa-building-columns"></i>
+              <div>
+                <h4>Untuk Partai Besar (Golkar/Gerindra)</h4>
+                <p>
+                  Mengamankan kursi membutuhkan figur caleg dengan raihan
+                  individu minimal 1,5 &ndash; 2 kali lipat dari Indeks
+                  Nasional (suara).
+                </p>
+              </div>
+            </div>
+
+            <div class="kesimpulan-strategis-card">
+              <i class="fa-solid fa-people-group"></i>
+              <div>
+                <h4>Untuk Partai Menengah/Kecil (PKS/PAN)</h4>
+                <p>
+                  Kursi dapat diamankan cukup dengan caleg bermodal suara
+                  personal, asalkan didukung kerja kolektif caleg lain
+                  untuk melewati ambang batas pembagi 1 Sainte-Lagu&euml;.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+          </div>
+        </div>
+
+        <!-- ================================================
+             WIDGET DEFAULT (tampil saat belum ada studi kasus
+             yang dipilih di dropdown)
+        ================================================= -->
+        <div id="defaultAiWidgets" class="defaultAiWidgets">
         <!-- 1. EXECUTIVE SUMMARY -->
         <div class="air-widget summary-widget">
           <div class="air-widget-header">
@@ -345,10 +1591,12 @@
             </table>
           </div>
         </div>
+        </div>
       </section>
     </main>
 
     <script src="../../assets/js/ai-recommendation/ai-recommendation.js"></script>
+    <script src="../../assets/js/ai-recommendation/studi-kasus.js"></script>
     <script src="../../assets/js/app.js"></script>
   </body>
 </html>
