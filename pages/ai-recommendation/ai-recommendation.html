@@ -232,7 +232,11 @@
         <div class="filter-bar">
           <div class="filter-group filter-group-studi-kasus">
             <label>Studi Kasus</label>
-            <select id="studiKasusSelect">
+            <!-- select ASLI tetap dipertahankan (disembunyikan) supaya
+                 logic switch panel di studi-kasus.js tidak perlu diubah -
+                 lihat studi-kasus-search.js yang mengontrolnya lewat
+                 select.value + dispatch('change') -->
+            <select id="studiKasusSelect" class="sk-hidden-select" tabindex="-1" aria-hidden="true">
               <option value="">&mdash; Pilih Studi Kasus &mdash;</option>
               <option value="1">
                 1. Berapa tambahan suara yang dibutuhkan untuk memperoleh 2
@@ -257,6 +261,24 @@
                 Suara per Kursi?
               </option>
             </select>
+
+            <!-- UI baru: search-as-you-type ala AI search -->
+            <div class="sk-search" id="skSearch">
+              <div class="sk-search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  id="studiKasusSearch"
+                  placeholder="Cari studi kasus... (mis. &quot;2 kursi&quot;, &quot;caleg&quot;, &quot;non-linearitas&quot;)"
+                  autocomplete="off"
+                />
+                <button type="button" class="sk-clear-btn" id="skClearBtn" style="display: none" aria-label="Bersihkan">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+
+              <div class="sk-suggestions" id="skSuggestions"></div>
+            </div>
           </div>
 
           <div class="filter-group">
@@ -1597,6 +1619,7 @@
 
     <script src="../../assets/js/ai-recommendation/ai-recommendation.js"></script>
     <script src="../../assets/js/ai-recommendation/studi-kasus.js"></script>
+    <script src="../../assets/js/ai-recommendation/studi-kasus-search.js"></script>
     <script src="../../assets/js/app.js"></script>
   </body>
 </html>
